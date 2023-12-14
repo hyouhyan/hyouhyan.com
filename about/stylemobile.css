@@ -1,0 +1,27 @@
+.main-content .title{
+    font-size: 32px;
+    margin: 0;
+    margin-bottom: 50px;
+    letter-spacing: .2em;
+}
+
+.main-content{
+    padding-top: 70px;
+}
+
+.main-content .description{
+    font-size: 4.2vw;
+    font-family: heisei-mincho-stdn;
+    font-weight: 300;
+    line-height: 2;
+}
+
+.main-content .description p{
+    margin-bottom: 33px;
+}
+
+.main-content .description .kime{
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,8 @@
+.main {font-size:12px; line-height:170%;}
+.caption {font-size:10px; line-height:140%;}
+@media screen and (min-width: 481px) {
+	/* 481px以上に適用されるCSS（タブレット用） */
+}
+@media screen and (min-width: 960px) {
+	/* 960px以上に適用されるCSS（PC用） */
+}

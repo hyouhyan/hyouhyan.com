@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+@font-face{
+    font-family: "Cica";
+    src: url("/font/Cica/Cica-Regular.woff") format("woff");
+
+    font-weight: normal;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "Cica";
+    src: url("/font/Cica/Cica-RegularItalic.woff") format("woff");
+
+    font-weight: normal;
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face{
+    font-family: "Cica";
+    src: url("/font/Cica/Cica-Bold.woff") format("woff");
+
+    font-weight: bold;
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "Cica";
+    src: url("/font/Cica/Cica-BoldItalic.woff") format("woff");
+
+    font-weight: bold;
+    font-weight: 700;
+    font-style: italic;
+}

@@ -1,0 +1,39 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic);
+
+
+/*全部共通のやつ*/
+body {
+    font: 16px/20px 'Noto Sans',"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
+    background-color: #fff;
+}
+
+h1 {
+    margin-top: 100px;
+    margin-bottom: 40px;
+    font-size: 35px;
+    line-height: 40px;
+    text-align: left;
+    text-decoration: none;
+}
+
+
+/*記事部分のやつ*/
+article {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+  
+article p {
+    margin-bottom: 16px;
+}
+  
+article h2 {
+    margin-bottom: 0.3em;
+    font-size: 20px;
+    letter-spacing: 0.3px;
+}

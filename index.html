@@ -1,0 +1,295 @@
+<!doctype html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <!--
+	=-==. -=- ∧＿∧
+	==-=-=と(`･ω･´)  よく見つけたな！
+	=-=  -=/  と_ノ
+	===--=_/／⌒ｿ  ｼｭ
+
+	∧＿∧ =- ==
+	(`･ω･´)`つ=-= ではさらばだ!
+	  `つ \ =-=    
+	  \,⌒＼\,,,_=-====
+	-->
+
+    <title>Hyouhyan - ひょうひゃん</title>
+    <meta name="description" content="プログラマー、エンジニア、そしてオタク。どうも、ひょうひゃんです。">
+    <meta name="author" content="Hyouhyan">
+
+    <link rel="icon" href="/favicon.ico">
+
+    <!--この辺og系-->
+    <meta property="og:title" content="Hyouhyan">
+    <meta property="og:description" content="プログラマー、エンジニア、そしてオタク。どうも、ひょうひゃんです。">
+    <meta property="og:site_name" content="Hyouhyan Main Page">
+    <meta property="og:locale" content="ja_JP">
+    <!-- TwitterのOG系 -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="プログラマー、エンジニア、そしてオタク。どうも、ひょうひゃんです。">
+    <meta name="twitter:title" content="Hyouhyan">
+    <meta name="twitter:image" content="https://hyouhyan.com/img/hyouhyan.jpg">
+    <meta name="twitter:site" content="@Hyouhyan">
+
+    <link rel="stylesheet" href="/css/style.css" media="screen and (min-width: 768px)">
+    <link rel="stylesheet" href="/css/stylemobile.css" media="screen and (max-width: 767px)">
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+
+    <!-- フォント関連 -->
+    <script>
+        (function (d) {
+            var config = {
+                kitId: 'wod5cwx',
+                scriptTimeout: 3000,
+                async: true
+            },
+                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+        })(document);
+    </script>
+
+    <!--SNSアイコン用-->
+    <script src="https://kit.fontawesome.com/c4cbe28a31.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="left-top">
+            <div class="logo">
+                <a href="/">
+                    <span class="ogla">Hyouhyan</span><span class="pro">.com</span>
+                </a>
+            </div>
+            <div class="main-nav">
+                <ul>
+                    <li>
+                        <a href="#home" class="nav">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="#skill" class="nav">SKILL</a>
+                    </li>
+                    <li>
+                        <a href="#work" class="nav">WORK</a>
+                    </li>
+                    <li>
+                        <a href="#link" class="nav">LINK</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="right-top">
+            <div class="sns">
+                <div class="twitter sns-button">
+                    <a href="https://twitter.com/hyouhyan">
+                        <div class="sns-logo"><i class="fa-brands fa-twitter"></i></div>
+                        <span class="sns-id">@hyouhyan</span>
+                    </a>
+                </div>
+                <div class="instagram sns-button">
+                    <a href="https://www.instagram.com/hyouhyan">
+                        <div class="sns-logo"><i class="fab fa-instagram"></i></div>
+                        <span class="sns-id">@hyouhyan</span>
+                    </a>
+                </div>
+                <div class="discord sns-button pc-only">
+                    <a>
+                        <div class="sns-logo"><i class="fab fa-discord"></i></div>
+                        <span class="sns-id">hyouhyan</span>
+                    </a>
+                </div>
+                <div class="github sns-button">
+                    <a href="https://github.com/hyouhyan">
+                        <div class="sns-logo"><i class="fab fa-github"></i></div>
+                        <span class="sns-id">hyouhyan</span>
+                    </a>
+                </div>
+                <div class="e-mail sns-button">
+                    <a href="mailto:hyouhyan@hyouhyan.com">
+                        <div class="sns-logo"><i class="far fa-envelope"></i></div>
+                        <span class="sns-id">hyouhyan@hyouhyan.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="home-box" id="home">
+            <img src="/img/hyouhyan.png" class="large-logo">
+            <a href="#about">
+                <div class="scroll-down" id="scroll-down"></div>
+            </a>
+        </div>
+
+        <div class="about-box box" id="about">
+            <h1><span>ABOUT</span></h1>
+            <div class="about-content">
+                I am CRAZY<br>
+                新しいもの、変なもの、<br class="mobile-only">一風変わったものが大好き<br>
+                どんな事でもとりあえず<br class="mobile-only">やってみる人<br>
+                ネットワーク、プログラミング、<br class="mobile-only">プレゼンに強いエンジニア<br>
+                デザイナー、DJ、オタクでもある
+            </div>
+        </div>
+
+        <div class="members-box box" id="skill">
+            <h1><span>SKILL</span></h1>
+            <ul class="members">
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/python.png">
+                        </figure>
+                        <div class="member-tags">
+                            <div>Discord Bot</div>
+                            <div>Deep Learning</div>
+                        </div>
+                        <div class="name"><span>Python</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/htmlcssjs.png">
+                        </figure>
+                        <div class="member-tags">
+                            <div>Web Design</div>
+                            <div>Node.js</div>
+                        </div>
+                        <div class="name"><span>HTML / CSS / JavaScript</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/clang.png">
+                        </figure>
+                        <div class="member-tags">
+                            <div>C is ART</div>
+                        </div>
+                        <div class="name"><span>C Lang</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/unity.png">
+                        </figure>
+                        <div class="member-tags">
+                            <div>3D CG</div><div>C#</div><div>Tokyo Game Show</div>
+                        </div>
+                        <div class="name"><span>Unity</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/matlab.png">
+                        </figure>
+                        <div class="member-tags">
+                            <div>Numerical Operation</div>
+                        </div>
+                        <div class="name"><span>Matlab</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/gas.png">
+                        </figure>
+                        <div class="member-tags">
+                            <div>Autoation</div>
+                        </div>
+                        <div class="name"><span>Google Apps Script</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <figure>
+                            <img src="/img/skill/dj.jpg">
+                        </figure>
+                        <div class="member-tags">
+                            <div>Music</div><div>HipHop</div><div>Future bass</div>
+                        </div>
+                        <div class="name"><span>DJ</span></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="works-box box" id="work">
+            <h1><span>WORK</span></h1>
+            <div class="works">
+                <div class="work">
+                    <a href="https://github.com/hyouhyan/vc-notice">
+                        <img src="/img/project/discordbot.jpg">
+                        <div class="hvd-work">
+                            <div class="work-description">
+                                <p>Discord VCの入退室をテキストチャットでお知らせしてくれるbot</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> 
+                <div class="work">
+                    <a href="https://hyouhyan.com/prest">
+                        <img src="/img/project/prest.png">
+                        <div class="hvd-work">
+                            <div class="work-description">
+                                <p>カメラ経由で手を認識し、PCのジェスチャ操作を可能にするプレゼンテーション特化型ソフトウェア</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="links-box box" id="link">
+            <h1><span>LINK</span></h1>
+            <div class="links">
+                <a href="https://hyouhyan.com/avocado">
+                    <div class="link">
+                        <span>Avocado</span>
+                    </div>
+                </a>
+                <a href="https://hyouhyan.com/tools">
+                    <div class="link">
+                        <span>WebAPP</span>
+                    </div>
+                </a>
+                <a href="https://scrapbox.io/hyouhyan">
+                    <div class="link">
+                        <span>Scrapbox</span>
+                    </div>
+                </a>
+                <a href="/wishlist">
+                    <div class="link">
+                        <span>Wishlist</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <small>
+            &copy; 2023 <a href="/">hyouhyan</a>
+        </small>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
