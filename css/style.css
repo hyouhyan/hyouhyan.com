@@ -458,7 +458,7 @@ h1 span{
     .links{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
     }
 
     .links-box h1{
@@ -483,7 +483,7 @@ h1 span{
 
     .links a{
         transition-duration: .3s;
-        margin-bottom: 10px;
+        margin: 10px;
     }
 
     .links a:hover{
