@@ -41,18 +41,6 @@
     <link rel="stylesheet" href="/css/stylemobile.css" media="screen and (max-width: 767px)">
     <link rel="stylesheet" href="./stylemobile.css" media="screen and (max-width: 767px)">
 
-    <!-- フォント関連 -->
-    <script>
-        (function (d) {
-            var config = {
-                kitId: 'wod5cwx',
-                scriptTimeout: 3000,
-                async: true
-            },
-                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
-        })(document);
-    </script>
-
     <!--SNSアイコン用-->
     <script src="https://kit.fontawesome.com/c4cbe28a31.js" crossorigin="anonymous"></script>
 </head>
@@ -94,6 +82,43 @@
 
     <div class="main-content">
         <h1 class="title">SNS</h1>
+
+        <div>
+            <p>
+                <h2><a href="/">Home</a></h2>
+                ただのホームページ
+            </p>
+            <br>
+            <p>
+                <h2><a href="https://ogla.hyouhyan.com">ogLa Production</a></h2>
+                個人で活動を行うコンテンツクリエイションサークル
+            </p> 
+            <br>
+            <p>
+                <h2><a href="/avocado">Avocado</a></h2>
+                Great Avocado
+            </p>
+            <br>
+            <p>
+                <h2><a href="/prest">Prest</a></h2>
+                Webカメラから手の形を読み取り、<br>
+                それに応じてPCのジェスチャ操作を可能にする<br>
+                プレゼンテーション特化型ソフトウェア
+            </p>
+            <br>
+            <p>
+                <h2><a href="/unchi">株式会社うんちぷりっ</a></h2>
+                株式会社うんちぷりっの公式ウェブサイト<br>
+                2022年エイプリルフール
+            </p>
+            <br>
+            <p>
+                <h2><a href="/tools">WebApp</a></h2>
+                JavaScriptの練習として作成した<br>
+                Webアプリケーションたち<br>
+                最近はPHPの練習も兼ねている
+            </p>
+        </div>
         
         <div class="more-button">
             <a href="/"><span>BACK</span></a>
