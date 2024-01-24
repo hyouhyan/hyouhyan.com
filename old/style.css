@@ -3,19 +3,19 @@
 
 @font-face {
     font-family: "nemoy";
-    src: url("/font/Nemoy/Nemoy_light.woff") format("woff");
+    src: url("/font/nemoy/Nemoy_light.woff") format("woff");
 }
 @font-face {
     font-family: "Orbitron";
-    src: url("/font/Orbitron/Orbitron-VariableFont_wght.woff") format("woff");
+    src: url("/font/orbitron/Orbitron-VariableFont_wght.woff") format("woff");
 }
 @font-face {
     font-family: "Koulen";
-    src: url("/font/Koulen/Koulen-Regular.woff") format("woff");
+    src: url("/font/koulen/Koulen-Regular.woff") format("woff");
 }
 @font-face {
     font-family: "JuliusSansOne";
-    src: url("/font/Julius_Sans_One/JuliusSansOne-Regular.woff") format("woff");
+    src: url("/font/julius_sans_one/JuliusSansOne-Regular.woff") format("woff");
 }
 
 a{
