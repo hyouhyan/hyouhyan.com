@@ -79,13 +79,19 @@ window.onload = function () {
 					// aboutにactiveがついたら
 					if ($(window).scrollTop() > array["#about"] - 50) {
 						// .right-topを非表示
-						$('.right-top').css('display', 'none');
-						// headerのwidthをautoにする
-						$('header').css('width', 'auto');
+						$('.right-top').css('visibility', 'hidden');
+						$('.right-top').css('opacity', 0);
+
+						// skillにactiveがついたら
+						if($(window).scrollTop() > array["#skill"] - 50){
+							// headerのwidthをautoにする
+							$('header').css('width', 'auto');
+						}
 
 					} else if ($(window).scrollTop() > array["#home"] - 50) { // homeにactiveがついたら
 						// .right-topを表示
-						$('.right-top').css('display', 'block');
+						$('.right-top').css('visibility', 'visible');
+						$('.right-top').css('opacity', 1);
 						// headerのwidthを100%にする
 						$('header').css('width', '100%');
 					}
