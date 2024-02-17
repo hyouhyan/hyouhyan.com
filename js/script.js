@@ -41,58 +41,60 @@ window.onload = function () {
 		/**
 		 * 現在スクロール位置によるグローバルナビのアクティブ表示
 		 */
-		var scrollMenu = function () {
-			// 配列宣言
-			// ここにスクロールで点灯させる箇所のidを記述する
-			// 数値は全て0でOK
-			var array = {
-				'#home': 0,
-				'#about': 0,
-				'#skill': 0,
-				'#work': 0,
-				'#link': 0
-			};
+		if (window.matchMedia('(min-width: 768px)').matches) {
+			var scrollMenu = function () {
+				// 配列宣言
+				// ここにスクロールで点灯させる箇所のidを記述する
+				// 数値は全て0でOK
+				var array = {
+					'#home': 0,
+					'#about': 0,
+					'#skill': 0,
+					'#work': 0,
+					'#link': 0
+				};
 
-			var $globalNavi = new Array();
+				var $globalNavi = new Array();
 
-			// 各要素のスクロール値を保存
-			for (var key in array) {
-				if ($(key).offset()) {
-					array[key] = $(key).offset().top - window.innerHeight / 2; // 画面中央に来た時に反応させる
-					$globalNavi[key] = $('.main-nav ul li a[href="' + key + '"]');
-				}
-			}
-
-			// スクロールイベントで判定
-			$(window).scroll(function () {
+				// 各要素のスクロール値を保存
 				for (var key in array) {
-					if ($(window).scrollTop() > array[key] - 50) {
-						$('.main-nav ul li a').each(function () {
-							$(this).removeClass('active-nav');
-						});
-						$globalNavi[key].addClass('active-nav');
+					if ($(key).offset()) {
+						array[key] = $(key).offset().top - window.innerHeight / 2; // 画面中央に来た時に反応させる
+						$globalNavi[key] = $('.main-nav ul li a[href="' + key + '"]');
 					}
 				}
 
-				// aboutにactiveがついたら
-				if ($(window).scrollTop() > array["#about"] - 50){
-					// .right-topを非表示
-					$('.right-top').css('display', 'none');
-					// headerのwidthをautoにする
-					$('header').css('width', 'auto');
+				// スクロールイベントで判定
+				$(window).scroll(function () {
+					for (var key in array) {
+						if ($(window).scrollTop() > array[key] - 50) {
+							$('.main-nav ul li a').each(function () {
+								$(this).removeClass('active-nav');
+							});
+							$globalNavi[key].addClass('active-nav');
+						}
+					}
 
-				}else if ($(window).scrollTop() > array["#home"] - 50){ // homeにactiveがついたら
-					// .right-topを表示
-					$('.right-top').css('display', 'block');
-					// headerのwidthを100%にする
-					$('header').css('width', '100%');
-				}
-				
-			});
+					// aboutにactiveがついたら
+					if ($(window).scrollTop() > array["#about"] - 50) {
+						// .right-topを非表示
+						$('.right-top').css('display', 'none');
+						// headerのwidthをautoにする
+						$('header').css('width', 'auto');
+
+					} else if ($(window).scrollTop() > array["#home"] - 50) { // homeにactiveがついたら
+						// .right-topを表示
+						$('.right-top').css('display', 'block');
+						// headerのwidthを100%にする
+						$('header').css('width', '100%');
+					}
+
+				});
+			}
+
+			// 実行
+			scrollMenu();
 		}
-
-		// 実行
-		scrollMenu();
 	});
 }
 
