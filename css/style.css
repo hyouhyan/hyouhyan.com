@@ -98,11 +98,14 @@ ul{
     .right-top .sns .twitch:hover a{
         color: #6441a5;
     }
-    .right-top .sns .bluesky:hover a, .bluesky:hover .bluesky-icon{
-        color: rgb(64, 138, 237);
+    .right-top .sns .bluesky:hover a{
+        color: #1185fe;
     }
     .bluesky-icon{
         fill: #000;
+    }
+    .bluesky:hover .bluesky-icon{
+        filter: invert(47%) sepia(82%) saturate(4906%) hue-rotate(200deg) brightness(104%) contrast(104%);
     }
 
     .left-top .logo{
