@@ -76,6 +76,9 @@ ul{
     .right-top .sns .e-mail:hover{
         width: 250px;
     }
+    .right-top .sns .bluesky:hover{
+        width: 180px;
+    }
     /* インスタだけ特殊な記法で対処 */
     .right-top .sns .instagram{
         background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
@@ -99,6 +102,9 @@ ul{
     .right-top .sns .e-mail:hover a{
         color: rgb(64, 138, 237);
         width: 300px;
+    }
+    .right-top .sns .bluesky:hover a{
+        color: rgb(64, 138, 237);
     }
 
     .left-top .logo{
