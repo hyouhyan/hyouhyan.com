@@ -41,6 +41,7 @@ window.onload = function () {
 		/**
 		 * 現在スクロール位置によるグローバルナビのアクティブ表示
 		 */
+		// PC画面でのみ実行
 		if (window.matchMedia('(min-width: 768px)').matches) {
 			var scrollMenu = function () {
 				// 配列宣言
