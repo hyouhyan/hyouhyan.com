@@ -76,6 +76,7 @@ h1 span{
 
 .more-button a{
     text-align: center;
+    border-radius: 5px;
     font-weight: bold;
     width: 100px;
     height: auto;
