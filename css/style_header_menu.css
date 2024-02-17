@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+.left-top{
+    z-index: 1;
+    flex-flow: column;
+    margin-left: 28px;
+}
+
+.left-top .logo{
+    margin-bottom: 30px;
+    font-size: 17px;
+}
+
+.logo .ogla{
+    font-weight: bold;
+}
+
+.logo .pro{
+    font-weight: normal;
+}
+
+.left-top .main-nav li{
+    pointer-events : none;
+    font-size: 14px;
+    margin-bottom: 30px;
+    border-left:3px solid #000000;
+    position: relative;
+}
+
+.left-top .main-nav li a{
+    pointer-events: all;
+    font-weight: bold;
+    margin-left: 15px;
+    transition: .2s;
+    position: relative;
+}
+
+.left-top .main-nav a:hover, .active-nav{
+    color: white;
+}
+
+.left-top .main-nav a:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    display: block;
+    background: black;
+    z-index: -1;
+    transition: .2s;
+}
+
+.left-top .main-nav a:hover:before, .active-nav:before{
+    width: calc(100% + 17px * 2) !important;
+}
+
+.main-nav ul{
+    margin-top: 0;
+}
+
+ul{
+    padding-inline-start: 10px;
+}

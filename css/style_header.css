@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+@import "/css/style_header_menu.css";
+@import "/css/style_header_sns.css";
+
+header{
+    width: 100%;
+    flex-wrap: wrap;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 23px;
+}
+

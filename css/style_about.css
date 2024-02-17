@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.about-content{
+    font-size: 24px;
+    font-family: heisei-mincho-stdn;
+    text-align: center;
+}
+.about-box h1{
+    margin-bottom: 25px;
+}
