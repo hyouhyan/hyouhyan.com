@@ -22,22 +22,22 @@ $('a[href^="#"]').click(
 		var href = $(this).attr("href");
 		var target = $(href);
 		var position = target.offset().top - headerHeight;
-		
+
 		$('body,html').stop().animate({ scrollTop: position }, 300);
-		
+
 		return false;
 	}
-	);
-	
-	window.onload = function () {
-		var elements = document.querySelectorAll(".box")
-		elements.forEach((element) =>{
-			element.style.display = "block";
-		})
-		document.getElementById("scroll-down").style.display = "block";
-		
-		$(function () {
-			
+);
+
+window.onload = function () {
+	var elements = document.querySelectorAll(".box")
+	elements.forEach((element) => {
+		element.style.display = "block";
+	})
+	document.getElementById("scroll-down").style.display = "block";
+
+	$(function () {
+
 		/**
 		 * 現在スクロール位置によるグローバルナビのアクティブ表示
 		 */
@@ -73,6 +73,21 @@ $('a[href^="#"]').click(
 						$globalNavi[key].addClass('active-nav');
 					}
 				}
+
+				// aboutにactiveがついたら
+				if ($(window).scrollTop() > array["#about"] - 50){
+					// .right-topを非表示
+					$('.right-top').css('display', 'none');
+					// headerのwidthをautoにする
+					$('header').css('width', 'auto');
+
+				}else if ($(window).scrollTop() > array["#home"] - 50){ // homeにactiveがついたら
+					// .right-topを表示
+					$('.right-top').css('display', 'block');
+					// headerのwidthを100%にする
+					$('header').css('width', '100%');
+				}
+				
 			});
 		}
 
@@ -82,7 +97,7 @@ $('a[href^="#"]').click(
 }
 
 var elements = document.querySelectorAll(".box")
-elements.forEach((element) =>{
+elements.forEach((element) => {
 	element.style.display = "none";
 })
 document.getElementById("scroll-down").style.display = "none";
