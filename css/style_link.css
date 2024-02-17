@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+/* links */
+.links{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.links-box h1{
+    margin-bottom: 50px;
+}
+
+.link{
+    width: 200px;
+    height: auto;
+    border: 2px solid black;
+    padding: 20px;
+    display: table;
+}
+
+.link span{
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.links a{
+    transition-duration: .3s;
+    margin: 10px;
+}
+
+.links a:hover{
+    background-color: black;
+    color: white;
+}

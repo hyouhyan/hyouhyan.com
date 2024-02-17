@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.home-box{
+    height: 100vh;
+    /* position: relative; */
+}
+
+.home-box .large-logo{
+    position: absolute;
+    top: 0;
+    bottom: 5%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 50%;
+}
+
+.scroll-down{
+    position: absolute;
+    top: 85%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background: url(/img/scrolldown.svg);
+    background-size: 100% auto;
+    width: 120px;
+    height: 56px;
+    animation: Scrolldown 1s infinite ease-in;
+    transition-duration: .6s;
+}
+
+
+/* スクロールダウンのアニメーション */
+@keyframes Scrolldown {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    30% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+}

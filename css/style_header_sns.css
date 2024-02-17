@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+.right-top .sns{
+    margin: 20px;
+    padding: 0;
+    font-size: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sns .sns-button{
+    margin: 0 0 0 auto;
+    margin-top: 10px;
+    transition: .2s ease-in-out;
+    width: 30px;
+}
+.sns .sns-button:hover{
+    width: 110px;
+}
+.sns .sns-button .sns-logo{
+    width: 30px;
+    margin-right: 3px;
+    text-align: center;
+}
+.sns-logo i{
+    display: inline-block;
+}
+.sns .sns-button span{
+    font-size: 16px;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sns a{
+    transition: .2s ease-in-out;
+    display: table;
+}
+
+.right-top .sns .twitter:hover a{
+    color: #1da1fe;
+    /* color: #000; */
+}
+.right-top .sns .twitter:hover{
+    width: 125px;
+}
+.right-top .sns .e-mail:hover{
+    width: 235px;
+}
+.right-top .sns .bluesky:hover{
+    width: 150px;
+}
+/* インスタだけ特殊な記法で対処 */
+.right-top .sns .instagram{
+    background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
+    background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.right-top .sns .instagram:hover{
+    -webkit-text-fill-color: transparent;
+    width: 125px;
+}
+
+.right-top .sns .discord:hover a{
+    color: #7289DA;
+}
+
+.right-top .sns .twitch:hover a{
+    color: #6441a5;
+}
+.right-top .sns .bluesky:hover a{
+    color: #1185fe;
+}
+.bluesky-icon{
+    fill: #000;
+}
+.bluesky:hover .bluesky-icon{
+    filter: invert(47%) sepia(82%) saturate(4906%) hue-rotate(200deg) brightness(104%) contrast(104%);
+}
