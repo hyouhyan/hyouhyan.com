@@ -1,30 +1,25 @@
 @charset "utf-8";
 
-/* members */
-.members{
+
+.skills{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.members .name{
+.skills .name{
     text-align: left;
     font-size: 18px;
     font-weight: medium;
     margin-top: 5px;
-    /* font-family: heisei-mincho-stdn; */
 }
 
-/* .members .name span{
-    border-bottom: 1px dotted rgba(161,161,161,.7);
-} */
-
-.members li{
+.skills li{
     width: 25%;
     padding: 20px;
 }
 
-.members figure{
+.skills figure{
     margin: 0;
     margin-bottom: 10px;
     height: auto;
@@ -35,7 +30,7 @@
     position: relative;
 }
 
-.members figure img{
+.skills figure img{
     transform: scale(1);
     transition: 0.4s all ease;
     position: absolute;
@@ -49,17 +44,17 @@
     object-fit: cover;
 }
 
-.members figure img:hover{
+.skills figure img:hover{
     transform: scale(1.1);
 }
 
-.member-tags{
+.skill-tags{
     font-size: 12px;
     width: 100%;
     overflow: hidden;
 }
 
-.member-tags div{
+.skill-tags div{
     display: inline-block; _display: inline;
     margin-right: 5px;
     padding: 2px 4px;
