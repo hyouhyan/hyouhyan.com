@@ -17,6 +17,8 @@
     border: 2px solid black;
     padding: 20px;
     display: table;
+    border-radius: 10px;
+    transition-duration: .3s;
 }
 
 .link span{
@@ -28,11 +30,10 @@
 }
 
 .links a{
-    transition-duration: .3s;
     margin: 10px;
 }
 
-.links a:hover{
+.link:hover{
     background-color: black;
     color: white;
 }
