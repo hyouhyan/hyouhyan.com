@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.right-top{
+    transition: .4s ease-in-out;
+}
+
 .right-top .sns{
     margin: 20px;
     padding: 0;
