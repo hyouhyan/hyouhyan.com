@@ -17,7 +17,6 @@
     border: 2px solid black;
     padding: 20px;
     display: table;
-    border-radius: 10px;
     transition-duration: .3s;
 }
 
