@@ -74,10 +74,10 @@ ul{
         width: 125px;
     }
     .right-top .sns .e-mail:hover{
-        width: 250px;
+        width: 235px;
     }
     .right-top .sns .bluesky:hover{
-        width: 180px;
+        width: 150px;
     }
     /* インスタだけ特殊な記法で対処 */
     .right-top .sns .instagram{
@@ -98,13 +98,11 @@ ul{
     .right-top .sns .twitch:hover a{
         color: #6441a5;
     }
-
-    .right-top .sns .e-mail:hover a{
+    .right-top .sns .bluesky:hover a, .bluesky:hover .bluesky-icon{
         color: rgb(64, 138, 237);
-        width: 300px;
     }
-    .right-top .sns .bluesky:hover a{
-        color: rgb(64, 138, 237);
+    .bluesky-icon{
+        fill: #000;
     }
 
     .left-top .logo{
