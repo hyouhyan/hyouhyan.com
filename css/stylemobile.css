@@ -355,15 +355,15 @@ h1 span{
     transition-duration: .3s;
 }
 
-/* members */
-    .members{
+/* skills */
+    .skills{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         padding: 0;
     }
 
-    .members .name{
+    .skills .name{
         text-align: left;
         font-size: 18px;
         font-weight: medium;
@@ -371,16 +371,16 @@ h1 span{
         /* font-family: heisei-mincho-stdn; */
     }
 
-    /* .members .name span{
+    /* .skills .name span{
         border-bottom: 1px dotted rgba(161,161,161,.7);
     } */
 
-    .members li{
+    .skills li{
         width: 46%;
         margin-bottom: 20px;
     }
 
-    .members figure{
+    .skills figure{
         margin: 0;
         margin-bottom: 10px;
         height: auto;
@@ -391,7 +391,7 @@ h1 span{
         position: relative;
     }
 
-    .members figure img{
+    .skills figure img{
         transform: scale(1);
         transition: 0.4s all ease;
         position: absolute;
@@ -405,17 +405,17 @@ h1 span{
         object-fit: cover;
     }
 
-    .members figure img:hover{
+    .skills figure img:hover{
         transform: scale(1.1);
     }
 
-    .member-tags{
+    .skill-tags{
         font-size: 12px;
         width: 100%;
         overflow: hidden;
     }
 
-    .member-tags div{
+    .skill-tags div{
         display: inline-block; _display: inline;
         margin-right: 5px;
         margin-bottom: 4px;
