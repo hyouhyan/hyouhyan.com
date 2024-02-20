@@ -27,3 +27,21 @@
     animation: Scrolldown 1s infinite ease-in;
     transition-duration: .6s;
 }
+
+
+@keyframes Scrolldown {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    30% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+}
