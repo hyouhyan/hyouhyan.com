@@ -38,8 +38,12 @@
         </div>
     </div>
 
-    <div class="text-center">
-        <a href="https://v4.hyouhyan.com/tools/show-ip/">IPv4</a> <a href="https://v6.hyouhyan.com/tools/show-ip/">IPv6</a>
+    <div class="text-center m-2">
+        <a class="btn btn-outline-primary" href="https://v4.hyouhyan.com/tools/show-ip/">IPv4</a> <a class="btn btn-outline-primary" href="https://v6.hyouhyan.com/tools/show-ip/">IPv6</a>
+    </div>
+
+    <div class="text-center m-2">
+        <a class="btn btn-outline-secondary" href="./raw">raw</a>
     </div>
 
     <script src="/js/footer.js"></script>
