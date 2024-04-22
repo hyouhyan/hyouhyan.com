@@ -18,6 +18,7 @@ h1 {
 </style>
 
 <body>
+	<?php http_response_code(418); ?>
 	<div style="text-align:center">
 		<h1>418 I'm a teapot<br></h1>
 		<p>君はティーポットにコーヒーを淹れようとしました。<br>
