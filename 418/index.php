@@ -27,6 +27,10 @@ h1 {
 		</p>
 		
 	</div>
+
+	<br>
+
+	<a href="/">Home</a>
     
 </body>
 
