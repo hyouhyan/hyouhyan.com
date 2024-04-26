@@ -34,7 +34,7 @@
     position: relative;
 }
 
-.skills figure img .skill-img-full{
+.skills figure img.skill-img-full{
     transform: scale(1); 
 }
 
