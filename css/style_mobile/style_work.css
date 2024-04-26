@@ -7,4 +7,5 @@
 
 .works a{
     margin: 10px;
+    max-width: 100%;
 }
