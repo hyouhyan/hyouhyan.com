@@ -30,6 +30,10 @@
     position: relative;
 }
 
+.skills figure img .skill-img-full{
+    transform: scale(1); 
+}
+
 .skills figure img{
     transform: scale(0.9);
     transition: 0.4s all ease;
