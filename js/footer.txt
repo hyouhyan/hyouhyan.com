@@ -1,1 +1,2 @@
-&copy; 2019 - 2024  <a href="https://hyouhyan.com">Hyouhyan</a>
+&copy; 2019 - 2024  <a href="https://hyouhyan.com">Hyouhyan</a><br>
+Email: <a href="mailto:hyouhyan@hyouhyan.com">hyouhyan@hyouhyan.com</a>
