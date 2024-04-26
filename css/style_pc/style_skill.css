@@ -31,7 +31,7 @@
 }
 
 .skills figure img{
-    transform: scale(1);
+    transform: scale(0.9);
     transition: 0.4s all ease;
     position: absolute;
     width: 100%;
