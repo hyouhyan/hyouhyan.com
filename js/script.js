@@ -67,35 +67,37 @@ window.onload = function () {
 
 				// スクロールイベントで判定
 				$(window).scroll(function () {
-					for (var key in array) {
-						if ($(window).scrollTop() > array[key] - 50) {
-							$('.main-nav ul li a').each(function () {
-								$(this).removeClass('active-nav');
-							});
-							$globalNavi[key].addClass('active-nav');
-						}
-					}
-
-					// aboutにactiveがついたら
-					if ($(window).scrollTop() > array["#about"] - 50) {
-						// .right-topを非表示
-						$('.right-top').css('visibility', 'hidden');
-						$('.right-top').css('opacity', 0);
-
-						// skillにactiveがついたら
-						if($(window).scrollTop() > array["#skill"] - 50){
-							// headerのwidthをautoにする
-							$('header').css('width', 'auto');
+					if ($(window).width() >= 768){
+						for (var key in array) {
+							if ($(window).scrollTop() > array[key] - 50) {
+								$('.main-nav ul li a').each(function () {
+									$(this).removeClass('active-nav');
+								});
+								$globalNavi[key].addClass('active-nav');
+							}
 						}
 
-					} else if ($(window).scrollTop() > array["#home"] - 50) { // homeにactiveがついたら
-						// .right-topを表示
-						$('.right-top').css('visibility', 'visible');
-						$('.right-top').css('opacity', 1);
-						// headerのwidthを100%にする
-						$('header').css('width', '100%');
-					}
+						// aboutにactiveがついたら
+						if ($(window).scrollTop() > array["#about"] - 50) {
+							// .right-topを非表示
+							$('.right-top').css('visibility', 'hidden');
+							$('.right-top').css('opacity', 0);
 
+							// skillにactiveがついたら
+							if($(window).scrollTop() > array["#skill"] - 50){
+								// headerのwidthをautoにする
+								$('header').css('width', 'auto');
+							}
+
+						} else if ($(window).scrollTop() > array["#home"] - 50) { // homeにactiveがついたら
+							// .right-topを表示
+							$('.right-top').css('visibility', 'visible');
+							$('.right-top').css('opacity', 1);
+							// headerのwidthを100%にする
+							$('header').css('width', '100%');
+						}
+
+					}
 				});
 			}
 
