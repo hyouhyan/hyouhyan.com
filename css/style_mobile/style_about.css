@@ -8,3 +8,16 @@
 .about-box h1{
     margin-bottom: 25px;
 }
+
+.about-box .sns-button{
+    float: left;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.about-box .sns{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
