@@ -9,7 +9,7 @@
 .link{
     height: auto;
     border: 2px solid black;
-    padding: 20px;
+    padding: 20px 10px;
     text-align: center;
     width: 100%;
 }
@@ -21,7 +21,7 @@
 }
 
 .links a{
-    width: 40%;
+    width: 45%;
     margin-bottom: 20px;
     text-align: center;
     display: flex;
