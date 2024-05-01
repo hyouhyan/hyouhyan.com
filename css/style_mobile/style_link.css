@@ -6,17 +6,12 @@
     justify-content: space-around;
 }
 
-.links a{
-    width: 40%;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
 .link{
     height: auto;
     border: 2px solid black;
     padding: 20px;
     text-align: center;
+    width: 100%;
 }
 
 .link span{
@@ -26,7 +21,12 @@
 }
 
 .links a{
+    width: 40%;
     margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .links a{
