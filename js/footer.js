@@ -11,7 +11,7 @@ function txt_data(dataPath) {
 }  
 
 if (typeof footer === 'undefined'){
-    txt_data('/js/footer.txt');
+    txt_data('/js/footer.txt?update=20240429');
 }
 else{
     txt_data(footer);
