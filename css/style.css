@@ -2,25 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
 
 /* ヘッダー */
-@import "/css/style_pc/style_header.css?update=20240429";
+@import "/css/style_pc/style_header.css";
 
 /* ホーム */
-@import "/css/style_pc/style_home.css?update=20240429";
+@import "/css/style_pc/style_home.css";
 
 /* ニュース */
-@import "/css/style_pc/style_news.css?update=20240429";
+@import "/css/style_pc/style_news.css";
 
 /* about */
-@import "/css/style_pc/style_about.css?update=20240429";
+@import "/css/style_pc/style_about.css";
 
 /* Skill */
-@import "/css/style_pc/style_skill.css?update=20240429";
+@import "/css/style_pc/style_skill.css";
 
 /* Work */
-@import "/css/style_pc/style_work.css?update=20240429";
+@import "/css/style_pc/style_work.css";
 
 /* Link */
-@import "/css/style_pc/style_link.css?update=20240429";
+@import "/css/style_pc/style_link.css";
 
 
 body{
