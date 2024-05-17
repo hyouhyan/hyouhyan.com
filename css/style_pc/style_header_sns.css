@@ -42,8 +42,8 @@
 }
 
 .right-top .sns .twitter:hover a{
-    color: #1da1fe;
-    /* color: #000; */
+    /* color: #1da1fe; */
+    color: #000;
 }
 .right-top .sns .twitter:hover{
     width: 125px;
