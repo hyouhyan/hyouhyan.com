@@ -76,6 +76,9 @@
 .right-top .sns .bluesky:hover a{
     color: #1185fe;
 }
+.right-top .sns .github:hover a{
+    color: #620296;
+}
 .bluesky-icon{
     fill: #000;
 }
