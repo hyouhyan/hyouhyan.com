@@ -1,15 +1,15 @@
 /* works */
-.works{
+.github-repo{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.works a{
+.github-repo a{
     margin-bottom: 10px;
 }
 
-.works img{
+.github-repo img{
     width: 90vw;
 }
 
