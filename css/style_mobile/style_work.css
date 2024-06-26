@@ -13,6 +13,12 @@
     width: 90vw;
 }
 
+.real-works{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 
 .work{
     width: 47%;
