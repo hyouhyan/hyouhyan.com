@@ -14,3 +14,49 @@
 .works a{
     margin-bottom: 10px;
 }
+
+.work{
+    width: 47%;
+    aspect-ratio: 1.4 / 1;
+    border: 1px solid black;
+    margin-bottom: 50px;
+    text-align: center;
+    display:inline-block;
+    position: relative;
+}
+
+.work .hvd-work{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    visibility: hidden;
+    color: white;
+    transition: .2s ease-in-out;
+    display: table;
+}
+
+.work:hover .hvd-work{
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.work-description{
+    font-size: 16px;
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.work a{
+    width: 100%;
+    height: 100%;
+}
+
+.work img{
+    display:block;
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
