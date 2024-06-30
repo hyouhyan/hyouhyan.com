@@ -26,7 +26,7 @@
     width: 100%;
     padding-top: 100%;
     overflow:hidden;
-    border: 1px solid;
+    /* border: 1px solid; */
     position: relative;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .skills figure img{
-    transform: scale(0.9);
+    transform: scale(1);
     transition: 0.4s all ease;
     position: absolute;
     width: 100%;
