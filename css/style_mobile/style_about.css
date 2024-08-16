@@ -28,3 +28,8 @@ a.aka-vtuber-otaku {
     color: rgb(29, 155, 240);
     cursor:pointer;
 }
+
+a.aka-vtuber-otaku:hover {
+    text-decoration: underline;
+    color: rgb(29, 155, 240);
+}
