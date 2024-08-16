@@ -21,3 +21,10 @@
     justify-content: center;
     align-items: center;
 }
+
+a.aka-vtuber-otaku {
+    text-decoration: none;
+    text-decoration: none;
+    color: rgb(29, 155, 240);
+    cursor:pointer;
+}
