@@ -10,3 +10,8 @@ const targetDate = new Date('2024-10-20');
 if (meishiParam === '2' && today.toDateString() === targetDate.toDateString()) {
     window.location.href = "https://x.com/hyouhyan";
 }
+
+// パラメーターが「meishi=3」のとき、Twitterにリダイレクト
+if (meishiParam === '3') {
+    window.location.href = "https://x.com/hyouhyan";
+}
