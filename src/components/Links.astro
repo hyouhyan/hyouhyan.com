@@ -1,18 +1,49 @@
 ---
 import { links } from '../data/links';
-// LINK：黒枠ボックス、ホバーで反転。構造は当時のまま。
 ---
-<div class="links-box box" id="link">
-  <h1><span>LINK</span></h1>
-  <div class="links">
-    {
-      links.map((l) => (
-        <a href={l.url}>
-          <div class="link">
-            <span>{l.label}</span>
-          </div>
+
+<div class="links-box section" id="link">
+  <div class="main-content">
+    <h2 class="section-title"><span>LINK</span></h2>
+    <div class="link-grid">
+      {links.map((l) => (
+        <a href={l.url} class="link-card">
+          <span>{l.label}</span>
         </a>
-      ))
-    }
+      ))}
+    </div>
   </div>
 </div>
+
+<style>
+  .link-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 64px;
+    border: 2px solid var(--color-border);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .link-card:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  @media (max-width: 767px) {
+    .link-card {
+      width: calc(50% - 8px);
+    }
+  }
+</style>

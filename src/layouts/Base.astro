@@ -1,6 +1,6 @@
 ---
-// 元サイトの <head> と読み込みスクリプトを忠実に再現。
-// CSS・JS・フォント(Adobe Typekit / Noto Sans JP / Font Awesome)は当時のまま。
+import '../styles/global.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -15,13 +15,14 @@ const {
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Hyouhyan" />
 
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- OGP -->
     <meta property="og:title" content={title} />
@@ -34,11 +35,7 @@ const {
     <meta name="twitter:image" content="https://hyouhyan.com/img/hyouhyan.jpg" />
     <meta name="twitter:site" content="@yaa_oredayo" />
 
-    <!-- 当時のCSSをそのまま。PC/モバイルでメディア切替 -->
-    <link rel="stylesheet" href="/css/style.css" media="screen and (min-width: 768px)" />
-    <link rel="stylesheet" href="/css/stylemobile.css" media="screen and (max-width: 767px)" />
-
-    <!-- フォント関連 (Adobe Typekit: ロゴ書体・明朝) -->
+    <!-- Adobe Typekit (ロゴ書体) -->
     <script async is:inline>
       (function (d) {
         var config = { kitId: 'wod5cwx', scriptTimeout: 3000, async: true },
@@ -66,19 +63,10 @@ const {
       })(document);
     </script>
 
-    <!-- SNSアイコン用 Font Awesome -->
+    <!-- Font Awesome (SNSアイコン) -->
     <script async src="https://kit.fontawesome.com/c4cbe28a31.js" crossorigin="anonymous" is:inline></script>
   </head>
   <body>
     <slot />
-
-    <!-- 当時のJSをそのまま（フッター注入・ハンバーガー・スムーススクロール・ナビ点灯） -->
-    <script src="/js/footer.js" is:inline></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-      is:inline></script>
-    <script src="/js/script.js" is:inline></script>
   </body>
 </html>

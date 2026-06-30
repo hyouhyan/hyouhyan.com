@@ -3,19 +3,31 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Home from '../components/Home.astro';
 import About from '../components/About.astro';
+import Career from '../components/Career.astro';
 import Skills from '../components/Skills.astro';
 import Works from '../components/Works.astro';
 import Links from '../components/Links.astro';
-// フッターは /js/footer.js が footer.txt を読んで末尾に挿入します（当時のまま）。
+import Footer from '../components/Footer.astro';
 ---
 
 <Base>
   <Header />
-  <div class="main-content">
-    <Home />
+  <Home />
+  <div class="main-content-sections">
     <About />
+    <Career />
     <Skills />
     <Works />
     <Links />
+    <Footer />
   </div>
 </Base>
+
+<style>
+  /* About〜Links はヘッダー左側の幅分、コンテンツを右にずらす */
+  @media (min-width: 768px) {
+    .main-content-sections {
+      margin-left: 140px;
+    }
+  }
+</style>

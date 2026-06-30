@@ -1,23 +1,86 @@
 ---
 import { works } from '../data/works';
-// WORK：ホバーで説明が浮かぶカード。構造は当時のまま。
 ---
-<div class="works-box box" id="work">
-  <h1><span>WORK</span></h1>
-  <div class="real-works">
-    {
-      works.map((w) => (
-        <div class="work">
-          <a href={w.url}>
-            <img src={w.img} />
-            <div class="hvd-work">
-              <div class="work-description">
-                <p>{w.description}</p>
-              </div>
+
+<div class="works-box section" id="work">
+  <div class="main-content">
+    <h2 class="section-title"><span>WORK</span></h2>
+    <div class="work-grid">
+      {works.map((w) => (
+        <a href={w.url} class="work-card" target="_blank" rel="noopener noreferrer">
+          <div class="work-img-wrap">
+            <img src={w.img} alt={w.description} loading="lazy" />
+            <div class="work-overlay">
+              <p class="work-desc">{w.description}</p>
             </div>
-          </a>
-        </div>
-      ))
-    }
+          </div>
+        </a>
+      ))}
+    </div>
   </div>
 </div>
+
+<style>
+  .work-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .work-card {
+    width: calc(50% - 12px);
+    display: block;
+    border: 1px solid var(--color-border);
+    aspect-ratio: 1.6 / 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .work-img-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .work-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .work-card:hover .work-img-wrap img {
+    transform: scale(1.03);
+  }
+
+  .work-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .work-card:hover .work-overlay {
+    opacity: 1;
+  }
+
+  .work-desc {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .work-card {
+      width: 100%;
+    }
+  }
+</style>

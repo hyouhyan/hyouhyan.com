@@ -1,0 +1,104 @@
+---
+import { career } from '../data/career';
+---
+
+<div class="career-box section" id="career">
+  <div class="main-content">
+    <h2 class="section-title"><span>CAREER</span></h2>
+    <div class="timeline">
+      {career.map((item) => (
+        <div class="timeline-item">
+          <div class="timeline-year">{item.year}</div>
+          <div class="timeline-content">
+            <p class="timeline-title">{item.title}</p>
+            {item.description && <p class="timeline-desc">{item.description}</p>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  /* 縦線 */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .timeline-item {
+    position: relative;
+    display: flex;
+    gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* ドット */
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -36px;
+    top: 10px;
+    width: 9px;
+    height: 9px;
+    background: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .timeline-year {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    min-width: 40px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .timeline-content {
+    flex: 1;
+  }
+
+  .timeline-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    line-height: 1.4;
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 767px) {
+    .timeline {
+      padding-left: 24px;
+    }
+
+    .timeline-item {
+      gap: 20px;
+      padding-bottom: 36px;
+    }
+
+    .timeline-item::before {
+      left: -28px;
+    }
+  }
+</style>
