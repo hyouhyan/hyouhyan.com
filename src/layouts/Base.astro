@@ -1,0 +1,84 @@
+---
+// 元サイトの <head> と読み込みスクリプトを忠実に再現。
+// CSS・JS・フォント(Adobe Typekit / Noto Sans JP / Font Awesome)は当時のまま。
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'ひょうひゃん | Hyouhyan',
+  description = 'プログラマー、IT・インフラエンジニア、そしてオタク。どうも、ひょうひゃんです。',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Hyouhyan" />
+
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- OGP -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Hyouhyan Main Page" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:image" content="https://hyouhyan.com/img/hyouhyan.jpg" />
+    <meta name="twitter:site" content="@yaa_oredayo" />
+
+    <!-- 当時のCSSをそのまま。PC/モバイルでメディア切替 -->
+    <link rel="stylesheet" href="/css/style.css" media="screen and (min-width: 768px)" />
+    <link rel="stylesheet" href="/css/stylemobile.css" media="screen and (max-width: 767px)" />
+
+    <!-- フォント関連 (Adobe Typekit: ロゴ書体・明朝) -->
+    <script async is:inline>
+      (function (d) {
+        var config = { kitId: 'wod5cwx', scriptTimeout: 3000, async: true },
+          h = d.documentElement,
+          t = setTimeout(function () {
+            h.className = h.className.replace(/\bwf-loading\b/g, '') + ' wf-inactive';
+          }, config.scriptTimeout),
+          tk = d.createElement('script'),
+          f = false,
+          s = d.getElementsByTagName('script')[0],
+          a;
+        h.className += ' wf-loading';
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function () {
+          a = this.readyState;
+          if (f || (a && a != 'complete' && a != 'loaded')) return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config);
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s);
+      })(document);
+    </script>
+
+    <!-- SNSアイコン用 Font Awesome -->
+    <script async src="https://kit.fontawesome.com/c4cbe28a31.js" crossorigin="anonymous" is:inline></script>
+  </head>
+  <body>
+    <slot />
+
+    <!-- 当時のJSをそのまま（フッター注入・ハンバーガー・スムーススクロール・ナビ点灯） -->
+    <script src="/js/footer.js" is:inline></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+      is:inline></script>
+    <script src="/js/script.js" is:inline></script>
+  </body>
+</html>

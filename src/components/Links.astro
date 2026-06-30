@@ -1,0 +1,18 @@
+---
+import { links } from '../data/links';
+// LINK：黒枠ボックス、ホバーで反転。構造は当時のまま。
+---
+<div class="links-box box" id="link">
+  <h1><span>LINK</span></h1>
+  <div class="links">
+    {
+      links.map((l) => (
+        <a href={l.url}>
+          <div class="link">
+            <span>{l.label}</span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>

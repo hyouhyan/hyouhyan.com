@@ -1,0 +1,23 @@
+---
+import { works } from '../data/works';
+// WORK：ホバーで説明が浮かぶカード。構造は当時のまま。
+---
+<div class="works-box box" id="work">
+  <h1><span>WORK</span></h1>
+  <div class="real-works">
+    {
+      works.map((w) => (
+        <div class="work">
+          <a href={w.url}>
+            <img src={w.img} />
+            <div class="hvd-work">
+              <div class="work-description">
+                <p>{w.description}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</div>

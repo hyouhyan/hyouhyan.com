@@ -1,0 +1,24 @@
+---
+import { skills } from '../data/skills';
+// SKILL：当時のグリッド構造のまま、中身をデータから生成。
+---
+<div class="skills-box box" id="skill">
+  <h1><span>SKILL</span></h1>
+  <ul class="skills">
+    {
+      skills.map((s) => (
+        <li>
+          <figure>
+            <img alt={s.alt} src={s.img} />
+          </figure>
+          <div class="skill-tags">
+            {s.tags.map((t) => (
+              <div>{t}</div>
+            ))}
+          </div>
+          <div class="name"><span>{s.name}</span></div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
