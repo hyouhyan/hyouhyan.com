@@ -1,6 +1,7 @@
 # CLAUDE.md
 
 このリポジトリで Claude Code が作業するときの前提メモ。
+ユーザからの指示がある度、この仕様書は随時書き足し・更新を行う
 
 ## プロジェクト概要
 
@@ -10,10 +11,10 @@
 
 ## コマンド
 
-- `npm install` … 依存インストール
-- `npm run dev` … 開発サーバ（http://localhost:4321）
-- `npm run build` … `dist/` に静的出力
-- `npm run preview` … ビルド結果をローカル確認
+- `pnpm install` … 依存インストール
+- `pnpm run dev` … 開発サーバ（http://localhost:4321）
+- `pnpm run build` … `dist/` に静的出力
+- `pnpm run preview` … ビルド結果をローカル確認
 
 ## ディレクトリの考え方
 
@@ -29,7 +30,7 @@
 - 文章・コンテンツは**日本語**。フォーマルな文章は箇条書きより**温かみのある段落**を好む。
 - 静的サイトの制約を守る: ブラウザの localStorage 等に依存する作りや、実行時サーバAPIを前提にした実装は入れない。
 - 色やフォントを変えるときは、各コンポーネントに直書きせず CSS 変数（`src/styles/global.css` の `:root`）を起点にする。
-- 変更後は必ず `npm run build` が通ることを確認する。
+- 変更後は必ず `pnpm run build` が通ることを確認する。
 
 ## 触るとき注意（落とし穴）
 

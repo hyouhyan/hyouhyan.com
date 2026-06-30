@@ -27,9 +27,9 @@
 ## セットアップ
 
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # dist/ に出力
+pnpm install
+pnpm run dev      # http://localhost:4321
+pnpm run build    # dist/ に出力
 ```
 
 ## 構成
