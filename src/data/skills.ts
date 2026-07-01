@@ -1,4 +1,4 @@
-export type SkillCategory = 'Web' | 'App / Backend' | 'Infra / OS' | 'Database' | 'Embedded' | 'Dev Tools' | 'Creative';
+export type SkillCategory = 'Infra / OS' | 'Database' | 'Embedded' | 'Dev Tools' | 'App / Backend' | 'Web' | 'Creative';
 
 export interface Skill {
   img: string;
@@ -12,29 +12,6 @@ export interface Skill {
 const skillicon = (name: string) => `https://skillicons.dev/icons?i=${name}&theme=light`;
 
 export const skills: Skill[] = [
-  // Web
-  { img: skillicon('html'), alt: 'HTMLのロゴ', name: 'HTML', tags: ['Web Design'], category: 'Web' },
-  { img: skillicon('css'), alt: 'CSSのロゴ', name: 'CSS', tags: ['Web Design'], category: 'Web' },
-  { img: skillicon('javascript'), alt: 'JavaScriptのロゴ', name: 'JavaScript', tags: ['WebApp', 'Dynamic Web'], category: 'Web' },
-  { img: skillicon('vuejs'), alt: 'Vue.jsのロゴ', name: 'Vue.js', tags: ['WebApp'], category: 'Web' },
-  { img: skillicon('nodejs'), alt: 'Node.jsのロゴ', name: 'Node.js', tags: ['WebService'], category: 'Web' },
-  { img: skillicon('php'), alt: 'PHPのロゴ', name: 'PHP', tags: ['Backend'], category: 'Web' },
-
-  // App / Backend
-  { img: skillicon('python'), alt: 'Pythonのロゴ', name: 'Python', tags: ['Discord Bot', 'Deep Learning'], category: 'App / Backend' },
-  { img: skillicon('flask'), alt: 'Flaskのロゴ', name: 'Flask', tags: ['Web App'], category: 'App / Backend' },
-  { img: skillicon('opencv'), alt: 'OpenCVのロゴ', name: 'OpenCV', tags: ['Camera App'], category: 'App / Backend' },
-  { img: '/img/skill/kivy.webp', alt: 'Kivyのロゴ', name: 'Kivy', tags: ['GUI App'], category: 'App / Backend' },
-  { img: skillicon('java'), alt: 'Javaのロゴ', name: 'Java', tags: ['Object Oriented'], category: 'App / Backend' },
-  { img: skillicon('c'), alt: 'C言語のロゴ', name: 'C Lang', tags: ['C is ART'], category: 'App / Backend' },
-  { img: skillicon('cpp'), alt: 'C++のロゴ', name: 'C++', tags: ['Object Oriented'], category: 'App / Backend' },
-  { img: skillicon('cs'), alt: 'C#のロゴ', name: 'C#', tags: ['Unity', '.NET'], category: 'App / Backend' },
-  { img: skillicon('go'), alt: 'Goのロゴ', name: 'Go', tags: ['Backend'], category: 'App / Backend' },
-  { img: skillicon('lua'), alt: 'Luaのロゴ', name: 'Lua', tags: ['Scripting'], category: 'App / Backend' },
-  { img: skillicon('bash'), alt: 'Shell Scriptのロゴ', name: 'Shell Script', tags: ['bash', 'sh'], category: 'App / Backend' },
-  { img: skillicon('matlab'), alt: 'MATLABのロゴ', name: 'MATLAB', tags: ['数値計算'], category: 'App / Backend' },
-  { img: '/img/skill/gas.webp', alt: 'Google Apps Scriptのロゴ', name: 'Google Apps Script', tags: ['Automation'], category: 'App / Backend' },
-
   // Infra / OS
   { img: skillicon('linux'), alt: 'Linuxのロゴ', name: 'Linux', tags: ['Ubuntu', 'Arch', 'Debian'], category: 'Infra / OS' },
   { img: skillicon('ubuntu'), alt: 'Ubuntuのロゴ', name: 'Ubuntu', tags: ['Ubuntu Server'], category: 'Infra / OS' },
@@ -74,6 +51,29 @@ export const skills: Skill[] = [
   { img: skillicon('vscode'), alt: 'Visual Studio Codeのロゴ', name: 'VS Code', tags: ['Editor'], category: 'Dev Tools' },
   { img: skillicon('latex'), alt: 'LaTeXのロゴ', name: 'LaTeX', tags: ['Typesetting', '論文'], category: 'Dev Tools' },
 
+  // App / Backend
+  { img: skillicon('python'), alt: 'Pythonのロゴ', name: 'Python', tags: ['Discord Bot', 'Deep Learning'], category: 'App / Backend' },
+  { img: skillicon('flask'), alt: 'Flaskのロゴ', name: 'Flask', tags: ['Web App'], category: 'App / Backend' },
+  { img: skillicon('opencv'), alt: 'OpenCVのロゴ', name: 'OpenCV', tags: ['Camera App'], category: 'App / Backend' },
+  { img: '/img/skill/kivy.webp', alt: 'Kivyのロゴ', name: 'Kivy', tags: ['GUI App'], category: 'App / Backend' },
+  { img: skillicon('java'), alt: 'Javaのロゴ', name: 'Java', tags: ['Object Oriented'], category: 'App / Backend' },
+  { img: skillicon('c'), alt: 'C言語のロゴ', name: 'C Lang', tags: ['C is ART'], category: 'App / Backend' },
+  { img: skillicon('cpp'), alt: 'C++のロゴ', name: 'C++', tags: ['Object Oriented'], category: 'App / Backend' },
+  { img: skillicon('cs'), alt: 'C#のロゴ', name: 'C#', tags: ['Unity', '.NET'], category: 'App / Backend' },
+  { img: skillicon('go'), alt: 'Goのロゴ', name: 'Go', tags: ['Backend'], category: 'App / Backend' },
+  { img: skillicon('lua'), alt: 'Luaのロゴ', name: 'Lua', tags: ['Scripting'], category: 'App / Backend' },
+  { img: skillicon('bash'), alt: 'Shell Scriptのロゴ', name: 'Shell Script', tags: ['bash', 'sh'], category: 'App / Backend' },
+  { img: skillicon('matlab'), alt: 'MATLABのロゴ', name: 'MATLAB', tags: ['数値計算'], category: 'App / Backend' },
+  { img: '/img/skill/gas.webp', alt: 'Google Apps Scriptのロゴ', name: 'Google Apps Script', tags: ['Automation'], category: 'App / Backend' },
+
+  // Web
+  { img: skillicon('html'), alt: 'HTMLのロゴ', name: 'HTML', tags: ['Web Design'], category: 'Web' },
+  { img: skillicon('css'), alt: 'CSSのロゴ', name: 'CSS', tags: ['Web Design'], category: 'Web' },
+  { img: skillicon('javascript'), alt: 'JavaScriptのロゴ', name: 'JavaScript', tags: ['WebApp', 'Dynamic Web'], category: 'Web' },
+  { img: skillicon('vuejs'), alt: 'Vue.jsのロゴ', name: 'Vue.js', tags: ['WebApp'], category: 'Web' },
+  { img: skillicon('nodejs'), alt: 'Node.jsのロゴ', name: 'Node.js', tags: ['WebService'], category: 'Web' },
+  { img: skillicon('php'), alt: 'PHPのロゴ', name: 'PHP', tags: ['Backend'], category: 'Web' },
+
   // Creative
   { img: skillicon('unity'), alt: 'Unityのロゴ', name: 'Unity', tags: ['3D CG', 'C#', 'Tokyo Game Show'], category: 'Creative' },
   { img: skillicon('illustrator'), alt: 'Adobe Illustratorのロゴ', name: 'Adobe Illustrator', tags: ['Design', 'Poster'], category: 'Creative' },
@@ -87,4 +87,4 @@ export const skills: Skill[] = [
   { img: '/img/skill/dj.webp', alt: 'DJのアイコン', name: 'DJ', tags: ['Music', 'HipHop', 'Future Bass'], category: 'Creative' },
 ];
 
-export const skillCategories: SkillCategory[] = ['Web', 'App / Backend', 'Infra / OS', 'Database', 'Embedded', 'Dev Tools', 'Creative'];
+export const skillCategories: SkillCategory[] = ['Infra / OS', 'Database', 'Embedded', 'Dev Tools', 'App / Backend', 'Web', 'Creative'];

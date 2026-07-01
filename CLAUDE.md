@@ -36,7 +36,7 @@ src/
     Footer.astro      ← フッター（著作権表示）
   data/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
-    skills.ts         ← Skill[]（カテゴリ付き: Web / App・Backend / Infra・OS / Database / Embedded / Dev Tools / Creative）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
+    skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     links.ts          ← LinkItem[]（url / label）
   pages/
