@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+
+interface Props {
+  title: string;
+  code: string;
+  heading: string;
+  message: string;
+}
+const { title, code, heading, message } = Astro.props;
+---
+
+<Base title={title}>
+  <div class="error-page">
+    <p class="error-code">{code}</p>
+    <h1 class="error-heading">{heading}</h1>
+    <p class="error-message" set:html={message} />
+    <a href="/" class="error-home">Home</a>
+  </div>
+</Base>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px var(--content-padding-x);
+  }
+
+  .error-code {
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .error-heading {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    padding-bottom: 4px;
+    margin: 16px 0 32px;
+    border-bottom: 3px solid var(--color-accent);
+  }
+
+  .error-message {
+    color: var(--color-text-muted);
+    line-height: 1.9;
+    margin: 0 0 40px;
+  }
+
+  .error-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 64px;
+    border: 2px solid var(--color-border);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .error-home:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+</style>
