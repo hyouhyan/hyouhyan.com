@@ -1,64 +1,72 @@
-# hyouhyan.com — Astro 忠実移行版（classic）
+# hyouhyan.com
 
-**見た目は今の hyouhyan.com と同一**のまま、中身だけ Astro の構造に置き換えたバージョンです。
-「フレームワークに載せ替えたら何が変わって、何が変わらないのか」を確かめるためのものです。
+ひょうひゃん（Hyouhyan）の個人サイトです。公開先は <https://hyouhyan.com> 。
 
-## 何が変わって、何が変わらないか
-
-**変わらない（＝見た目・挙動）**
-
-- CSS は当時のものをそのまま使用（`public/css/` に丸ごとコピー）
-- 画像・favicon もそのまま（`public/img/`, `public/favicon.ico`）
-- フォント（Adobe Typekit のロゴ書体・明朝、Noto Sans JP）、Font Awesome アイコンもそのまま
-- ハンバーガーメニュー・スムーススクロール・ナビ点灯・フッター挿入の JS（jQuery）もそのまま
-- → ブラウザで見た時の体験は**現行サイトと区別がつきません**
-
-**変わる（＝ソースコードの構造だけ）**
-
-- 1枚の `index.html`（約400行）が、レイアウト + 部品 + データに分解された
-  - `src/layouts/Base.astro` … `<head>` と共通スクリプト
-  - `src/components/` … Header / Home / About / Skills / Works / Links
-  - `src/data/` … スキル・作品・リンクの**中身を配列で管理**
-- これまで SKILL を1つ足すには HTML を10行コピペしていたのが、
-  `src/data/skills.ts` に**1行追加するだけ**になった（移行の一番のうまみ）
-
-つまり「ただ Astro に移行しただけ」だと、**画面は1ミリも変わらず、編集だけが楽になる**——これが答えです。
+**Astro** 製の完全な静的サイトで、GitHub Pages（カスタムドメイン）でホスティングしています。
+サーバ・DB・API は持たず、ビルド成果物（`dist/`）をそのまま配信するだけのシンプルな構成です。
 
 ## セットアップ
 
 ```bash
 pnpm install
-pnpm run dev      # http://localhost:4321
-pnpm run build    # dist/ に出力
+pnpm run dev      # 開発サーバ http://localhost:4321
+pnpm run build    # dist/ に静的出力
+pnpm run preview  # ビルド結果をローカル確認
 ```
 
-## 構成
+## ページ構成
+
+トップページ（`src/pages/index.astro`）は、以下のセクションを縦に並べただけのものです。
+
+1. **Home** … フルスクリーンのヒーロー（ロゴ画像＋スクロールダウン矢印）
+2. **About** … 丸アイコンと自己紹介・SNS リンク
+3. **Career** … タイムライン
+4. **Skill** … カテゴリ別のスキルグリッド
+5. **Work** … ホバーで説明が出る制作物カード
+6. **Link** … 外部リンクボタン
+
+このほかに、エラーページ（`401` / `404` / `418`）を Astro で用意しています。
+
+## ディレクトリ構成
 
 ```
-public/                  # 当時の静的アセットをそのまま
-├─ css/                  #   元サイトのCSS一式（PC/モバイル）
-├─ img/                  #   ロゴ・スキル・作品の画像
-├─ js/                   #   script.js(ハンバーガー等), footer.js ほか
+public/               # 静的アセット（旧サイト・別サイトの資産も同居。削除は慎重に）
+├─ css/ img/ js/ ...
 ├─ favicon.ico
-└─ CNAME                 #   hyouhyan.com
+└─ CNAME              #   hyouhyan.com（消すとカスタムドメインが外れる）
 src/
-├─ data/                 # ★ 中身を編集する場所
+├─ data/              # ★ コンテンツの中身はここを編集する
+│  ├─ career.ts
 │  ├─ skills.ts
 │  ├─ works.ts
 │  └─ links.ts
-├─ components/           # 各セクションの部品
-├─ layouts/Base.astro    # head・フォント・スクリプト
-└─ pages/index.astro     # 部品を並べているだけ
+├─ components/        # 各セクションの部品（Header / Home / About / Career /
+│  │                  #   Skills / Works / Links / Footer / ErrorPage）
+├─ layouts/
+│  └─ Base.astro      #   <head>・OGP・Font Awesome
+├─ styles/
+│  └─ global.css      #   CSS 変数・リセット・共通スタイル（設定の起点）
+└─ pages/
+   ├─ index.astro     #   各セクションを並べるだけ
+   └─ 401 / 404 / 418 #   エラーページ
 ```
 
-## 注意 / TODO
+## 編集するときの勘所
 
-- **`/tools` と `/wishlist`**: LINK のリンク先は当時のまま `/tools` `/wishlist` を指しています。
-  これらは元リポジトリでは別フォルダの独立ページで、この移行版には**含まれていません**。
-  apex を置き換えるなら、`public/tools/` 等にコピーするか別途用意してください。
-- **footer.js**: フッターは `public/js/footer.txt` を読んで末尾に差し込む当時の方式のまま。
-  Astro 流にするなら Footer コンポーネントとして静的に書き出すのが綺麗です（任意）。
-- **Typekit / Font Awesome のキットID**は hyouhyan さん本人のものをそのまま使っています。
-- **`meishi_redirect.js`** は移行版では読み込んでいません（必要なら head に戻せます）。
-- CSS を component-scoped に整理し直したり、jQuery を素の JS に置き換えたりは、
-  移行後に少しずつやれます（今は「まず同じ見た目で載せ替える」を優先）。
+- **コンテンツを足す・直すときは `src/data/*.ts` を編集**します。スキルを1つ増やすのも配列に1行追加するだけで、コンポーネント側のマークアップは基本的に触りません。
+- **色・フォント・スペーシング**を変えるときは `src/styles/global.css` の `:root` 変数を起点にします。
+
+## 技術スタック
+
+- **Astro v5** による静的サイト出力
+- スタイル: `src/styles/global.css` ＋ 各コンポーネントの Astro スコープドスタイル
+- スクリプト: バニラ JS（Astro の `<script>` タグ）。jQuery は廃止済み
+- フォント: Noto Sans JP（Google Fonts）。ロゴは画像なので、以前使っていた Adobe Typekit は削除済み
+- アイコン: Font Awesome（SNS）、Skillicon（スキル）
+
+## 触るときの注意
+
+- `public/CNAME`（中身は `hyouhyan.com`）は消さない。消すとカスタムドメインが外れます。
+- `public/*` の削除は要注意。旧サイトや別サイトと依存関係があるため、追加は自由でも削除は慎重に。
+- `astro.config.mjs` の `site` は本番 URL。カスタムドメインなので `base` は設定しません。
+- ヘッダーのスクロール連動挙動は `Header.astro` の `<script>` に内蔵しています。
