@@ -25,7 +25,7 @@ src/
   styles/
     global.css        ← CSS変数・リセット・フォント・共通スタイル（ここが唯一の設定起点）
   layouts/
-    Base.astro        ← <head>・Adobe Typekit・Font Awesome
+    Base.astro        ← <head>・Font Awesome
   components/
     Header.astro      ← 固定左縦型ナビ＋右SNSパネル（スクロール連動）。スコープCSS＋バニラJS内蔵
     Home.astro        ← フルスクリーンヒーロー（ロゴ画像＋スクロールダウン矢印）
@@ -70,7 +70,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - **Astro v5** 静的サイト出力
 - CSS: Astro スコープスタイル（各コンポーネント内 `<style>`）＋ `src/styles/global.css`
 - JS: バニラJS（Astro `<script>` タグ、defer モジュール）。jQuery は廃止済み
-- フォント: Noto Sans JP（Google Fonts）＋ Adobe Typekit（ロゴ書体）
+- フォント: Noto Sans JP（Google Fonts）。ロゴは画像なので Adobe Typekit は廃止済み（削除済み）
 - アイコン: Font Awesome（SNS アイコン）、Skillicon
 ## 規約・お願い
 
