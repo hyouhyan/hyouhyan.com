@@ -91,4 +91,4 @@ export const skills: Skill[] = [
   { img: '/img/skill/dj.webp', alt: 'DJのアイコン', name: 'DJ', tags: ['Music', 'HipHop', 'Future Bass'], category: 'Creative' },
 ];
 
-export const skillCategories: SkillCategory[] = ['Infra / OS', 'Database', 'Embedded', 'Dev Tools', 'Languages', 'Frameworks / Tools', 'Web', 'Creative'];
+export const skillCategories: SkillCategory[] = ['Infra / OS', 'Languages', 'Frameworks / Tools', 'Web', 'Database', 'Embedded', 'Dev Tools', 'Creative'];
