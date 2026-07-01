@@ -25,40 +25,6 @@
       <span></span>
     </button>
   </div>
-  <div class="right-top">
-    <div class="sns">
-      <div class="twitter sns-button">
-        <a href="https://x.com/yaa_oredayo">
-          <div class="sns-logo"><i class="fa-brands fa-x-twitter"></i></div>
-          <span class="sns-id">@yaa_oredayo</span>
-        </a>
-      </div>
-      <div class="instagram sns-button">
-        <a href="https://www.instagram.com/hyouhyan">
-          <div class="sns-logo"><i class="fab fa-instagram"></i></div>
-          <span class="sns-id">@hyouhyan</span>
-        </a>
-      </div>
-      <div class="bluesky sns-button">
-        <a href="https://bsky.app/profile/hyouhyan.com">
-          <div class="sns-logo"><img alt="Bluesky" src="/img/Bluesky_Logo.svg" height="25" class="bluesky-icon" /></div>
-          <span class="sns-id">hyouhyan.com</span>
-        </a>
-      </div>
-      <div class="github sns-button">
-        <a href="https://github.com/hyouhyan">
-          <div class="sns-logo"><i class="fab fa-github"></i></div>
-          <span class="sns-id">hyouhyan</span>
-        </a>
-      </div>
-      <div class="e-mail sns-button">
-        <a href="mailto:hyouhyan@hyouhyan.com">
-          <div class="sns-logo"><i class="far fa-envelope"></i></div>
-          <span class="sns-id">hyouhyan@hyouhyan.com</span>
-        </a>
-      </div>
-    </div>
-  </div>
 </header>
 
 <style>
@@ -152,95 +118,6 @@
   /* ハンバーガーはPCで非表示 */
   #hamburger {
     display: none;
-  }
-
-  /* 右側SNSパネル */
-  .right-top {
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-  }
-
-  .right-top .sns {
-    margin: 20px;
-    padding: 0;
-    font-size: 24px;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .sns .sns-button {
-    margin: 0 0 0 auto;
-    margin-top: 10px;
-    transition: width 0.2s ease-in-out;
-    width: 30px;
-    overflow: hidden;
-  }
-
-  .sns .sns-button:hover {
-    width: 110px;
-  }
-
-  .sns .sns-logo {
-    width: 30px;
-    margin-right: 3px;
-    text-align: center;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .sns-logo i {
-    display: inline-block;
-  }
-
-  .sns .sns-button .sns-id {
-    font-size: 16px;
-    vertical-align: middle;
-  }
-
-  .sns a {
-    transition: color 0.2s ease-in-out;
-    display: flex;
-    align-items: center;
-  }
-
-  .right-top .sns .twitter:hover {
-    width: 150px;
-  }
-
-  .right-top .sns .e-mail:hover {
-    width: 235px;
-  }
-
-  .right-top .sns .bluesky:hover {
-    width: 150px;
-  }
-
-  .right-top .sns .bluesky:hover a {
-    color: #1185fe;
-  }
-
-  .right-top .sns .instagram {
-    background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-
-  .right-top .sns .instagram:hover {
-    -webkit-text-fill-color: transparent;
-    width: 125px;
-  }
-
-  .right-top .sns .github:hover a {
-    color: #620296;
-  }
-
-  .bluesky-icon {
-    fill: #000;
-    height: 25px;
-    width: auto;
-  }
-
-  .bluesky:hover .bluesky-icon {
-    filter: invert(47%) sepia(82%) saturate(4906%) hue-rotate(200deg) brightness(104%) contrast(104%);
   }
 
   /* ===== モバイル (767px以下): 上部バー + フルスクリーンオーバーレイ ===== */
@@ -364,49 +241,6 @@
       transform: translateY(-12px) rotate(45deg);
     }
 
-    /* モバイルでのSNSパネル: オーバーレイ下部に表示 */
-    .right-top {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 160;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.2s ease-in-out;
-    }
-
-    .right-top.toggle {
-      display: block;
-      opacity: 1;
-    }
-
-    .right-top .sns {
-      margin: 0;
-      padding: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      font-size: 28px;
-    }
-
-    .right-top .sns .sns-id {
-      display: none;
-    }
-
-    .right-top .sns .sns-logo {
-      color: white;
-    }
-
-    .right-top .sns .sns-logo img {
-      filter: invert(97%) sepia(100%) saturate(21%) hue-rotate(309deg) brightness(105%) contrast(100%);
-    }
-
-    .sns .sns-button {
-      width: auto !important;
-      margin: 0;
-    }
   }
 </style>
 
@@ -414,14 +248,12 @@
   const header = document.getElementById('site-header') as HTMLElement;
   const hamburger = document.getElementById('hamburger') as HTMLButtonElement;
   const nav = header.querySelector('.main-nav') as HTMLElement;
-  const rightTop = header.querySelector('.right-top') as HTMLElement;
   const navLinks = header.querySelectorAll<HTMLAnchorElement>('.nav');
 
   // ハンバーガーメニュー開閉
   hamburger.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('toggle');
     nav.classList.toggle('toggle');
-    rightTop.classList.toggle('toggle');
     hamburger.setAttribute('aria-expanded', String(isOpen));
   });
 
@@ -430,7 +262,6 @@
     link.addEventListener('click', () => {
       hamburger.classList.remove('toggle');
       nav.classList.remove('toggle');
-      rightTop.classList.remove('toggle');
       hamburger.setAttribute('aria-expanded', 'false');
     });
   });
@@ -466,19 +297,9 @@
     const activeLink = header.querySelector<HTMLAnchorElement>(`.main-nav a[href="${activeId}"]`);
     activeLink?.classList.add('active-nav');
 
-    // SNSパネル表示制御 (旧サイトの挙動を再現)
-    const aboutOffset = offsets['#about'] ?? Infinity;
+    // #skill以降でヘッダーを収縮
     const skillOffset = offsets['#skill'] ?? Infinity;
-
-    if (scrollY > aboutOffset - 50) {
-      rightTop.style.visibility = 'hidden';
-      rightTop.style.opacity = '0';
-      header.style.width = scrollY > skillOffset - 50 ? 'auto' : '100%';
-    } else {
-      rightTop.style.visibility = 'visible';
-      rightTop.style.opacity = '1';
-      header.style.width = '100%';
-    }
+    header.style.width = scrollY > skillOffset - 50 ? 'auto' : '100%';
   }
 
   let offsets = getSectionOffsets();
