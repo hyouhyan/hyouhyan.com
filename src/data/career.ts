@@ -8,11 +8,6 @@ export interface CareerItem {
 
 export const career: CareerItem[] = [
   {
-    year: '2021',
-    title: '自宅サーバの運用開始',
-    description: '',
-  },
-  {
     year: '2022',
     month: '4月',
     title: '愛知工業大学 入学',
