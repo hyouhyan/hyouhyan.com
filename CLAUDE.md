@@ -36,7 +36,7 @@ src/
     Footer.astro      ← フッター（著作権表示）
   data/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
-    skills.ts         ← Skill[]（カテゴリ付き: Web / App・Backend / Infra・OS / Creative）
+    skills.ts         ← Skill[]（カテゴリ付き: Web / App・Backend / Infra・OS / Creative）。img は原則 Devicon（jsDelivr CDN）参照。Devicon に無いスキルのみ public/img/skill に画像を置いてローカル参照
     works.ts          ← Work[]（url / img / description）
     links.ts          ← LinkItem[]（url / label）
   pages/
@@ -70,7 +70,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - CSS: Astro スコープスタイル（各コンポーネント内 `<style>`）＋ `src/styles/global.css`
 - JS: バニラJS（Astro `<script>` タグ、defer モジュール）。jQuery は廃止済み
 - フォント: Noto Sans JP（Google Fonts）＋ Adobe Typekit（ロゴ書体）
-- アイコン: Font Awesome（SNS アイコン）
+- アイコン: Font Awesome（SNS アイコン）、Devicon（Skill セクションのロゴ。`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{name}/{name}-original.svg` を直接参照。jsDelivr 障害時は表示されない外部依存を許容している）
 
 ## 規約・お願い
 
@@ -82,6 +82,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 
 - **`public/CNAME`**（中身: `hyouhyan.com`）は消さない。消すとカスタムドメインが外れる。
 - **`public/*`**の削除は要注意。旧サイトや別サイトとの依存関係があるため、追加は良いが削除は慎重に。
+- `public/img/skill/` のうち Devicon に置き換え済みで現在未参照のファイル（html.webp, css.webp, javascript.svg, vue.webp, nodejs.webp, php.webp, python.webp, java.webp, clang.webp, bash.webp, matlab.svg, linux.webp, ubuntu.svg, debian.svg, proxmox.webp, nginx.webp, apache.webp, github.webp, unity.webp, Adobe-Illustrator.svg, Adobe-Photoshop.svg, Adobe-Premiere.svg, Adobe-AfterEffects.svg）は上記方針により残置。削除は明示指示があるまで行わない。
 - `astro.config.mjs` の `site` は本番URL。カスタムドメインなので `base` は設定しない。
 - ヘッダーのスクロール挙動 JS は `Header.astro` の `<script>` に内蔵。`public/js/script.js` は廃止済み（削除禁止・旧サイト参照の可能性あり）。
 
