@@ -9,10 +9,10 @@ const grouped = skillCategories.map((cat) => ({
 
 <div class="skills-box section" id="skill">
   <div class="main-content">
-    <h2 class="section-title"><span>SKILL</span></h2>
+    <h1 class="section-title"><span>SKILL</span></h1>
     {grouped.map(({ category, items }) => (
       <div class="skill-group">
-        <h3 class="category-label">{category}</h3>
+        <h2 class="category-label">{category}</h2>
         <ul class="skill-list">
           {items.map((s) => (
             <li class="skill-item">
