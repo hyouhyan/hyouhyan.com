@@ -66,6 +66,7 @@ img {
   font-size: 2em;
   font-weight: bold;
   letter-spacing: 0.25em;
+  padding-left: 0.25em;  /* letter-spacingと同じだけ左にスペースを作る */
   padding-bottom: 4px;
   border-bottom: 3px solid var(--color-accent);
   margin-bottom: 35px;
