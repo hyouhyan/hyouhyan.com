@@ -12,7 +12,6 @@ export interface Skill {
 
 // https://skillicons.dev の短縮コード一覧: https://github.com/tandpfun/skill-icons#icons&theme=light
 const skillicon = (name: string) => `https://skillicons.dev/icons?i=${name}&theme=light`;
-const simpleIcon = (slug: string) => `https://cdn.simpleicons.org/${slug}`;
 
 export const skills: Skill[] = [
   // Infra / OS
@@ -32,7 +31,8 @@ export const skills: Skill[] = [
   { img: skillicon('prometheus'), alt: 'Prometheusのロゴ', name: 'Prometheus', tags: ['Monitoring'], category: 'Infra / OS' },
   { img: skillicon('grafana'), alt: 'Grafanaのロゴ', name: 'Grafana', tags: ['Monitoring', 'Dashboard'], category: 'Infra / OS' },
   { img: skillicon('cloudflare'), alt: 'Cloudflareのロゴ', name: 'Cloudflare', tags: ['CDN', 'DNS'], category: 'Infra / OS' },
-  { img: simpleIcon('tailscale'), alt: 'Tailscaleのイメージ（仮画像）', name: 'Tailscale', tags: ['VPN', 'Mesh Network'], category: 'Infra / OS' },
+  // TODO: Tailscaleは skillicons.dev に無いため、正式なロゴ画像を public/img/skill に用意して差し替える
+  { img: '/img/skill/network.jpg', alt: 'Tailscaleのイメージ（仮画像）', name: 'Tailscale', tags: ['VPN', 'Mesh Network'], category: 'Infra / OS' },
   { img: skillicon('github'), alt: 'GitHubのロゴ', name: 'GitHub', tags: ['Team Develop'], category: 'Infra / OS' },
   { img: '/img/skill/network.jpg', alt: 'Networkのイメージ', name: 'Network', tags: ['Cloud', 'Server'], category: 'Infra / OS' },
 
