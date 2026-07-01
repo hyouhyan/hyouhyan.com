@@ -1,0 +1,165 @@
+---
+import { skills, skillCategories } from '../data/skills';
+
+const grouped = skillCategories.map((cat) => {
+  const items = skills.filter((s) => s.category === cat);
+  const subcategories = [...new Set(items.map((s) => s.subcategory).filter((s): s is string => !!s))];
+  return { category: cat, items, subcategories };
+});
+---
+
+<div class="skills-box section" id="skill">
+  <div class="main-content">
+    <h1 class="section-title"><span>SKILL</span></h1>
+    {grouped.map(({ category, items, subcategories }) => {
+      const ungrouped = items.filter((s) => !s.subcategory);
+      return (
+        <div class="skill-group">
+          <h2 class="category-label">{category}</h2>
+          {ungrouped.length > 0 && (
+            <ul class="skill-list">
+              {ungrouped.map((s) => (
+                <li class="skill-item">
+                  <figure class="skill-icon">
+                    <img src={s.img} alt={s.alt} loading="lazy" />
+                  </figure>
+                  <div class="skill-name">{s.name}</div>
+                  <div class="skill-tags">
+                    {s.tags.map((t) => <span class="tag">{t}</span>)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {subcategories.map((sub) => (
+            <div class="skill-subgroup">
+              <h3 class="subcategory-label">{sub}</h3>
+              <ul class="skill-list">
+                {items.filter((s) => s.subcategory === sub).map((s) => (
+                  <li class="skill-item">
+                    <figure class="skill-icon">
+                      <img src={s.img} alt={s.alt} loading="lazy" />
+                    </figure>
+                    <div class="skill-name">{s.name}</div>
+                    <div class="skill-tags">
+                      {s.tags.map((t) => <span class="tag">{t}</span>)}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .skill-group {
+    margin-bottom: 56px;
+  }
+
+  .skill-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .category-label {
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .skill-subgroup {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .skill-subgroup:last-child {
+    margin-bottom: 0;
+  }
+
+  .subcategory-label {
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin: 0 0 12px;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .skill-item {
+    width: calc(25% - 9px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skill-icon {
+    margin: 0 0 8px;
+    width: 64px;
+    height: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .skill-icon:hover img {
+    transform: scale(1.1);
+  }
+
+  .skill-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 6px;
+    background: var(--color-accent);
+    color: white;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 900px) {
+    .skill-item {
+      width: calc(33.333% - 8px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .skill-item {
+      width: calc(50% - 6px);
+    }
+
+    .skill-icon {
+      width: 52px;
+      height: 52px;
+    }
+  }
+</style>

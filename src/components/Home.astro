@@ -1,0 +1,54 @@
+---
+// ホーム: 大きなロゴ + スクロールダウン矢印
+---
+
+<div class="home-box section" id="home">
+  <img alt="ひょうひゃんロゴ" src="/img/hy_icon/hyouhyan-1080.webp" class="large-logo" />
+  <a href="#about" aria-label="下にスクロール">
+    <div class="scroll-down" id="scroll-down"></div>
+  </a>
+</div>
+
+<style>
+  .home-box {
+    height: 100vh;
+    position: relative;
+    padding: 0;
+  }
+
+  .large-logo {
+    position: absolute;
+    top: 0;
+    bottom: 5%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 50%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .scroll-down {
+    position: absolute;
+    top: 85%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background: url(/img/scrolldown.svg) center / contain no-repeat;
+    width: 120px;
+    height: 56px;
+    animation: scrolldown-bounce 1s infinite ease-in;
+  }
+
+  @keyframes scrolldown-bounce {
+    0%   { transform: translateY(0); }
+    30%  { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+  }
+
+  @media (max-width: 767px) {
+    .large-logo {
+      height: 40%;
+    }
+  }
+</style>

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #0d0d0d;
+  --color-text-muted: #666666;
+  --color-accent: #000000;
+  --color-border: #000000;
+  --color-border-light: #e5e5e5;
+  --font-sans: 'Noto Sans JP', sans-serif;
+  --content-max-width: 960px;
+  --content-padding-x: 40px;
+  --section-padding-y: 120px;
+  --header-height-mobile: 56px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* コンテンツ幅 */
+.main-content {
+  margin: 0 auto;
+  max-width: var(--content-max-width);
+  padding: 0 var(--content-padding-x);
+}
+
+/* セクション共通 */
+.section {
+  padding: var(--section-padding-y) 0;
+}
+
+/* セクション見出し */
+.section-title {
+  display: inline-block;
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+  padding-left: 0.25em;  /* letter-spacingと同じだけ左にスペースを作る */
+  padding-bottom: 4px;
+  border-bottom: 3px solid var(--color-accent);
+  margin-bottom: 35px;
+}
+
+/* フッター */
+footer {
+  width: 100%;
+  padding: 50px 0 30px;
+  text-align: center;
+  border-top: 1px solid var(--color-border-light);
+}
+
+footer small {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  line-height: 2;
+}
+
+footer small a {
+  color: var(--color-text-muted);
+}
+
+footer small a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+/* スクロールマージン（固定ヘッダー対応） */
+#home, #about, #career, #skill, #work, #link {
+  scroll-margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --content-padding-x: 20px;
+    --section-padding-y: 80px;
+  }
+
+  #home, #about, #career, #skill, #work, #link {
+    scroll-margin-top: var(--header-height-mobile);
+  }
+}

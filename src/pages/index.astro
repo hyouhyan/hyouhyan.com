@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Home from '../components/Home.astro';
+import About from '../components/About.astro';
+import Career from '../components/Career.astro';
+import Skills from '../components/Skills.astro';
+import Works from '../components/Works.astro';
+import Links from '../components/Links.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base>
+  <Header />
+  <Home />
+  <div class="main-content-sections">
+    <About />
+    <Career />
+    <Skills />
+    <Works />
+    <Links />
+  </div>
+  <Footer />
+</Base>
+
+<style>
+  /* About〜Links はヘッダー左側の幅分、コンテンツを右にずらす */
+  @media (min-width: 768px) {
+    .main-content-sections {
+      margin-left: 140px;
+      margin-right: 70px;
+    }
+  }
+</style>
+
+<script is:inline src="/js/meishi_redirect.js"></script>

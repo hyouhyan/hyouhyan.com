@@ -1,0 +1,313 @@
+---
+// ヘッダー: 旧サイトのデザインを完全保持しつつ jQuery → バニラJS・CSS → スコープスタイルに移行
+---
+
+<header id="site-header">
+  <div class="left-top">
+    <div class="logo">
+      <a href="#home">
+        <span class="ogla">Hyouhyan</span><span class="pro">.com</span>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#home" class="nav">HOME</a></li>
+        <li><a href="#about" class="nav">ABOUT</a></li>
+        <li><a href="#career" class="nav">CAREER</a></li>
+        <li><a href="#skill" class="nav">SKILL</a></li>
+        <li><a href="#work" class="nav">WORK</a></li>
+        <li><a href="#link" class="nav">LINK</a></li>
+      </ul>
+    </nav>
+    <button id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  /* ===== PC (768px以上): 左側縦型ナビ ===== */
+  header {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 23px;
+    z-index: 100;
+    pointer-events: none;
+    transition: width 0.3s ease;
+  }
+
+  /* 子要素はクリック可能に戻す */
+  header > * {
+    pointer-events: all;
+  }
+
+  /* 左側ブロック */
+  .left-top {
+    display: flex;
+    flex-direction: column;
+    margin-left: 28px;
+    width: max-content;
+    z-index: 1;
+  }
+
+  .left-top .logo {
+    margin-bottom: 30px;
+    font-size: 17px;
+  }
+
+  .logo .ogla {
+    font-weight: bold;
+  }
+
+  .logo .pro {
+    font-weight: normal;
+  }
+
+  /* ナビ */
+  .main-nav ul {
+    padding-inline-start: 10px;
+    margin-top: 0;
+  }
+
+  .main-nav li {
+    font-size: 14px;
+    margin-bottom: 30px;
+    border-left: 3px solid #000;
+    position: relative;
+    pointer-events: none;
+  }
+
+  .main-nav li a {
+    pointer-events: all;
+    font-weight: bold;
+    margin-left: 15px;
+    transition: color 0.2s;
+    position: relative;
+    display: inline-block;
+  }
+
+  .main-nav a:hover,
+  .main-nav a.active-nav {
+    color: white;
+  }
+
+  /* ホバー／アクティブで黒塗りが広がるアニメーション */
+  .main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(-15px - 3px); /* margin-left + border-left 分だけ伸ばす */
+    width: 0;
+    display: block;
+    background: black;
+    z-index: -1;
+    transition: width 0.2s;
+  }
+
+  .main-nav a:hover::before,
+  .main-nav a.active-nav::before {
+    width: calc(100% + 17px * 2) !important;
+  }
+
+  /* ハンバーガーはPCで非表示 */
+  #hamburger {
+    display: none;
+  }
+
+  /* ===== モバイル (767px以下): 上部バー + フルスクリーンオーバーレイ ===== */
+  @media (max-width: 767px) {
+    header {
+      margin-top: 0;
+      background-color: white;
+      width: 100% !important; /* JSでwidth変更されても上書き */
+      top: 0;
+      left: 0;
+      z-index: 200;
+      flex-wrap: nowrap;
+      align-items: center;
+      height: var(--header-height-mobile);
+    }
+
+    .left-top {
+      flex-direction: row;
+      align-items: center;
+      margin-left: 0;
+      width: 100%;
+      padding: 0 16px;
+    }
+
+    .left-top .logo {
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    /* モバイルでのナビ: フルスクリーンオーバーレイ */
+    .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main-nav.toggle {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .main-nav li {
+      border-left: none;
+      margin-bottom: 0;
+      pointer-events: all;
+    }
+
+    .main-nav li a {
+      display: block;
+      padding: 20px 0;
+      color: #fff;
+      font-size: 18px;
+      margin-left: 0;
+    }
+
+    .main-nav a::before {
+      display: none;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active-nav {
+      color: #ccc;
+    }
+
+    /* ハンバーガーボタン */
+    #hamburger {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+      z-index: 300;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    #hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      position: absolute;
+      transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+    }
+
+    #hamburger span:nth-child(1) { top: 0; }
+    #hamburger span:nth-child(2) { top: 0; bottom: 0; margin: auto; }
+    #hamburger span:nth-child(3) { bottom: 0; width: 70%; }
+
+    #hamburger.toggle span:nth-child(1) {
+      background-color: white;
+      transform: translateY(11px) rotate(-45deg);
+    }
+
+    #hamburger.toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #hamburger.toggle span:nth-child(3) {
+      width: 100%;
+      background-color: white;
+      transform: translateY(-12px) rotate(45deg);
+    }
+
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header') as HTMLElement;
+  const hamburger = document.getElementById('hamburger') as HTMLButtonElement;
+  const nav = header.querySelector('.main-nav') as HTMLElement;
+  const navLinks = header.querySelectorAll<HTMLAnchorElement>('.nav');
+
+  // ハンバーガーメニュー開閉
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('toggle');
+    nav.classList.toggle('toggle');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // ナビリンクをクリックしたらモバイルメニューを閉じる
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('toggle');
+      nav.classList.remove('toggle');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // セクションのスクロール位置を計算してキャッシュ
+  const sectionIds = ['#home', '#about', '#career', '#skill', '#work', '#link'] as const;
+
+  function getSectionOffsets(): Record<string, number> {
+    const offsets: Record<string, number> = {};
+    sectionIds.forEach((id) => {
+      const el = document.querySelector(id);
+      if (el) {
+        offsets[id] = (el as HTMLElement).offsetTop - window.innerHeight / 2;
+      }
+    });
+    return offsets;
+  }
+
+  // スクロールイベント: アクティブナビ更新 + SNSパネル表示制御
+  function onScroll(offsets: Record<string, number>) {
+    if (window.innerWidth < 768) return;
+
+    const scrollY = window.scrollY;
+
+    // アクティブナビ
+    let activeId = '#home';
+    sectionIds.forEach((id) => {
+      if (offsets[id] !== undefined && scrollY > offsets[id] - 50) {
+        activeId = id;
+      }
+    });
+    navLinks.forEach((a) => a.classList.remove('active-nav'));
+    const activeLink = header.querySelector<HTMLAnchorElement>(`.main-nav a[href="${activeId}"]`);
+    activeLink?.classList.add('active-nav');
+
+    // #skill以降でヘッダーを収縮
+    const skillOffset = offsets['#skill'] ?? Infinity;
+    header.style.width = scrollY > skillOffset - 50 ? 'auto' : '100%';
+  }
+
+  let offsets = getSectionOffsets();
+
+  // リサイズ時にオフセット再計算
+  window.addEventListener('resize', () => {
+    offsets = getSectionOffsets();
+  });
+
+  window.addEventListener('scroll', () => onScroll(offsets), { passive: true });
+</script>

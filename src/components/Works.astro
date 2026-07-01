@@ -1,0 +1,85 @@
+---
+import { works } from '../data/works';
+---
+
+<div class="works-box section" id="work">
+  <div class="main-content">
+    <h1 class="section-title"><span>WORK</span></h1>
+    <div class="work-grid">
+      {works.map((w) => (
+        <a href={w.url} class="work-card" target="_blank" rel="noopener noreferrer">
+          <div class="work-img">
+            <img src={w.img} alt={w.title} loading="lazy" />
+          </div>
+          <div class="work-body">
+            <p class="work-title">{w.title}</p>
+            <p class="work-desc">{w.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .work-card {
+    display: block;
+    border: 1px solid var(--color-border-light);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .work-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .work-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .work-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .work-body {
+    padding: 14px 16px 16px;
+  }
+
+  .work-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 0 6px;
+  }
+
+  .work-desc {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .work-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

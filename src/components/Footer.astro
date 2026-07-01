@@ -1,0 +1,22 @@
+---
+// フッター: 旧サイトの footer.js + footer.txt をAstroコンポーネントに置き換え
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <small>
+    Email: <a href="mailto:hyouhyan@hyouhyan.com">hyouhyan@hyouhyan.com</a><br />
+    &copy; 2019{year > 2019 ? `–${year}` : ''} <a href="https://hyouhyan.com">Hyouhyan</a>
+  </small>
+</footer>
+
+<style>
+  footer a{
+      color: #08c;
+      cursor:pointer;
+  }
+
+  footer a:hover{
+      color:#069;
+  }
+</style>
