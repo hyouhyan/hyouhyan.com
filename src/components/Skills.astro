@@ -11,11 +11,27 @@ const grouped = skillCategories.map((cat) => {
 <div class="skills-box section" id="skill">
   <div class="main-content">
     <h1 class="section-title"><span>SKILL</span></h1>
-    {grouped.map(({ category, items, subcategories }) => (
-      <div class="skill-group">
-        <h2 class="category-label">{category}</h2>
-        {subcategories.length > 0 ? (
-          subcategories.map((sub) => (
+    {grouped.map(({ category, items, subcategories }) => {
+      const ungrouped = items.filter((s) => !s.subcategory);
+      return (
+        <div class="skill-group">
+          <h2 class="category-label">{category}</h2>
+          {ungrouped.length > 0 && (
+            <ul class="skill-list">
+              {ungrouped.map((s) => (
+                <li class="skill-item">
+                  <figure class="skill-icon">
+                    <img src={s.img} alt={s.alt} loading="lazy" />
+                  </figure>
+                  <div class="skill-name">{s.name}</div>
+                  <div class="skill-tags">
+                    {s.tags.map((t) => <span class="tag">{t}</span>)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {subcategories.map((sub) => (
             <div class="skill-subgroup">
               <h3 class="subcategory-label">{sub}</h3>
               <ul class="skill-list">
@@ -32,24 +48,10 @@ const grouped = skillCategories.map((cat) => {
                 ))}
               </ul>
             </div>
-          ))
-        ) : (
-          <ul class="skill-list">
-            {items.map((s) => (
-              <li class="skill-item">
-                <figure class="skill-icon">
-                  <img src={s.img} alt={s.alt} loading="lazy" />
-                </figure>
-                <div class="skill-name">{s.name}</div>
-                <div class="skill-tags">
-                  {s.tags.map((t) => <span class="tag">{t}</span>)}
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    ))}
+          ))}
+        </div>
+      );
+    })}
   </div>
 </div>
 
@@ -74,6 +76,7 @@ const grouped = skillCategories.map((cat) => {
   }
 
   .skill-subgroup {
+    margin-top: 24px;
     margin-bottom: 24px;
   }
 

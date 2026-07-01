@@ -1,4 +1,4 @@
-export type SkillCategory = 'Infra / OS' | 'Database' | 'Embedded' | 'Dev Tools' | 'Languages' | 'Frameworks / Tools' | 'Web' | 'Creative';
+export type SkillCategory = 'Infra / OS' | 'Database' | 'Embedded' | 'Dev Tools' | 'Languages' | 'Creative';
 
 export interface Skill {
   img: string;
@@ -65,18 +65,18 @@ export const skills: Skill[] = [
   { img: skillicon('matlab'), alt: 'MATLABのロゴ', name: 'MATLAB', tags: ['数値計算'], category: 'Languages' },
 
   // Frameworks / Tools（特定言語・用途向けのフレームワークやツール）
-  { img: skillicon('opencv'), alt: 'OpenCVのロゴ', name: 'OpenCV', tags: ['Camera App'], category: 'Frameworks / Tools' },
-  { img: '/img/skill/kivy.webp', alt: 'Kivyのロゴ', name: 'Kivy', tags: ['GUI App'], category: 'Frameworks / Tools' },
-  { img: '/img/skill/gas.webp', alt: 'Google Apps Scriptのロゴ', name: 'Google Apps Script', tags: ['Automation'], category: 'Frameworks / Tools' },
+  { img: skillicon('opencv'), alt: 'OpenCVのロゴ', name: 'OpenCV', tags: ['Camera App'], category: 'Languages' , subcategory: 'Frameworks / Tools' },
+  { img: '/img/skill/kivy.webp', alt: 'Kivyのロゴ', name: 'Kivy', tags: ['GUI App'], category: 'Languages' , subcategory: 'Frameworks / Tools' },
+  { img: '/img/skill/gas.webp', alt: 'Google Apps Scriptのロゴ', name: 'Google Apps Script', tags: ['Automation'], category: 'Languages' , subcategory: 'Frameworks / Tools' },
 
   // Web（明らかにWeb用途でしか使わないもの）
-  { img: skillicon('html'), alt: 'HTMLのロゴ', name: 'HTML', tags: ['Web Design'], category: 'Web', subcategory: 'Frontend' },
-  { img: skillicon('css'), alt: 'CSSのロゴ', name: 'CSS', tags: ['Web Design'], category: 'Web', subcategory: 'Frontend' },
-  { img: skillicon('javascript'), alt: 'JavaScriptのロゴ', name: 'JavaScript', tags: ['WebApp', 'Dynamic Web'], category: 'Web', subcategory: 'Frontend' },
-  { img: skillicon('vuejs'), alt: 'Vue.jsのロゴ', name: 'Vue.js', tags: ['WebApp'], category: 'Web', subcategory: 'Frontend' },
-  { img: skillicon('nodejs'), alt: 'Node.jsのロゴ', name: 'Node.js', tags: ['WebService'], category: 'Web', subcategory: 'Backend' },
-  { img: skillicon('php'), alt: 'PHPのロゴ', name: 'PHP', tags: ['Backend'], category: 'Web', subcategory: 'Backend' },
-  { img: skillicon('flask'), alt: 'Flaskのロゴ', name: 'Flask', tags: ['Web App'], category: 'Web', subcategory: 'Backend' },
+  { img: skillicon('html'), alt: 'HTMLのロゴ', name: 'HTML', tags: ['Web Design'], category: 'Languages', subcategory: 'Web / Frontend' },
+  { img: skillicon('css'), alt: 'CSSのロゴ', name: 'CSS', tags: ['Web Design'], category: 'Languages', subcategory: 'Web / Frontend' },
+  { img: skillicon('javascript'), alt: 'JavaScriptのロゴ', name: 'JavaScript', tags: ['WebApp', 'Dynamic Web'], category: 'Languages', subcategory: 'Web / Frontend' },
+  { img: skillicon('vuejs'), alt: 'Vue.jsのロゴ', name: 'Vue.js', tags: ['WebApp'], category: 'Languages', subcategory: 'Web / Frontend' },
+  { img: skillicon('nodejs'), alt: 'Node.jsのロゴ', name: 'Node.js', tags: ['WebService'], category: 'Languages', subcategory: 'Web / Backend' },
+  { img: skillicon('php'), alt: 'PHPのロゴ', name: 'PHP', tags: ['Backend'], category: 'Languages', subcategory: 'Web / Backend' },
+  { img: skillicon('flask'), alt: 'Flaskのロゴ', name: 'Flask', tags: ['Web App'], category: 'Languages', subcategory: 'Web / Backend' },
 
   // Creative
   { img: skillicon('unity'), alt: 'Unityのロゴ', name: 'Unity', tags: ['3D CG', 'C#', 'Tokyo Game Show'], category: 'Creative' },
@@ -91,4 +91,4 @@ export const skills: Skill[] = [
   { img: '/img/skill/dj.webp', alt: 'DJのアイコン', name: 'DJ', tags: ['Music', 'HipHop', 'Future Bass'], category: 'Creative' },
 ];
 
-export const skillCategories: SkillCategory[] = ['Infra / OS', 'Languages', 'Frameworks / Tools', 'Web', 'Database', 'Embedded', 'Dev Tools', 'Creative'];
+export const skillCategories: SkillCategory[] = ['Infra / OS', 'Languages', 'Database', 'Embedded', 'Dev Tools', 'Creative'];
