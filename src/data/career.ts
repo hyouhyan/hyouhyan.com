@@ -14,9 +14,16 @@ export const career: CareerItem[] = [
     description: '情報科学部 コンピュータシステム専攻',
   },
   {
+    year: '2023',
+    month: '11月',
+    title: '愛知工業大学 システム工学研究会 所属',
+    description: '',
+    url: 'https://sysken.net/'
+  },
+  {
     year: '2024',
     month: '5月',
-    title: 'モバイルコンピューティング研究室(内藤研究室) 配属',
+    title: '愛知工業大学 モバイルコンピューティング研究室(内藤研究室) 配属',
     description: 'NAPT越えを実現してセキュアなP2P通信を提供する、オーバーレイネットワークの研究を行う。',
     url: 'https://pluslab.org',
   },
