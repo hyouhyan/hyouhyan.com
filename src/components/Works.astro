@@ -1,5 +1,11 @@
 ---
-import { works } from '../data/works';
+import { getCollection } from 'astro:content';
+
+// Work は Content Collection（src/content/works/*.md）から取得。
+// order 昇順で並べ、各カードは詳細ページ /work/{slug} へリンクする。
+const works = (await getCollection('works')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <div class="works-box section" id="work">
@@ -7,13 +13,13 @@ import { works } from '../data/works';
     <h1 class="section-title"><span>WORK</span></h1>
     <div class="work-grid">
       {works.map((w) => (
-        <a href={w.url} class="work-card" target="_blank" rel="noopener noreferrer">
+        <a href={`/work/${w.id}`} class="work-card">
           <div class="work-img">
-            <img src={w.img} alt={w.title} loading="lazy" />
+            <img src={w.data.img} alt={w.data.title} loading="lazy" />
           </div>
           <div class="work-body">
-            <p class="work-title">{w.title}</p>
-            <p class="work-desc">{w.description}</p>
+            <p class="work-title">{w.data.title}</p>
+            <p class="work-desc">{w.data.description}</p>
           </div>
         </a>
       ))}

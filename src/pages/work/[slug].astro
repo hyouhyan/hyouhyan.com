@@ -1,0 +1,207 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+
+// 全 Work の md からルートを静的生成（/work/{slug}）
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  return works.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, img, liveUrl } = entry.data;
+---
+
+<Base title={`${title} | ひょうひゃん`} description={description}>
+  <header class="detail-bar">
+    <a href="/#work" class="back-link">← WORK</a>
+    <a href="/" class="brand" aria-label="トップへ">ひょうひゃん</a>
+  </header>
+
+  <article class="detail">
+    <div class="detail-hero">
+      <img src={img} alt={title} />
+    </div>
+
+    <h1 class="detail-title">{title}</h1>
+    <p class="detail-desc">{description}</p>
+
+    {liveUrl && (
+      <a class="live-button" href={liveUrl} target="_blank" rel="noopener noreferrer">
+        サイトを見る →
+      </a>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="detail-foot">
+      <a href="/#work" class="back-link">← WORK 一覧に戻る</a>
+    </div>
+  </article>
+
+  <Footer />
+</Base>
+
+<style>
+  .detail-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 24px var(--content-padding-x);
+  }
+
+  .back-link {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .brand {
+    font-weight: bold;
+    letter-spacing: 0.08em;
+  }
+
+  .detail {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 20px var(--content-padding-x) 80px;
+  }
+
+  .detail-hero {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+  }
+
+  .detail-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .detail-title {
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    margin: 32px 0 8px;
+  }
+
+  .detail-desc {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin: 0 0 24px;
+  }
+
+  .live-button {
+    display: inline-block;
+    border: 2px solid var(--color-border);
+    padding: 10px 22px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .live-button:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .detail-foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  /* Markdown 本文（<Content /> の出力）*/
+  .prose {
+    margin-top: 40px;
+    line-height: 1.9;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.4em;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+    margin: 2em 0 0.6em;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .prose :global(h3) {
+    font-size: 1.15em;
+    font-weight: bold;
+    margin: 1.6em 0 0.5em;
+  }
+
+  .prose :global(p) {
+    margin: 0 0 1.2em;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 1.2em;
+    padding-left: 1.4em;
+  }
+
+  .prose :global(ul) {
+    list-style: disc;
+  }
+
+  .prose :global(ol) {
+    list-style: decimal;
+  }
+
+  .prose :global(li) {
+    margin: 0.3em 0;
+  }
+
+  .prose :global(a) {
+    color: #08c;
+    text-decoration: underline;
+  }
+
+  .prose :global(a:hover) {
+    color: #069;
+  }
+
+  .prose :global(blockquote) {
+    margin: 1.2em 0;
+    padding: 12px 18px;
+    border-left: 4px solid var(--color-border-light);
+    background: #fafafa;
+    color: var(--color-text-muted);
+  }
+
+  .prose :global(code) {
+    background: #f2f2f2;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .prose :global(pre) {
+    background: #f2f2f2;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .prose :global(img) {
+    border-radius: 8px;
+    margin: 1.2em 0;
+  }
+</style>

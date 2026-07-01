@@ -32,20 +32,23 @@ src/
     About.astro       ← 2カラム（丸アイコン＋名前・本文・SNSリンク）
     Career.astro      ← タイムライン。データは src/data/career.ts
     Skills.astro      ← カテゴリ別スキルグリッド。データは src/data/skills.ts
-    Works.astro       ← ホバーオーバーレイカード。データは src/data/works.ts
+    Works.astro       ← カードグリッド。データは Content Collection（src/content/works/*.md）。各カードは詳細ページ /work/{slug} へリンク
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
     Footer.astro      ← フッター（著作権表示）
+  content.config.ts   ← Content Collection 定義（works コレクション、zodスキーマ）
+  content/
+    works/            ← 1作品 = 1 Markdown。frontmatter(title/description/img/liveUrl/date/order) + 本文(記事)。本文は現状すべて仮テキスト（ユーザが後で記入）
   data/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
-    works.ts          ← Work[]（url / img / description）
     links.ts          ← LinkItem[]（url / label）
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
+    work/[slug].astro ← Work 詳細ページ。works コレクションから getStaticPaths で静的生成
 public/               ← 静的ファイル。削除要注意（旧サイト・別サイトとの依存あり）
 ```
 
-- **コンテンツ変更は `src/data/*.ts` のみ編集**。コンポーネント側のマークアップは原則いじらない。
+- **コンテンツ変更は `src/data/*.ts` と `src/content/works/*.md` のみ編集**。コンポーネント側のマークアップは原則いじらない。
 - 色・フォント・スペーシングを変えるときは `src/styles/global.css` の `:root` 変数を起点にする。
 
 ## 現在のページ構成（セクション順）
@@ -54,7 +57,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 2. **About** `#about` … 自己紹介。プレースホルダーテキスト入り
 3. **Career** `#career` … タイムライン。**中身はプレースホルダー（Lorem ipsum / 準備中）**
 4. **Skill** `#skill` … スキル一覧（カテゴリ7分類、計60アイテム。GitHub プロフィール README のスキル一覧と同期済み）
-5. **Work** `#work` … 制作物カード（3件）
+5. **Work** `#work` … 制作物カード（3件）。カードから詳細ページ `/work/{slug}` に遷移。詳細は Markdown 管理（本文は現状仮テキスト）
 6. **Link** `#link` … 外部リンクボタン（4件）
 
 ## ヘッダーの挙動（重要・変更禁止）
@@ -90,4 +93,5 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - **Career セクションの中身を記入**（`src/data/career.ts` にユーザが実績を入力）
 - **About セクションの拡充**（文章・写真の追加）
 - Now（研究）セクションの追加を検討
-- ブログを足すなら Astro の Content Collections（Markdown 管理）を検討
+- **Work 詳細ページの本文を記入**（`src/content/works/*.md` の仮テキストを差し替え）
+- ブログ化するなら、Work と同じ Content Collection の仕組みを `src/content/blog/` に広げて `/blog/...` を生やす（Work 詳細はその縮小版）。本文にコンポーネントを埋めたくなったら MDX（`@astrojs/mdx`）を検討
