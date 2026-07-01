@@ -63,12 +63,12 @@ img {
 /* セクション見出し */
 .section-title {
   display: inline-block;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 2em;
+  font-weight: bold;
   letter-spacing: 0.25em;
   padding-bottom: 4px;
   border-bottom: 3px solid var(--color-accent);
-  margin: 0 0 60px;
+  margin-bottom: 35px;
 }
 
 /* フッター */
