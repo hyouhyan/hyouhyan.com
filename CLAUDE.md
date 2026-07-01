@@ -36,7 +36,7 @@ src/
     Footer.astro      ← フッター（著作権表示）
   data/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
-    skills.ts         ← Skill[]（カテゴリ付き: Web / App・Backend / Infra・OS / Creative）。img は原則 Skillicon Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照
+    skills.ts         ← Skill[]（カテゴリ付き: Web / App・Backend / Infra・OS / Database / Embedded / Dev Tools / Creative）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     links.ts          ← LinkItem[]（url / label）
   pages/
@@ -52,7 +52,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 1. **Home** `#home` … フルスクリーンヒーロー（ロゴ画像）
 2. **About** `#about` … 自己紹介。プレースホルダーテキスト入り
 3. **Career** `#career` … タイムライン。**中身はプレースホルダー（Lorem ipsum / 準備中）**
-4. **Skill** `#skill` … スキル一覧（カテゴリ4分類、計29アイテム）
+4. **Skill** `#skill` … スキル一覧（カテゴリ7分類、計60アイテム。GitHub プロフィール README のスキル一覧と同期済み）
 5. **Work** `#work` … 制作物カード（3件）
 6. **Link** `#link` … 外部リンクボタン（4件）
 
