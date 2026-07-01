@@ -17,14 +17,15 @@ import Footer from '../components/Footer.astro';
     <About />
     <Career />
     <Skills />
-    <Works />
-    <Links />
   </div>
+  <Works />
+  <Links />
   <Footer />
 </Base>
 
 <style>
-  /* About〜Links はヘッダー左側の幅分、コンテンツを右にずらす */
+  /* About〜Skill はヘッダーが全幅の間に表示されるため、左側の幅分コンテンツを右にずらす */
+  /* Work・Link・Footer はここに到達する頃にはヘッダーが収縮済みなのでずらさない */
   @media (min-width: 768px) {
     .main-content-sections {
       margin-left: 140px;
