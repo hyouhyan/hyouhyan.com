@@ -9,6 +9,7 @@
 - ひょうひゃん（Hyouhyan）の個人サイト。公開URLは https://hyouhyan.com
 - **Astro** 製の**完全な静的サイト**。GitHub Pages（カスタムドメイン）でホスティングする。
 - サーバ・DB・APIは無し。ビルド成果物（`dist/`）をそのまま配信する。
+- ユーザは https://kamitsubaki.jp/ のデザインを気に入っており、デザインや雰囲気の選定時に参考にすること。
 
 ## コマンド
 
