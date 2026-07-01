@@ -13,24 +13,12 @@ import Footer from '../components/Footer.astro';
 <Base>
   <Header />
   <Home />
-  <div class="main-content-sections">
-    <About />
-    <Career />
-    <Skills />
-  </div>
+  <About />
+  <Career />
+  <Skills />
   <Works />
   <Links />
   <Footer />
 </Base>
-
-<style>
-  /* About〜Skill はヘッダーが全幅の間に表示されるため、左側の幅分コンテンツを右にずらす */
-  /* Work・Link・Footer はここに到達する頃にはヘッダーが収縮済みなのでずらさない */
-  @media (min-width: 768px) {
-    .main-content-sections {
-      margin-left: 140px;
-    }
-  }
-</style>
 
 <script is:inline src="/js/meishi_redirect.js"></script>
