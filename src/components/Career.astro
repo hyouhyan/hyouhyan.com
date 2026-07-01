@@ -8,9 +8,21 @@ import { career } from '../data/career';
     <div class="timeline">
       {career.map((item) => (
         <div class="timeline-item">
-          <div class="timeline-year">{item.year}</div>
+          <div class="timeline-year">
+            <span class="timeline-year-num">{item.year}</span>
+            <span class="timeline-month">{item.month ?? ''}</span>
+          </div>
           <div class="timeline-content">
-            <p class="timeline-title">{item.title}</p>
+            <p class="timeline-title">
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.title}
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              ) : (
+                item.title
+              )}
+            </p>
             {item.description && <p class="timeline-desc">{item.description}</p>}
           </div>
         </div>
@@ -60,17 +72,30 @@ import { career } from '../data/career';
   }
 
   .timeline-year {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted);
-    min-width: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 56px;
     padding-top: 2px;
     flex-shrink: 0;
   }
 
+  .timeline-year-num {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .timeline-month {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    min-height: 1.4em;
+  }
+
   .timeline-content {
     flex: 1;
+    min-width: 0;
   }
 
   .timeline-title {
@@ -78,6 +103,21 @@ import { career } from '../data/career';
     font-weight: 700;
     margin: 0 0 6px;
     line-height: 1.4;
+  }
+
+  .timeline-title a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .timeline-title a:hover {
+    text-decoration: underline;
+  }
+
+  .timeline-title a i {
+    font-size: 0.7em;
+    color: var(--color-text-muted);
   }
 
   .timeline-desc {
