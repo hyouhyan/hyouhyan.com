@@ -40,4 +40,10 @@ export const career: CareerItem[] = [
     title: '愛知工業大学 大学院 入学',
     description: '経営情報科学研究科 修士課程',
   },
+  {
+    year: '2028',
+    month: '3月',
+    title: '愛知工業大学 大学院 修士課程 修了予定',
+    description: '',
+  },
 ];
