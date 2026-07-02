@@ -28,7 +28,7 @@ src/
     Base.astro        ← <head>・Font Awesome
   components/
     Header.astro      ← 固定左縦型ナビ＋右SNSパネル（スクロール連動）。スコープCSS＋バニラJS内蔵
-    Home.astro        ← フルスクリーンヒーロー（ロゴ画像＋スクロールダウン矢印）
+    Home.astro        ← フルスクリーンヒーロー（ロゴ画像＋スクロールダウン矢印）。左下にUUID生成の小ネタ（crypto.randomUUID・クリックでコピー・↻で再生成。バニラJS内蔵）
     About.astro       ← 2カラム（丸アイコン＋名前・本文・SNSリンク）
     Career.astro      ← タイムライン。データは src/data/career.ts
     Skills.astro      ← カテゴリ別スキルグリッド。データは src/data/skills.ts
@@ -50,7 +50,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 
 ## 現在のページ構成（セクション順）
 
-1. **Home** `#home` … フルスクリーンヒーロー（ロゴ画像）
+1. **Home** `#home` … フルスクリーンヒーロー（ロゴ画像）＋ UUID生成の小ネタ（左下）
 2. **About** `#about` … 自己紹介。プレースホルダーテキスト入り
 3. **Career** `#career` … タイムライン。**中身はプレースホルダー（Lorem ipsum / 準備中）**
 4. **Skill** `#skill` … スキル一覧（カテゴリ7分類、計60アイテム。GitHub プロフィール README のスキル一覧と同期済み）

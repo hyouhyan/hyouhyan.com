@@ -1,9 +1,26 @@
 ---
-// ホーム: 大きなロゴ + スクロールダウン矢印
+// ホーム: 大きなロゴ + スクロールダウン矢印 + UUID生成の小ネタ
 ---
 
 <div class="home-box section" id="home">
   <img alt="ひょうひゃんロゴ" src="/img/hy_icon/hyouhyan-1080.webp" class="large-logo" />
+
+  <!-- 小ネタ: ランダムなUUIDを生成。クリックでコピー、↻で再生成 -->
+  <div class="uuid-widget" aria-label="ランダムUUID生成">
+    <span class="uuid-label">YOUR UUID</span>
+    <div class="uuid-row">
+      <code
+        class="uuid-value"
+        id="uuid-value"
+        role="button"
+        tabindex="0"
+        title="クリックでコピー"
+      >········-····-····-····-············</code>
+      <button class="uuid-regen" id="uuid-regen" type="button" aria-label="新しいUUIDを生成">↻</button>
+    </div>
+    <span class="uuid-hint" id="uuid-hint" aria-live="polite">クリックでコピー</span>
+  </div>
+
   <a href="#about" aria-label="下にスクロール">
     <div class="scroll-down" id="scroll-down"></div>
   </a>
@@ -46,9 +63,154 @@
     100% { transform: translateY(0); }
   }
 
+  /* UUID小ネタ（ヒーロー左下） */
+  .uuid-widget {
+    position: absolute;
+    left: 32px;
+    bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    user-select: none;
+    z-index: 2;
+  }
+
+  .uuid-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--color-text-muted);
+  }
+
+  .uuid-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .uuid-value {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    border-bottom: 1px dashed var(--color-border-light);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .uuid-value:hover {
+    opacity: 0.55;
+  }
+
+  .uuid-regen {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.4s ease;
+  }
+
+  .uuid-regen:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .uuid-regen:active {
+    transform: rotate(180deg);
+  }
+
+  .uuid-hint {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    min-height: 12px;
+    opacity: 0.7;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+
+  .uuid-hint.is-active {
+    color: var(--color-text);
+    opacity: 1;
+  }
+
   @media (max-width: 767px) {
     .large-logo {
       height: 40%;
     }
+
+    .uuid-widget {
+      left: 20px;
+      bottom: 20px;
+    }
+
+    .uuid-value {
+      font-size: 11px;
+    }
   }
 </style>
+
+<script>
+  const valueEl = document.getElementById('uuid-value');
+  const regenEl = document.getElementById('uuid-regen');
+  const hintEl = document.getElementById('uuid-hint');
+
+  // crypto.randomUUID() が使えればそれを、無い環境向けのフォールバックも用意
+  function generateUUID(): string {
+    if (window.crypto && 'randomUUID' in window.crypto) {
+      return window.crypto.randomUUID();
+    }
+    return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) =>
+      (
+        Number(c) ^
+        (window.crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(c) / 4)))
+      ).toString(16),
+    );
+  }
+
+  let hintTimer: ReturnType<typeof setTimeout>;
+  function flashHint(message: string) {
+    if (!hintEl) return;
+    hintEl.textContent = message;
+    hintEl.classList.add('is-active');
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => {
+      hintEl.textContent = 'クリックでコピー';
+      hintEl.classList.remove('is-active');
+    }, 1500);
+  }
+
+  function setUUID() {
+    if (valueEl) valueEl.textContent = generateUUID();
+  }
+
+  async function copyUUID() {
+    if (!valueEl?.textContent) return;
+    try {
+      await navigator.clipboard.writeText(valueEl.textContent);
+      flashHint('コピーしました！');
+    } catch {
+      flashHint('コピーできませんでした');
+    }
+  }
+
+  valueEl?.addEventListener('click', copyUUID);
+  valueEl?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      copyUUID();
+    }
+  });
+  regenEl?.addEventListener('click', () => {
+    setUUID();
+    flashHint('生成しました');
+  });
+
+  // 初期表示で1つ生成
+  setUUID();
+</script>
