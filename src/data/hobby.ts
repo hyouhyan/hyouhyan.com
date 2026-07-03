@@ -14,7 +14,7 @@ export const hobbies: HobbyItem[] = [
     title: '自宅サーバ運用',
   },
   {
-    title: '音楽鑑賞',
-    description: '推しの楽曲やライブ配信を追いかけている',
+    title: '遠征',
+    description: '旅行、ライブ参戦',
   },
 ];

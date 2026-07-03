@@ -29,6 +29,11 @@ export const oshi: OshiItem[] = [
     url: 'https://www.youtube.com/@ASU_virtual',
   },
   {
+    name: 'KMNZ',
+    category: 'VTuber',
+    url: 'https://www.youtube.com/@KMNZOFFICIAL',
+  },
+  {
     name: 'V.W.P',
     category: 'VTuber',
     url: 'https://www.youtube.com/channel/UCfiSo8tO3WPU-8YOgr4Ba6g',
