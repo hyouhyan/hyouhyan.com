@@ -42,10 +42,12 @@ export const oshi: OshiItem[] = [
     name: 'ミライアカリ',
     category: 'VTuber',
     url: 'https://www.youtube.com/channel/UCMYtONm441rBogWK_xPH9HA',
+    description: '2023年3月31日 活動終了',
   },
   {
     name: '大蔦エル',
     category: 'VTuber',
     url: 'https://x.com/otsuta_l',
+    description: '2026年6月30日 活動終了',
   },
 ];
