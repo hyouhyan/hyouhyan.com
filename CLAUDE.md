@@ -41,8 +41,10 @@ src/
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。プレースホルダー（ダーツ・自宅サーバ運用、説明なし）。中身はユーザが後で記入
-    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードとして横スクロール表示。プレースホルダー1件。img 未設定ならハートアイコン表示、url があればカード全体がリンク化。中身はユーザが後で記入
+    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードとして横スクロール表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。中身はユーザが後で記入
     links.ts          ← LinkItem[]（url / label）
+  lib/
+    og.ts             ← ビルド時ユーティリティ。fetchOgImage(url)=ページの og:image（無ければ twitter:image）取得、resolveOshi(items)=推しの img 未指定分を og:image で補完。取得失敗時は undefined 返しでビルドは壊さない＋dev 用にモジュールキャッシュあり
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
 public/               ← 静的ファイル。削除要注意（旧サイト・別サイトとの依存あり）
@@ -90,6 +92,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - **`public/*`**の削除は要注意。旧サイトや別サイトとの依存関係があるため、追加は良いが削除は慎重に。
 - `astro.config.mjs` の `site` は本番URL。カスタムドメインなので `base` は設定しない。
 - ヘッダーのスクロール挙動 JS は `Header.astro` の `<script>` に内蔵。`public/js/script.js` は廃止済み（削除禁止・旧サイト参照の可能性あり）。
+- 推しの og:image 自動取得により**ビルド時に外部フェッチが発生する**（`lib/og.ts`）。あくまでビルド時のみで実行時APIではない。オフライン時や取得失敗時は img 未取得（ハート表示）になるだけでビルドは通る。取得した画像 URL はビルド時点のスナップショットなので、更新にはリビルドが必要。
 
 ## やりたいこと（任意・順次）
 

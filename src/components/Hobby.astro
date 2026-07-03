@@ -1,6 +1,10 @@
 ---
 import { hobbies } from '../data/hobby';
 import { oshi } from '../data/oshi';
+import { resolveOshi } from '../lib/og';
+
+// url があり img が空の推しは、ビルド時に og:image を取得して img を補完する
+const oshiItems = await resolveOshi(oshi);
 ---
 
 <div class="hobby-box section" id="hobby">
@@ -18,7 +22,7 @@ import { oshi } from '../data/oshi';
 
     <h2 class="subsection-title">推し</h2>
     <div class="oshi-scroller">
-      {oshi.map((o) => {
+      {oshiItems.map((o) => {
         const Tag = o.url ? 'a' : 'div';
         const linkProps = o.url
           ? { href: o.url, target: '_blank', rel: 'noopener noreferrer' }
