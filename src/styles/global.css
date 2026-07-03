@@ -55,9 +55,9 @@ img {
   padding: 0 var(--content-padding-x);
 }
 
-/* セクション共通 */
+/* セクション共通（上下に付けると隣接セクションで余白が二重になるので上側だけ） */
 .section {
-  padding: var(--section-padding-y) 0;
+  padding: var(--section-padding-y) 0 0;
 }
 
 /* セクション見出し */
