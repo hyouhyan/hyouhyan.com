@@ -14,6 +14,12 @@ export interface OshiItem {
 
 export const oshi: OshiItem[] = [
   {
+    name: 'ミライアカリ',
+    category: 'VTuber',
+    url: 'https://www.youtube.com/channel/UCMYtONm441rBogWK_xPH9HA',
+    description: '2023年3月31日 活動終了',
+  },
+  {
     name: 'ヒメヒナ',
     category: 'VTuber',
     url: 'https://www.youtube.com/@HimeHina',
@@ -34,15 +40,19 @@ export const oshi: OshiItem[] = [
     url: 'https://www.youtube.com/@KMNZOFFICIAL',
   },
   {
+    name: 'Monsterz Mate',
+    category: 'VTuber',
+    url: 'https://www.youtube.com/channel/UCDG8K9g6qo8gX4jCjsqUVzA',
+  },
+  {
     name: 'V.W.P',
     category: 'VTuber',
     url: 'https://www.youtube.com/channel/UCfiSo8tO3WPU-8YOgr4Ba6g',
   },
   {
-    name: 'ミライアカリ',
+    name: '敷嶋てとら',
     category: 'VTuber',
-    url: 'https://www.youtube.com/channel/UCMYtONm441rBogWK_xPH9HA',
-    description: '2023年3月31日 活動終了',
+    url: 'https://www.youtube.com/@ch.1676',
   },
   {
     name: '大蔦エル',
