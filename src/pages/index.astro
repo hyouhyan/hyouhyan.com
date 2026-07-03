@@ -26,6 +26,11 @@ import Footer from '../components/Footer.astro';
 </Base>
 
 <style>
+  /* セクションは上パディングのみなので、最後のセクションと Footer が詰まらないよう下に余白 */
+  .main-content-sections {
+    padding-bottom: var(--section-padding-y);
+  }
+
   /* About〜Links はヘッダー左側の幅分、コンテンツを右にずらす */
   @media (min-width: 768px) {
     .main-content-sections {

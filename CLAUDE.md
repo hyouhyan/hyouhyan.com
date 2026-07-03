@@ -40,7 +40,7 @@ src/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
-    hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。プレースホルダー（ダーツ・自宅サーバ運用、説明なし）。中身はユーザが後で記入
+    hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。現状: ダーツ・自宅サーバ運用・音楽鑑賞（音楽鑑賞は X @Hyouhyan の bio を参照して追加）
     oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードを**連続オートスクロール（CSSマーキー、ホバーで停止・スクロールバーなし・端フェード）**表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。中身はユーザが後で記入
     links.ts          ← LinkItem[]（url / label）
   lib/
