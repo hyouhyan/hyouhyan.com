@@ -5,8 +5,6 @@ import { resolveOshi } from '../lib/og';
 
 // url があり img が空の推しは、ビルド時に og:image を取得して img を補完する
 const oshiItems = await resolveOshi(oshi);
-// マーキー1周の秒数。カード数に比例させてスクロール速度を一定に（最低18秒）
-const marqueeDuration = Math.max(oshiItems.length * 6, 18);
 ---
 
 <div class="hobby-box section" id="hobby">
@@ -24,14 +22,12 @@ const marqueeDuration = Math.max(oshiItems.length * 6, 18);
 
     <h2 class="subsection-title">推し</h2>
     <div class="oshi-marquee">
-      <div class="oshi-track" style={`animation-duration: ${marqueeDuration}s`}>
-        {[...oshiItems, ...oshiItems].map((o, i) => {
-          const dup = i >= oshiItems.length; // 後半はシームレスループ用の複製
+      <div class="oshi-track">
+        {oshiItems.map((o) => {
           const Tag = o.url ? 'a' : 'div';
           const props = {
-            class: `oshi-card${dup ? ' is-dup' : ''}`,
+            class: 'oshi-card',
             ...(o.url ? { href: o.url, target: '_blank', rel: 'noopener noreferrer' } : {}),
-            ...(dup ? { 'aria-hidden': 'true', tabindex: -1 } : {}),
           };
           return (
             <Tag {...props}>
@@ -93,37 +89,35 @@ const marqueeDuration = Math.max(oshiItems.length * 6, 18);
     line-height: 1.3;
   }
 
-  /* ===== 推し（小さめカードを連続オートスクロール＝マーキー） ===== */
+  /* ===== 推し（自動送り＋ホイール/タッチで手動操作できる横スクロール） ===== */
   .oshi-marquee {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     /* ホバー時の浮き＆影がクリップされないための縦余白 */
     padding: 8px 0 22px;
     /* 左右端をふわっとフェード */
     -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
     mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+    /* スマホの慣性スクロール。横スクロールでブラウザの戻る等を誘発しない */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    /* スクロールバーは非表示 */
+    scrollbar-width: none;
+  }
+
+  .oshi-marquee::-webkit-scrollbar {
+    display: none;
   }
 
   .oshi-track {
     display: flex;
     width: max-content;
-    /* animation-duration はインラインで指定（カード数比例） */
-    animation: oshi-scroll 36s linear infinite;
-  }
-
-  /* ホバー中は停止（カードを読む/クリックしやすく） */
-  .oshi-marquee:hover .oshi-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes oshi-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
   }
 
   .oshi-card {
     flex: 0 0 auto;
     width: 140px;
-    margin-right: 14px;   /* gap 相当。カード側に持たせて -50% ループを正確にする */
+    margin-right: 14px;   /* カード間隔（JS 複製時もこの間隔でループする） */
     border: 1px solid var(--color-border-light);
     border-radius: 10px;
     overflow: hidden;
@@ -187,24 +181,97 @@ const marqueeDuration = Math.max(oshiItems.length * 6, 18);
     line-height: 1.6;
     margin: 0;
   }
-
-  /* 動きを減らす設定: オートスクロールを止め、複製を隠して折り返し表示 */
-  @media (prefers-reduced-motion: reduce) {
-    .oshi-track {
-      animation: none;
-      flex-wrap: wrap;
-      width: 100%;
-      row-gap: 14px;
-    }
-
-    .oshi-card.is-dup {
-      display: none;
-    }
-
-    .oshi-marquee {
-      padding-bottom: 8px;
-      -webkit-mask-image: none;
-      mask-image: none;
-    }
-  }
 </style>
+
+<script>
+  // 推し: 横スクロールコンテナを rAF で自動送りしつつ、ホイール/タッチで手動操作できるようにする。
+  // シームレスにループさせるため、1セット分のカードを JS で必要数だけ複製する。
+  document.querySelectorAll<HTMLElement>('.oshi-marquee').forEach((marquee) => {
+    const track = marquee.querySelector<HTMLElement>('.oshi-track');
+    if (!track || track.children.length === 0) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPEED = 0.4; // 1フレームあたりの送り量(px)
+
+    // 元の1セットを複製用に保持
+    const originals = Array.from(track.children);
+    const setCount = originals.length;
+
+    const appendClones = () => {
+      for (const el of originals) {
+        const clone = el.cloneNode(true) as HTMLElement;
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('tabindex', '-1');
+        track.appendChild(clone);
+      }
+    };
+
+    // まず1セット複製し、正確な1セット幅（ストライド）を測る
+    appendClones();
+    const oneSetWidth =
+      (track.children[setCount] as HTMLElement).offsetLeft -
+      (track.children[0] as HTMLElement).offsetLeft;
+    if (oneSetWidth <= 0) return;
+
+    // 画面幅 + 2セット分を超えるまで複製（両方向に余白を確保）
+    let guard = 0;
+    while (track.scrollWidth < marquee.clientWidth + oneSetWidth * 2 && guard < 30) {
+      appendClones();
+      guard++;
+    }
+
+    // scrollLeft を [oneSetWidth, 2*oneSetWidth) に保つ。複製は同一内容なのでジャンプは不可視
+    const normalize = () => {
+      if (marquee.scrollLeft >= oneSetWidth * 2) marquee.scrollLeft -= oneSetWidth;
+      else if (marquee.scrollLeft < oneSetWidth) marquee.scrollLeft += oneSetWidth;
+    };
+    marquee.scrollLeft = oneSetWidth;
+
+    let autoplay = !reduce; // 動きを減らす設定では自動送りしない
+    let resumeTimer: number | undefined;
+    let acc = 0; // 端数をためて 1px 単位で送る（scrollLeft の丸め対策）
+
+    const holdAuto = (ms: number) => {
+      autoplay = false;
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => { autoplay = !reduce; }, ms);
+    };
+
+    const tick = () => {
+      if (autoplay) {
+        acc += SPEED;
+        const step = Math.trunc(acc);
+        if (step) {
+          acc -= step;
+          marquee.scrollLeft += step;
+          normalize();
+        }
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    // ホバー中は停止（読む/クリックしやすく）
+    marquee.addEventListener('mouseenter', () => { autoplay = false; });
+    marquee.addEventListener('mouseleave', () => {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      autoplay = !reduce;
+    });
+
+    // ホイール: 縦横どちらの回転でも横スクロールに変換
+    marquee.addEventListener('wheel', (e) => {
+      const delta = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!delta) return;
+      e.preventDefault();
+      marquee.scrollLeft += delta;
+      normalize();
+    }, { passive: false });
+
+    // タッチ: ネイティブの横スクロールに任せ、自動送りだけ止める
+    marquee.addEventListener('touchstart', () => holdAuto(60000), { passive: true });
+    marquee.addEventListener('touchend', () => holdAuto(1500), { passive: true });
+
+    // 手動スクロールでもループ位置を維持
+    marquee.addEventListener('scroll', normalize, { passive: true });
+  });
+</script>
