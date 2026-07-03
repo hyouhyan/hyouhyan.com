@@ -41,7 +41,7 @@ src/
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。プレースホルダー（ダーツ・自宅サーバ運用、説明なし）。中身はユーザが後で記入
-    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードとして横スクロール表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。中身はユーザが後で記入
+    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードを**連続オートスクロール（CSSマーキー、ホバーで停止・スクロールバーなし・端フェード）**表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。中身はユーザが後で記入
     links.ts          ← LinkItem[]（url / label）
   lib/
     og.ts             ← ビルド時ユーティリティ。fetchOgImage(url)=ページの og:image（無ければ twitter:image）取得、resolveOshi(items)=推しの img 未指定分を og:image で補完。取得失敗時は undefined 返しでビルドは壊さない＋dev 用にモジュールキャッシュあり
@@ -60,7 +60,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 3. **Career** `#career` … タイムライン。**中身はプレースホルダー（Lorem ipsum / 準備中）**
 4. **Skill** `#skill` … スキル一覧（カテゴリ7分類、計60アイテム。GitHub プロフィール README のスキル一覧と同期済み）
 5. **Work** `#work` … 制作物カード（3件）
-6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし）＋ h2「推し」サブセクション（小さめカードを横スクロール、画像あり）。**中身はプレースホルダー（趣味: ダーツ・自宅サーバ運用／推し: 1件、いずれも要記入）**
+6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし）＋ h2「推し」サブセクション（小さめカードを連続オートスクロール／CSSマーキー、画像あり）。**中身はユーザ記入済み（趣味: ダーツ・自宅サーバ運用／推し: VTuber 複数）**
 7. **Link** `#link` … 外部リンクボタン（4件）
 
 - セクションを追加/並べ替えしたら、`Header.astro` のナビ `<li>` と `<script>` 内 `sectionIds` 配列、`global.css` の scroll-margin セレクタ（PC・モバイル2箇所）も合わせて更新すること。
