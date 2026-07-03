@@ -2,17 +2,15 @@
 export interface HobbyItem {
   /** 趣味の名前 */
   title: string;
-  /** 説明文 */
-  description: string;
+  /** 説明文（任意。なければ表示されない） */
+  description?: string;
 }
 
 export const hobbies: HobbyItem[] = [
   {
     title: 'ダーツ',
-    description: '（準備中）',
   },
   {
     title: '自宅サーバ運用',
-    description: '（準備中）',
   },
 ];

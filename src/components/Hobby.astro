@@ -11,7 +11,7 @@ import { oshi } from '../data/oshi';
       {hobbies.map((h) => (
         <li class="hobby-item">
           <span class="hobby-title">{h.title}</span>
-          <span class="hobby-desc">{h.description}</span>
+          {h.description && <span class="hobby-desc">{h.description}</span>}
         </li>
       ))}
     </ul>
