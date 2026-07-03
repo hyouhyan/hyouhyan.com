@@ -33,13 +33,18 @@ src/
     Career.astro      ← タイムライン。データは src/data/career.ts
     Skills.astro      ← カテゴリ別スキルグリッド。データは src/data/skills.ts
     Works.astro       ← ホバーオーバーレイカード。データは src/data/works.ts
+    Hobby.astro       ← 趣味セクション。趣味はテキスト主体のコンパクトカード（画像なし）＋ h2「推し」サブセクションは小さめカードの横スクロール（画像あり）。データは src/data/hobby.ts / src/data/oshi.ts
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
     Footer.astro      ← フッター（著作権表示）
   data/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
+    hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。現状: ダーツ・自宅サーバ運用・音楽鑑賞（音楽鑑賞は X @Hyouhyan の bio を参照して追加）
+    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードを**連続オートスクロール（CSSマーキー、ホバーで停止・スクロールバーなし・端フェード）**表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。中身はユーザが後で記入
     links.ts          ← LinkItem[]（url / label）
+  lib/
+    og.ts             ← ビルド時ユーティリティ。fetchOgImage(url)=ページの og:image（無ければ twitter:image）取得、resolveOshi(items)=推しの img 未指定分を og:image で補完。取得失敗時は undefined 返しでビルドは壊さない＋dev 用にモジュールキャッシュあり
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
 public/               ← 静的ファイル。削除要注意（旧サイト・別サイトとの依存あり）
@@ -55,7 +60,10 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 3. **Career** `#career` … タイムライン。**中身はプレースホルダー（Lorem ipsum / 準備中）**
 4. **Skill** `#skill` … スキル一覧（カテゴリ7分類、計60アイテム。GitHub プロフィール README のスキル一覧と同期済み）
 5. **Work** `#work` … 制作物カード（3件）
-6. **Link** `#link` … 外部リンクボタン（4件）
+6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし）＋ h2「推し」サブセクション（小さめカードを連続オートスクロール／CSSマーキー、画像あり）。**中身はユーザ記入済み（趣味: ダーツ・自宅サーバ運用／推し: VTuber 複数）**
+7. **Link** `#link` … 外部リンクボタン（4件）
+
+- セクションを追加/並べ替えしたら、`Header.astro` のナビ `<li>` と `<script>` 内 `sectionIds` 配列、`global.css` の scroll-margin セレクタ（PC・モバイル2箇所）も合わせて更新すること。
 
 ## ヘッダーの挙動（重要・変更禁止）
 
@@ -84,6 +92,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - **`public/*`**の削除は要注意。旧サイトや別サイトとの依存関係があるため、追加は良いが削除は慎重に。
 - `astro.config.mjs` の `site` は本番URL。カスタムドメインなので `base` は設定しない。
 - ヘッダーのスクロール挙動 JS は `Header.astro` の `<script>` に内蔵。`public/js/script.js` は廃止済み（削除禁止・旧サイト参照の可能性あり）。
+- 推しの og:image 自動取得により**ビルド時に外部フェッチが発生する**（`lib/og.ts`）。あくまでビルド時のみで実行時APIではない。オフライン時や取得失敗時は img 未取得（ハート表示）になるだけでビルドは通る。取得した画像 URL はビルド時点のスナップショットなので、更新にはリビルドが必要。
 
 ## やりたいこと（任意・順次）
 
