@@ -41,7 +41,7 @@ src/
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。プレースホルダー（ダーツ・自宅サーバ運用、説明なし）。中身はユーザが後で記入
-    oshi.ts           ← OshiItem[]（name / description / category? / img? / url?）。Hobby.astro の h2「推し」サブセクションで小さめカードとして横スクロール表示。プレースホルダー1件。img 未設定ならハートアイコン表示、url があればカード全体がリンク化。中身はユーザが後で記入
+    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードとして横スクロール表示。プレースホルダー1件。img 未設定ならハートアイコン表示、url があればカード全体がリンク化。中身はユーザが後で記入
     links.ts          ← LinkItem[]（url / label）
   pages/
     index.astro       ← 全コンポーネントを並べるだけ

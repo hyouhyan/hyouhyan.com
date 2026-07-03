@@ -35,7 +35,7 @@ import { oshi } from '../data/oshi';
             <div class="oshi-body">
               {o.category && <span class="oshi-category">{o.category}</span>}
               <p class="oshi-name">{o.name}</p>
-              <p class="oshi-desc">{o.description}</p>
+              {o.description && <p class="oshi-desc">{o.description}</p>}
             </div>
           </Tag>
         );

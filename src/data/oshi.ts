@@ -2,8 +2,8 @@
 export interface OshiItem {
   /** 推しの名前 */
   name: string;
-  /** ひとこと・紹介文 */
-  description: string;
+  /** ひとこと・紹介文（任意。なければ表示されない） */
+  description?: string;
   /** カテゴリ（例: 'VTuber' / 'アーティスト'）。任意 */
   category?: string;
   /** 画像パス（public 配下）。未設定ならハートアイコンを表示 */
@@ -15,7 +15,6 @@ export interface OshiItem {
 export const oshi: OshiItem[] = [
   {
     name: '（推しの名前）',
-    description: '（準備中）',
     category: 'VTuber',
   },
 ];
