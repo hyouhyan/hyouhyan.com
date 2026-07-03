@@ -1,0 +1,88 @@
+---
+import { hobbies } from '../data/hobby';
+---
+
+<div class="hobby-box section" id="hobby">
+  <div class="main-content">
+    <h1 class="section-title"><span>HOBBY</span></h1>
+    <div class="hobby-grid">
+      {hobbies.map((h) => (
+        <div class="hobby-card">
+          <div class="hobby-icon">
+            <i class={h.icon}></i>
+          </div>
+          <div class="hobby-body">
+            <p class="hobby-title">{h.title}</p>
+            <p class="hobby-desc">{h.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .hobby-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .hobby-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .hobby-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .hobby-body {
+    min-width: 0;
+  }
+
+  .hobby-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 0 6px;
+  }
+
+  .hobby-desc {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hobby-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hobby-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

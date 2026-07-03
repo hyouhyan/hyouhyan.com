@@ -16,6 +16,8 @@
         <li><a href="#career" class="nav">CAREER</a></li>
         <li><a href="#skill" class="nav">SKILL</a></li>
         <li><a href="#work" class="nav">WORK</a></li>
+        <li><a href="#hobby" class="nav">HOBBY</a></li>
+        <li><a href="#oshi" class="nav">OSHI</a></li>
         <li><a href="#link" class="nav">LINK</a></li>
       </ul>
     </nav>
@@ -267,7 +269,7 @@
   });
 
   // セクションのスクロール位置を計算してキャッシュ
-  const sectionIds = ['#home', '#about', '#career', '#skill', '#work', '#link'] as const;
+  const sectionIds = ['#home', '#about', '#career', '#skill', '#work', '#hobby', '#oshi', '#link'] as const;
 
   function getSectionOffsets(): Record<string, number> {
     const offsets: Record<string, number> = {};

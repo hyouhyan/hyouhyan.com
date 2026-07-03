@@ -33,12 +33,16 @@ src/
     Career.astro      ← タイムライン。データは src/data/career.ts
     Skills.astro      ← カテゴリ別スキルグリッド。データは src/data/skills.ts
     Works.astro       ← ホバーオーバーレイカード。データは src/data/works.ts
+    Hobby.astro       ← アイコン付きカードグリッド（趣味）。データは src/data/hobby.ts
+    Oshi.astro        ← 画像付きカードグリッド（推し）。データは src/data/oshi.ts
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
     Footer.astro      ← フッター（著作権表示）
   data/
     career.ts         ← CareerItem[] プレースホルダー。中身はユーザが後で記入
     skills.ts         ← Skill[]（カテゴリ付き、表示順は Infra・OS / Database / Embedded / Dev Tools / App・Backend / Web / Creative。ユーザがインフラエンジニアのためインフラ系を先頭に配置）。img は原則 Skillicon。Skillicon に無いスキルのみ public/img/skill に画像を置いてローカル参照（Tailscale は正式ロゴ未用意のため network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
+    hobby.ts          ← HobbyItem[]（icon = Font Awesome クラス / title / description）。プレースホルダー（ダーツ・自宅サーバ運用、説明は「準備中」）。中身はユーザが後で記入
+    oshi.ts           ← OshiItem[]（name / description / category? / img? / url?）。プレースホルダー1件。img 未設定ならハートアイコン表示、url があればカード全体がリンク化。中身はユーザが後で記入
     links.ts          ← LinkItem[]（url / label）
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
@@ -55,7 +59,11 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 3. **Career** `#career` … タイムライン。**中身はプレースホルダー（Lorem ipsum / 準備中）**
 4. **Skill** `#skill` … スキル一覧（カテゴリ7分類、計60アイテム。GitHub プロフィール README のスキル一覧と同期済み）
 5. **Work** `#work` … 制作物カード（3件）
-6. **Link** `#link` … 外部リンクボタン（4件）
+6. **Hobby** `#hobby` … 趣味カード。**中身はプレースホルダー（ダーツ・自宅サーバ運用、説明は「準備中」）**
+7. **Oshi** `#oshi` … 推しカード。**中身はプレースホルダー（1件、要記入）**
+8. **Link** `#link` … 外部リンクボタン（4件）
+
+- セクションを追加/並べ替えしたら、`Header.astro` のナビ `<li>` と `<script>` 内 `sectionIds` 配列、`global.css` の scroll-margin セレクタ（PC・モバイル2箇所）も合わせて更新すること。
 
 ## ヘッダーの挙動（重要・変更禁止）
 

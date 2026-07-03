@@ -97,7 +97,7 @@ footer small a:hover {
 }
 
 /* スクロールマージン（固定ヘッダー対応） */
-#home, #about, #career, #skill, #work, #link {
+#home, #about, #career, #skill, #work, #hobby, #oshi, #link {
   scroll-margin-top: 0;
 }
 
@@ -107,7 +107,7 @@ footer small a:hover {
     --section-padding-y: 80px;
   }
 
-  #home, #about, #career, #skill, #work, #link {
+  #home, #about, #career, #skill, #work, #hobby, #oshi, #link {
     scroll-margin-top: var(--header-height-mobile);
   }
 }
