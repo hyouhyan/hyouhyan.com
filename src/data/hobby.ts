@@ -17,4 +17,11 @@ export const hobbies: HobbyItem[] = [
     title: '遠征',
     description: '旅行、ライブ参戦',
   },
+  {
+    title: 'カラオケ',
+  },
+  {
+    title: '日本酒',
+    description: '国士無双が世界一好き',
+  },
 ];
