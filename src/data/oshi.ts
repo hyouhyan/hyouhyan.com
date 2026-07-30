@@ -58,6 +58,7 @@ export const oshi: OshiItem[] = [
     name: '大蔦エル',
     category: 'VTuber',
     url: 'https://x.com/otsuta_l',
+    img: 'https://pbs.twimg.com/profile_images/1576148710311940096/6p_BW5nw_200x200.jpg',
     description: '2026年6月30日 活動終了',
   },
 ];
