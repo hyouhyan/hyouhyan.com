@@ -16,8 +16,11 @@ export interface Publication {
   authors: string;
   /** 会議 / 研究会 / ジャーナル名 */
   venue: string;
-  /** 発表年（例: '2026'） */
-  year: string;
+  /**
+   * 発表時期。そのまま venue の後ろに出力されるので粒度は自由。
+   * 例: '2026' / '2026 Jan' / '2026年1月' / '2026 Jan. 12–14'
+   */
+  date: string;
   /** DOI / 論文ページ / PDF へのリンク（任意） */
   url?: string;
   /** 種別タグ（例: '国際会議' / '国内研究会' / 'ジャーナル'）（任意） */
@@ -32,34 +35,34 @@ export const publications: Publication[] = [
     title: 'CYPHONIC v3: A Stateless Cloud Architecture for Scalable P2P Overlay Networking',
     authors: 'Soichiro Kimura, Hiroto Asano, Mitsuki Sugihara, Yoshiya Suzuki, Hidekazu Suzuki, Ayano Naito',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
-    year: '2026',
+    date: '2026',
   },
   {
     type: '国際会議',
     title: 'Design and Implementation of a Multi-Tenant Management Framework for CYPHONIC',
     authors: 'Soma Tsuge, Soichiro Kimura, Mitsuki Sugihara, Ryouta Aihata, Hidekazu Suzuki, Ayano Naito',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
-    year: '2026',
+    date: '2026',
   },
   {
     type: '国際会議',
     title: 'Efficient and Stable End-Node Packet Processing for CYPHONIC Using GSO/GRO',
     authors: 'Hiroto Asano, Soichiro Kimura, Mitsuki Sugihara, Yoshiya Suzuki, Hidekazu Suzuki, Ayano Naito',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
-    year: '2026',
+    date: '2026',
   },
   {
     type: '国際会議',
     title: 'CYPHONIC Bridge: Transparent Layer-2 Connectivity Across Heterogeneous Networks',
     authors: 'Hiroshi Matsudo, Soichiro Kimura, Mitsuki Sugihara, Hidekazu Suzuki, Ayano Naito',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
-    year: '2026',
+    date: '2026',
   },
   {
     type: '国際会議',
     title: 'Unified Host and Network-Based Mobility across and NAT Boundaries in CYPHONIC',
     authors: 'Mitsuki Sugihara, Kiwame, Izumi, Soichiro Kimura, Hidekazu Suzuki, Ayano Naito',
     venue: '2026 IEEE 36th International Telecommunication Networks and Applications Conference (ITNAC) - Full papers',
-    year: '2026',
+    date: '2026',
   },
 ];
