@@ -16,8 +16,11 @@ export interface Publication {
   authors: string;
   /** 会議 / 研究会 / ジャーナル名 */
   venue: string;
-  /** 発表年（例: '2026'） */
-  year: string;
+  /**
+   * 発表時期。そのまま venue の後ろに出力されるので粒度は自由。
+   * 例: '2026' / '2026 Jan' / '2026年1月' / '2026 Jan. 12–14'
+   */
+  date: string;
   /** DOI / 論文ページ / PDF へのリンク（任意） */
   url?: string;
   /** 種別タグ（例: '国際会議' / '国内研究会' / 'ジャーナル'）（任意） */
@@ -33,7 +36,7 @@ export const publications: Publication[] = [
   //   title: 'NAPT越えを実現するオーバーレイネットワークの設計と実装',
   //   authors: 'ひょうひゃん, 内藤 ほか',
   //   venue: '情報処理学会 DPS研究会',
-  //   year: '2026',
+  //   date: '2026 Jan',
   //   url: 'https://example.com/paper',
   //   award: '学生奨励賞',
   // },

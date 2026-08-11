@@ -38,7 +38,7 @@ src/
     Footer.astro      ← フッター（著作権表示）
   data/
     career.ts         ← CareerItem[]。実データ記入済み（2022/4 大学入学 〜 2028/3 大学院修士課程 修了予定。研究室配属・JOJIハウス等）
-    publications.ts   ← Publication[]（title / authors / venue / year / url? / type? / award?）。Work の h2「Publications」に参考文献リスト形式で表示。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
+    publications.ts   ← Publication[]（title / authors / venue / date / url? / type? / award?）。date は文字列でそのまま出力するので粒度自由（'2026' / '2026 Jan' / '2026年1月' など）。Work の h2「Publications」に参考文献リスト形式で表示。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
     skills.ts         ← Skill[]（計63件）。表示順 skillCategories = Infra / OS → Languages → Database → Embedded → Dev Tools → Creative（インフラエンジニアなのでインフラ系を先頭）。一部カテゴリは subcategory（h3見出し）でさらに細分（Frameworks / Tools・Web / Frontend・Web / Backend）。img は原則 skillicon()（skillicons.dev）、無いものは simpleIcon()（cdn.simpleicons.org）か public/img/skill のローカル画像（Tailscale は正式ロゴ未用意で network.jpg を仮画像に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。現状: ダーツ・自宅サーバ運用・遠征・カラオケ・日本酒
