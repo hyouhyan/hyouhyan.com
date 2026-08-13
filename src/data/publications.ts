@@ -57,4 +57,10 @@ export const publications: Publication[] = [
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
   },
+  {
+    type: '国際会議',
+    title: 'Unified Host and Network-Based Mobility across and NAT Boundaries in CYPHONIC',
+    venue: '2026 IEEE 36th International Telecommunication Networks and Applications Conference (ITNAC) - Full papers',
+    date: '2026, Nov',
+  },
 ];
