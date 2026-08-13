@@ -33,14 +33,28 @@ export interface Publication {
 }
 
 export const publications: Publication[] = [
-  // まだ無し。発表したら下記の形式で追加する:
-  // {
-  //   type: '国内研究会',
-  //   title: 'NAPT越えを実現するオーバーレイネットワークの設計と実装',
-  //   authors: 'ひょうひゃん, 内藤 ほか',
-  //   venue: '情報処理学会 DPS研究会',
-  //   date: '2026 Jan',
-  //   url: 'https://example.com/paper',
-  //   award: '学生奨励賞',
-  // },
+  {
+    type: '国際会議',
+    title: 'CYPHONIC v3: A Stateless Cloud Architecture for Scalable P2P Overlay Networking',
+    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
+    date: '2026, Oct',
+  },
+  {
+    type: '国際会議',
+    title: 'Design and Implementation of a Multi-Tenant Management Framework for CYPHONIC',
+    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
+    date: '2026, Oct',
+  },
+  {
+    type: '国際会議',
+    title: 'Efficient and Stable End-Node Packet Processing for CYPHONIC Using GSO/GRO',
+    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
+    date: '2026, Oct',
+  },
+  {
+    type: '国際会議',
+    title: 'CYPHONIC Bridge: Transparent Layer-2 Connectivity Across Heterogeneous Networks',
+    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
+    date: '2026, Oct',
+  },
 ];
