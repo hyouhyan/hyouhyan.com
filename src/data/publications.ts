@@ -12,8 +12,11 @@ export const selfNames: string[] = ['ひょうひゃん', 'Hyouhyan'];
 export interface Publication {
   /** 論文タイトル */
   title: string;
-  /** 著者（例: 'ひょうひゃん, 内藤 ほか'）。selfNames に含まれる表記は自動で太字になる */
-  authors: string;
+  /**
+   * 著者（任意）。
+   * selfNames に含まれる表記は自動で太字になる。未指定なら著者行ごと非表示。
+   */
+  authors?: string;
   /** 会議 / 研究会 / ジャーナル名 */
   venue: string;
   /**

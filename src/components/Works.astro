@@ -59,11 +59,13 @@ const splitAuthors = (authors: string) => {
                   p.title
                 )}
               </p>
-              <p class="pub-authors">
-                {splitAuthors(p.authors).map((part) =>
-                  part.isSelf ? <strong>{part.text}</strong> : part.text,
-                )}
-              </p>
+              {p.authors && (
+                <p class="pub-authors">
+                  {splitAuthors(p.authors).map((part) =>
+                    part.isSelf ? <strong>{part.text}</strong> : part.text,
+                  )}
+                </p>
+              )}
               <p class="pub-venue">{p.venue}, {p.date}</p>
               {p.award && <span class="pub-award">{p.award}</span>}
             </li>
