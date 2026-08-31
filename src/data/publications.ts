@@ -51,10 +51,4 @@ export const publications: Publication[] = [
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
   },
-  {
-    type: '国際会議',
-    title: 'CYPHONIC Bridge: Transparent Layer-2 Connectivity Across Heterogeneous Networks',
-    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
-    date: '2026, Oct',
-  },
 ];
