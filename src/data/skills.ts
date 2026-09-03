@@ -28,6 +28,7 @@ export const skills: Skill[] = [
   { img: skillicon('kubernetes'), alt: 'Kubernetesのロゴ', name: 'Kubernetes', tags: ['Container Orchestration'], category: 'Infra / OS' },
   { img: simpleIcon('nomad'), alt: 'Nomadのロゴ', name: 'Nomad', tags: ['Orchestration'], category: 'Infra / OS' },
   { img: skillicon('ansible'), alt: 'Ansibleのロゴ', name: 'Ansible', tags: ['Automation', 'Configuration Management'], category: 'Infra / OS' },
+  { img: skillicon('terraform'), alt: 'Terraformのロゴ', name: 'Terraform', tags: ['IaC', 'Provisioning'], category: 'Infra / OS' },
   { img: skillicon('jenkins'), alt: 'Jenkinsのロゴ', name: 'Jenkins', tags: ['CI/CD'], category: 'Infra / OS' },
   { img: skillicon('githubactions'), alt: 'GitHub Actionsのロゴ', name: 'GitHub Actions', tags: ['CI/CD'], category: 'Infra / OS' },
   { img: skillicon('prometheus'), alt: 'Prometheusのロゴ', name: 'Prometheus', tags: ['Monitoring'], category: 'Infra / OS' },
