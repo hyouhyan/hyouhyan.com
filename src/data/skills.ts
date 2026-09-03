@@ -22,6 +22,9 @@ export const skills: Skill[] = [
   { img: skillicon('arch'), alt: 'Arch Linuxのロゴ', name: 'Arch Linux', tags: ['Linux Distro'], category: 'Infra / OS' },
   { img: skillicon('mint'), alt: 'Linux Mintのロゴ', name: 'Linux Mint', tags: ['Linux Distro'], category: 'Infra / OS' },
   { img: '/img/skill/proxmox.webp', alt: 'Proxmoxのロゴ', name: 'Proxmox', tags: ['LinuxServer'], category: 'Infra / OS' },
+  { img: simpleIcon('vagrant'), alt: 'Vagrantのロゴ', name: 'Vagrant', tags: ['VM', 'Dev Environment'], category: 'Infra / OS' },
+  // Incus は公式ロゴ画像が未配布のため、Linux Containers のロゴを仮に流用（要差し替え）
+  { img: simpleIcon('linuxcontainers'), alt: 'Incusのロゴ', name: 'Incus', tags: ['System Container', 'VM'], category: 'Infra / OS' },
   { img: skillicon('nginx'), alt: 'Nginxのロゴ', name: 'Nginx', tags: ['WebServer', 'Reverse Proxy'], category: 'Infra / OS' },
   { img: '/img/skill/apache.webp', alt: 'Apacheのロゴ', name: 'Apache', tags: ['WebServer'], category: 'Infra / OS' },
   { img: skillicon('docker'), alt: 'Dockerのロゴ', name: 'Docker', tags: ['Container'], category: 'Infra / OS' },
