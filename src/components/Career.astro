@@ -1,5 +1,8 @@
 ---
 import { career } from '../data/career';
+// Publications は自己完結コンポーネント。別セクションに移したくなったら、
+// この import と下の <Publications /> をそのまま移動先の .main-content 内へ移すだけでよい。
+import Publications from './Publications.astro';
 ---
 
 <div class="career-box section" id="career">
@@ -28,6 +31,8 @@ import { career } from '../data/career';
         </div>
       ))}
     </div>
+
+    <Publications />
   </div>
 </div>
 
