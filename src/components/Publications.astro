@@ -34,7 +34,13 @@ const splitAuthors = (authors: string) => {
     <ul class="pub-list">
       {publications.map((p) => (
         <li class="pub-item">
-          {p.type && <span class="pub-type">{p.type}</span>}
+          {p.tags && p.tags.length > 0 && (
+            <div class="pub-tags">
+              {p.tags.map((tag) => (
+                <span class="pub-type">{tag}</span>
+              ))}
+            </div>
+          )}
           <p class="pub-title">
             {p.url ? (
               <a href={p.url} target="_blank" rel="noopener noreferrer">
@@ -89,13 +95,18 @@ const splitAuthors = (authors: string) => {
     gap: 4px;
   }
 
+  .pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 2px;
+  }
+
   .pub-type {
-    align-self: flex-start;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.05em;
     padding: 2px 6px;
-    margin-bottom: 2px;
     background: var(--color-accent);
     color: #fff;
   }

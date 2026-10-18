@@ -1,5 +1,5 @@
 // 論文・学会発表のデータ。発表したらここに1件ずつ追加する。
-// Work セクション内の h2「Publications」サブセクションに表示される。
+// Career セクション内の h2「Publications」サブセクションに表示される。
 // publications が空の間はサブセクションごと非表示。
 
 /**
@@ -26,33 +26,37 @@ export interface Publication {
   date: string;
   /** DOI / 論文ページ / PDF へのリンク（任意） */
   url?: string;
-  /** 種別タグ（例: '国際会議' / '国内研究会' / 'ジャーナル'）（任意） */
-  type?: string;
+  /**
+   * タグ（任意）。種別・査読の有無などを複数付けられる。
+   * 例: ['国際会議', '査読あり'] / ['国内研究会'] / ['ジャーナル']
+   * 未指定や空配列ならバッジは何も表示されない。特定のタグ名を特別扱いはしない。
+   */
+  tags?: string[];
   /** 受賞など（例: '学生奨励賞'）（任意） */
   award?: string;
 }
 
 export const publications: Publication[] = [
   {
-    type: '国際会議',
+    tags: ['国際会議'],
     title: 'CYPHONIC v3: A Stateless Cloud Architecture for Scalable P2P Overlay Networking',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
   },
   {
-    type: '国際会議',
+    tags: ['国際会議'],
     title: 'Design and Implementation of a Multi-Tenant Management Framework for CYPHONIC',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
     date: '2026, Oct',
   },
   {
-    type: '国際会議',
+    tags: ['国際会議'],
     title: 'Efficient and Stable End-Node Packet Processing for CYPHONIC Using GSO/GRO',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
   },
   {
-    type: '国際会議',
+    tags: ['国際会議'],
     title: 'Unified Host and Network-Based Mobility across and NAT Boundaries in CYPHONIC',
     venue: '2026 IEEE 36th International Telecommunication Networks and Applications Conference (ITNAC) - Full papers',
     date: '2026, Nov',
