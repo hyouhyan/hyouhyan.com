@@ -38,25 +38,25 @@ export interface Publication {
 
 export const publications: Publication[] = [
   {
-    tags: ['国際会議'],
+    tags: ['国際会議', '査読あり'],
     title: 'CYPHONIC v3: A Stateless Cloud Architecture for Scalable P2P Overlay Networking',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
   },
   {
-    tags: ['国際会議'],
+    tags: ['国際会議', '査読あり'],
     title: 'Design and Implementation of a Multi-Tenant Management Framework for CYPHONIC',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
     date: '2026, Oct',
   },
   {
-    tags: ['国際会議'],
+    tags: ['国際会議', '査読あり'],
     title: 'Efficient and Stable End-Node Packet Processing for CYPHONIC Using GSO/GRO',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
   },
   {
-    tags: ['国際会議'],
+    tags: ['国際会議', '査読あり'],
     title: 'Unified Host and Network-Based Mobility across and NAT Boundaries in CYPHONIC',
     venue: '2026 IEEE 36th International Telecommunication Networks and Applications Conference (ITNAC) - Full papers',
     date: '2026, Nov',
