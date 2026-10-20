@@ -87,7 +87,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - 文章・コンテンツは**日本語**。フォーマルな文章は箇条書きより**温かみのある段落**を好む。
 - 静的サイトの制約を守る: localStorage 等への依存、実行時サーバAPI を前提にした実装は入れない。
 - `pnpm run build`が通ることを必ず確認する。
-- 見出しの文字開始位置は h1 `.section-title`（`padding-left: 0.25em` = 8px）に揃える。下線型の h2（Skills の `.category-label`）も `padding-left: 8px`。左ボーダー型の `.subsection-title` はボーダーとの間隔として独自の `padding-left: 10px` を持つ。
+- 見出しは h1 `.section-title`（`padding-left: 0.25em` = 8px）に倣い、文字の前に左余白を入れる。下線型の h2（Skills の `.category-label`）は見た目のバランスで `padding-left: 4px`（ユーザ指定）。左ボーダー型の `.subsection-title` はボーダーとの間隔として独自の `padding-left: 10px` を持つ。
 
 ## 触るとき注意（落とし穴）
 
