@@ -80,7 +80,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - **Astro v5** 静的サイト出力
 - CSS: Astro スコープスタイル（各コンポーネント内 `<style>`）＋ `src/styles/global.css`
 - JS: バニラJS（Astro `<script>` タグ、defer モジュール）。jQuery は廃止済み
-- フォント: Noto Sans JP（Google Fonts）。ロゴは画像なので Adobe Typekit は廃止済み（削除済み）
+- フォント: LINE Seed JP（Google Fonts、`global.css` の `@import` と `--font-sans`）。配布ウェイトは 100 / 400 / 700 / 800 のみで、500 は 400、600 は 700 にフォールバックする。以前は Noto Sans JP。ロゴは画像なので Adobe Typekit は廃止済み（削除済み）
 - アイコン: Font Awesome（SNS アイコン）、Skillicon
 ## 規約・お願い
 
