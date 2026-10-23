@@ -36,7 +36,7 @@ src/
     Works.astro       ← ホバーオーバーレイカード（src/data/works.ts）
     Hobby.astro       ← 趣味セクション。趣味はテキスト主体のコンパクトカード（画像なし）＋ h2「推し」サブセクションは小さめカードの横スクロール（画像あり）。データは src/data/hobby.ts / src/data/oshi.ts
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
-    Footer.astro      ← フッター（著作権表示）
+    Footer.astro      ← フッター（メール＋著作権表示）。スパム対策でメアドは `hyouhyan[at]hyouhyan.com` 表記のプレーンテキスト（mailto リンクは置かない。public/js/footer.txt も同様）。About の SNS アイコンからもメールアイコンは外した
   data/
     career.ts         ← CareerItem[]。実データ記入済み（2022/4 大学入学 〜 2028/3 大学院修士課程 修了予定。研究室配属・JOJIハウス等）
     publications.ts   ← Publication[]（title / authors / venue / date / url? / tags? / award?）。tags は `string[]`（例: `['国際会議', '査読あり']`）で、各要素をバッジとして汎用表示する（タグ名の特別扱いなし。未指定/空なら非表示。旧 `type` は tags に統合して廃止）。date は文字列でそのまま出力するので粒度自由（'2026' / '2026 Jan' / '2026年1月' など）。Publications.astro が参考文献リスト形式で表示（現在の置き場所は Career）。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
