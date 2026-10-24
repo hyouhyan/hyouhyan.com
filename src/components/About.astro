@@ -1,5 +1,6 @@
 ---
 // ABOUT: 旧サイトのコンテンツを踏まえつつ、2カラムレイアウトに拡張
+import { encodedEmail } from '../lib/email';
 ---
 
 <div class="about-box section" id="about">
@@ -31,11 +32,19 @@
           <a href="https://github.com/hyouhyan" class="sns-icon" aria-label="GitHub">
             <i class="fab fa-github"></i>
           </a>
+          <!-- スパム対策: アドレスは JS で復号して mailto 化（JS 無効時は非表示） -->
+          <a data-email={encodedEmail} class="sns-icon" aria-label="メール" style="display:none">
+            <i class="far fa-envelope"></i>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  import '../lib/email-decode';
+</script>
 
 <style>
   .about-inner {

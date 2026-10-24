@@ -1,14 +1,19 @@
 ---
 // フッター: 旧サイトの footer.js + footer.txt をAstroコンポーネントに置き換え
+import { encodedEmail, fallbackEmail } from '../lib/email';
 const year = new Date().getFullYear();
 ---
 
 <footer>
   <small>
-    Email: hyouhyan[at]hyouhyan.com<br />
+    Email: <a data-email={encodedEmail} data-email-text>{fallbackEmail}</a><br />
     &copy; 2019{year > 2019 ? `–${year}` : ''} <a href="https://hyouhyan.com">Hyouhyan</a>
   </small>
 </footer>
+
+<script>
+  import '../lib/email-decode';
+</script>
 
 <style>
   footer a{

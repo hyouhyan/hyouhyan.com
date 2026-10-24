@@ -36,7 +36,7 @@ src/
     Works.astro       ← ホバーオーバーレイカード（src/data/works.ts）
     Hobby.astro       ← 趣味セクション。趣味はテキスト主体のコンパクトカード（画像なし）＋ h2「推し」サブセクションは小さめカードの横スクロール（画像あり）。データは src/data/hobby.ts / src/data/oshi.ts
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
-    Footer.astro      ← フッター（メール＋著作権表示）。スパム対策でメアドは `hyouhyan[at]hyouhyan.com` 表記のプレーンテキスト（mailto リンクは置かない。public/js/footer.txt も同様）。About の SNS アイコンからもメールアイコンは外した
+    Footer.astro      ← フッター（メール＋著作権表示）。メアドはスパム対策で HTML に平文を出さない（下記「メールアドレスの扱い」参照）。JS 無効時は `hyouhyan[at]hyouhyan.com` 表示（public/js/footer.txt も同様）
   data/
     career.ts         ← CareerItem[]。実データ記入済み（2022/4 大学入学 〜 2028/3 大学院修士課程 修了予定。研究室配属・JOJIハウス等）
     publications.ts   ← Publication[]（title / authors / venue / date / url? / tags? / award?）。tags は `string[]`（例: `['国際会議', '査読あり']`）で、各要素をバッジとして汎用表示する（タグ名の特別扱いなし。未指定/空なら非表示。旧 `type` は tags に統合して廃止）。date は文字列でそのまま出力するので粒度自由（'2026' / '2026 Jan' / '2026年1月' など）。Publications.astro が参考文献リスト形式で表示（現在の置き場所は Career）。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
@@ -46,6 +46,8 @@ src/
     oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードを**自動送り＋ホイール/タッチで手動左右スクロール**（Hobby.astro 内バニラJS。操作/ホバー中は自動停止、スクロールバー非表示、端フェード、シームレスループのためカードをJSで複製、prefers-reduced-motion で自動送りOFF）で表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。現状: VTuber 7組（ヒメヒナ・花譜・明透・KMNZ・V.W.P・ミライアカリ・大蔦エル。いずれも url→og:image で画像解決）
     links.ts          ← LinkItem[]（url / label）
   lib/
+    email.ts          ← ビルド時: メアドを「逆順→base64」にエンコードして `encodedEmail` として export、JS 無効時用の `fallbackEmail`（`[at]` 表記）も export。**メアド変更はここ1か所**
+    email-decode.ts   ← クライアント: `[data-email]` 要素を復号して `mailto:` を付与（`data-email-text` 付きは表示テキストも差し替え、inline `display:none` を解除）。Footer / About から import（Astro が1本にバンドル）
     og.ts             ← ビルド時ユーティリティ。fetchOgImage(url)=ページの og:image（無ければ twitter:image）取得、resolveOshi(items)=推しの img 未指定分を og:image で補完。取得失敗時は undefined 返しでビルドは壊さない＋dev 用にモジュールキャッシュあり
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
@@ -103,3 +105,10 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - ブログを足すなら Astro の Content Collections（Markdown 管理）を検討
 - OGP に `og:image` 等を追加（現状 `Base.astro` は og:image 未設定で、Discord 等シェア時にサムネが出ない。`twitter:card` の `summary_large_image` 化も）
 - 推しの画像は url→og:image のホットリンク依存。活動終了先で将来取得に失敗しうる（フォールバック改善やガイドライン許容素材のローカル化は検討保留中）
+
+## メールアドレスの扱い
+
+- スパム対策として、ビルド成果物（`dist/`）の HTML に `hyouhyan@hyouhyan.com` を平文で出さない。`src/lib/email.ts` でエンコード、`src/lib/email-decode.ts` でブラウザ側復号（mailto リンク化）。
+- Footer: JS 無効時は `hyouhyan[at]hyouhyan.com` のテキスト、JS 有効時は通常の mailto リンク（コピペも正常）。About のメールアイコンは JS 有効時のみ表示。
+- メアドを使う場所を増やすときは `<a data-email={encodedEmail}>` とし、`<script>import '../lib/email-decode';</script>` を置く。`mailto:` の直書き禁止。
+- `public/` 配下の旧ページ用 `footer.txt` は Astro を通らないため `[at]` 表記のテキストのまま。
