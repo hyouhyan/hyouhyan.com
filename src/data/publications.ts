@@ -32,8 +32,12 @@ export interface Publication {
    * 未指定や空配列ならバッジは何も表示されない。特定のタグ名を特別扱いはしない。
    */
   tags?: string[];
-  /** 受賞など（例: '学生奨励賞'）（任意） */
-  award?: string;
+  /**
+   * 受賞（任意）。1論文に複数付く場合もあるので配列。
+   * タグと同じ行の先頭に、タグとは別色のバッジで表示される。
+   * 例: ['Excellent Paper Award'] / ['Best Paper Award', 'Student Award']
+   */
+  awards?: string[];
 }
 
 export const publications: Publication[] = [

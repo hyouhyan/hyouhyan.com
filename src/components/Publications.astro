@@ -34,9 +34,15 @@ const splitAuthors = (authors: string) => {
     <ul class="pub-list">
       {publications.map((p) => (
         <li class="pub-item">
-          {p.tags && p.tags.length > 0 && (
+          {((p.awards && p.awards.length > 0) || (p.tags && p.tags.length > 0)) && (
             <div class="pub-tags">
-              {p.tags.map((tag) => (
+              {p.awards?.map((award) => (
+                <span class="pub-award">
+                  <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                  {award}
+                </span>
+              ))}
+              {p.tags?.map((tag) => (
                 <span class="pub-type">{tag}</span>
               ))}
             </div>
@@ -59,7 +65,6 @@ const splitAuthors = (authors: string) => {
             </p>
           )}
           <p class="pub-venue">{p.venue}, {p.date}</p>
-          {p.award && <span class="pub-award">{p.award}</span>}
         </li>
       ))}
     </ul>
@@ -155,13 +160,20 @@ const splitAuthors = (authors: string) => {
     line-height: 1.6;
   }
 
+  /*
+   * 受賞バッジ。タグ（.pub-type = 黒地白文字）の反転で、白地＋黒枠＋黒文字＋トロフィー。
+   * 枠線 1px の分 padding を 1px 減らして、外寸をタグ（padding 2px 6px）と揃えている。
+   */
   .pub-award {
-    align-self: flex-start;
-    font-size: 11px;
-    font-weight: 600;
-    margin-top: 4px;
-    padding: 2px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 1px 5px;
+    background: var(--color-bg);
+    color: var(--color-text);
     border: 1px solid var(--color-border);
-    border-radius: 999px;
   }
 </style>
