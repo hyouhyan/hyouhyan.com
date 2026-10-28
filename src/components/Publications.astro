@@ -161,7 +161,8 @@ const splitAuthors = (authors: string) => {
   }
 
   /*
-   * 受賞バッジ。タグ（.pub-type = 黒地白文字）の反転で、白地＋黒枠＋黒文字＋トロフィー。
+   * 受賞バッジ。白地＋金枠＋金文字＋トロフィーで、黒地のタグ（.pub-type）と区別する。
+   * 色は global.css の --color-award / --color-award-border。
    * 枠線 1px の分 padding を 1px 減らして、外寸をタグ（padding 2px 6px）と揃えている。
    */
   .pub-award {
@@ -173,7 +174,7 @@ const splitAuthors = (authors: string) => {
     letter-spacing: 0.05em;
     padding: 1px 5px;
     background: var(--color-bg);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
+    color: var(--color-award);
+    border: 1px solid var(--color-award-border);
   }
 </style>

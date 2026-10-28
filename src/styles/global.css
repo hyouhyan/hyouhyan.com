@@ -7,6 +7,9 @@
   --color-accent: #000000;
   --color-border: #000000;
   --color-border-light: #e5e5e5;
+  /* 受賞バッジ（Publications）の金。文字は白地とのコントラスト 4.2:1 */
+  --color-award: #9a7614;
+  --color-award-border: #b8952d;
   --font-sans: 'Noto Sans JP', sans-serif;
   --content-max-width: 960px;
   --content-padding-x: 40px;
