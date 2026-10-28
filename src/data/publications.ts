@@ -34,7 +34,7 @@ export interface Publication {
   tags?: string[];
   /**
    * 受賞（任意）。1論文に複数付く場合もあるので配列。
-   * タグと同じ行の先頭に、タグとは別色のバッジで表示される。
+   * タグと同じ行の、タグの後ろに、タグとは別色のバッジで表示される。
    * 例: ['Excellent Paper Award'] / ['Best Paper Award', 'Student Award']
    */
   awards?: string[];

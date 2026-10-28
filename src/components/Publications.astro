@@ -36,14 +36,14 @@ const splitAuthors = (authors: string) => {
         <li class="pub-item">
           {((p.awards && p.awards.length > 0) || (p.tags && p.tags.length > 0)) && (
             <div class="pub-tags">
+              {p.tags?.map((tag) => (
+                <span class="pub-type">{tag}</span>
+              ))}
               {p.awards?.map((award) => (
                 <span class="pub-award">
                   <i class="fa-solid fa-trophy" aria-hidden="true"></i>
                   {award}
                 </span>
-              ))}
-              {p.tags?.map((tag) => (
-                <span class="pub-type">{tag}</span>
               ))}
             </div>
           )}
