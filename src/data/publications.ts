@@ -32,8 +32,12 @@ export interface Publication {
    * 未指定や空配列ならバッジは何も表示されない。特定のタグ名を特別扱いはしない。
    */
   tags?: string[];
-  /** 受賞など（例: '学生奨励賞'）（任意） */
-  award?: string;
+  /**
+   * 受賞（任意）。1論文に複数付く場合もあるので配列。
+   * タグと同じ行の、タグの後ろに、タグとは別色のバッジで表示される。
+   * 例: ['Excellent Paper Award'] / ['Best Paper Award', 'Student Award']
+   */
+  awards?: string[];
 }
 
 export const publications: Publication[] = [
@@ -42,18 +46,20 @@ export const publications: Publication[] = [
     title: 'CYPHONIC v3: A Stateless Cloud Architecture for Scalable P2P Overlay Networking',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
-  },
-  {
-    tags: ['国際会議', '査読あり'],
-    title: 'Design and Implementation of a Multi-Tenant Management Framework for CYPHONIC',
-    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
-    date: '2026, Oct',
+    awards: ['Excellent Paper Awards: Outstanding Prize'],
   },
   {
     tags: ['国際会議', '査読あり'],
     title: 'Efficient and Stable End-Node Packet Processing for CYPHONIC Using GSO/GRO',
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RMC',
     date: '2026, Oct',
+  },
+  {
+    tags: ['国際会議', '査読あり'],
+    title: 'Design and Implementation of a Multi-Tenant Management Framework for CYPHONIC',
+    venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
+    date: '2026, Oct',
+    awards: ['Excellent Paper Awards: Bronze Prize'],
   },
   {
     tags: ['国際会議', '査読あり'],
