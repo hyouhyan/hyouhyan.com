@@ -38,8 +38,8 @@ src/
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
     Footer.astro      ← フッター（著作権表示）
   data/
-    career.ts         ← CareerItem[]。実データ記入済み（2022/4 大学入学 〜 2028/3 大学院修士課程 修了予定。研究室配属・JOJIハウス等）
-    publications.ts   ← Publication[]（title / authors / venue / date / url? / tags? / awards?）。tags は `string[]`（例: `['国際会議', '査読あり']`）で、各要素をバッジとして汎用表示する（タグ名の特別扱いなし。未指定/空なら非表示。旧 `type` は tags に統合して廃止）。awards は受賞名の `string[]`（1論文に複数可。例: `['Excellent Paper Award']`）で、tags と同じ行の tags の後ろに白地＋金枠＋金文字＋Font Awesome のトロフィーで表示（色は global.css の `--color-award` / `--color-award-border`、外寸はタグと同じ）。旧 `award?: string` は awards に置き換えて廃止。date は文字列でそのまま出力するので粒度自由（'2026' / '2026 Jan' / '2026年1月' など）。Publications.astro が参考文献リスト形式で表示（現在の置き場所は Career）。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
+    career.ts         ← CareerItem[]。**新しいものが上・古いものが下（降順）**で並べる。追加は先頭に足す（並び替えはせず配列順をそのまま表示）。実データ記入済み（2028/3 大学院修士課程 修了予定 〜 2022/4 大学入学。研究室配属・JOJIハウス等）
+    publications.ts   ← Publication[]（**新しいものが上・古いものが下（降順）**。追加は先頭に足す。date は自由書式の文字列なので自動ソートはせず配列順のまま表示）（title / authors / venue / date / url? / tags? / awards?）。tags は `string[]`（例: `['国際会議', '査読あり']`）で、各要素をバッジとして汎用表示する（タグ名の特別扱いなし。未指定/空なら非表示。旧 `type` は tags に統合して廃止）。awards は受賞名の `string[]`（1論文に複数可。例: `['Excellent Paper Award']`）で、tags と同じ行の tags の後ろに白地＋金枠＋金文字＋Font Awesome のトロフィーで表示（色は global.css の `--color-award` / `--color-award-border`、外寸はタグと同じ）。旧 `award?: string` は awards に置き換えて廃止。date は文字列でそのまま出力するので粒度自由（'2026' / '2026 Jan' / '2026年1月' など）。Publications.astro が参考文献リスト形式で表示（現在の置き場所は Career）。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
     skills.ts         ← Skill[]（計66件）。表示順 skillCategories = Infra / OS → Languages → Database → Embedded → Dev Tools → Creative（インフラエンジニアなのでインフラ系を先頭）。一部カテゴリは subcategory（h3見出し）でさらに細分（Frameworks / Tools・Web / Frontend・Web / Backend）。img は原則 skillicon()（skillicons.dev）、無いものは simpleIcon()（cdn.simpleicons.org）か public/img/skill のローカル画像（Incus は公式ロゴ未配布のため simpleIcon('linuxcontainers') を仮に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
     hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。現状: ダーツ・自宅サーバ運用・遠征・カラオケ・日本酒
@@ -59,7 +59,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 
 1. **Home** `#home` … フルスクリーンヒーロー（ロゴ画像）
 2. **About** `#about` … 自己紹介（記入済み。丸アイコン＋本文＋SNSリンク）
-3. **Career** `#career` … タイムライン（記入済み。2022〜2028）＋ h2「Publications」サブセクション（論文・学会発表。`src/data/publications.ts` に1件ずつ追加。空なら非表示、ナビ（h1）は増やさない方針。`Publications.astro` を移すだけで Work 等へ戻せる）
+3. **Career** `#career` … タイムライン（記入済み。降順＝新しいものが上。2028〜2022）＋ h2「Publications」サブセクション（論文・学会発表。`src/data/publications.ts` に1件ずつ追加。空なら非表示、ナビ（h1）は増やさない方針。`Publications.astro` を移すだけで Work 等へ戻せる）
 4. **Skill** `#skill` … スキル一覧（6カテゴリ・計66アイテム。GitHub プロフィール README のスキル一覧と同期）
 5. **Work** `#work` … 制作物カード（3件）
 6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし・5件）＋ h2「推し」サブセクション（小さめカードを自動送り＋ホイール/タッチで手動スクロール、画像あり・VTuber 7組）

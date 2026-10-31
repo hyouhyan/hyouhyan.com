@@ -6,26 +6,19 @@ export interface CareerItem {
   url?: string;
 }
 
+// 新しいものを上、古いものを下に並べる（降順）。追加するときは先頭に足す。
 export const career: CareerItem[] = [
   {
-    year: '2022',
-    month: '4月',
-    title: '愛知工業大学 入学',
-    description: '情報科学部 コンピュータシステム専攻',
-  },
-  {
-    year: '2023',
-    month: '11月',
-    title: '愛知工業大学 システム工学研究会 所属',
+    year: '2028',
+    month: '3月',
+    title: '愛知工業大学 大学院 修士課程 修了予定',
     description: '',
-    url: 'https://sysken.net/'
   },
   {
-    year: '2024',
-    month: '5月',
-    title: '愛知工業大学 モバイルコンピューティング研究室(内藤研究室) 配属',
-    description: 'NAPT越えを実現してセキュアなP2P通信を提供する、オーバーレイネットワークの研究を行う。',
-    url: 'https://pluslab.org',
+    year: '2026',
+    month: '4月',
+    title: '愛知工業大学 大学院 入学',
+    description: '経営情報科学研究科 情報システム関連分野 修士課程',
   },
   {
     year: '2025',
@@ -35,15 +28,23 @@ export const career: CareerItem[] = [
     url: 'https://jojilab.hyouhyan.com',
   },
   {
-    year: '2026',
-    month: '4月',
-    title: '愛知工業大学 大学院 入学',
-    description: '経営情報科学研究科 情報システム関連分野 修士課程',
+    year: '2024',
+    month: '5月',
+    title: '愛知工業大学 モバイルコンピューティング研究室(内藤研究室) 配属',
+    description: 'NAPT越えを実現してセキュアなP2P通信を提供する、オーバーレイネットワークの研究を行う。',
+    url: 'https://pluslab.org',
   },
   {
-    year: '2028',
-    month: '3月',
-    title: '愛知工業大学 大学院 修士課程 修了予定',
+    year: '2023',
+    month: '11月',
+    title: '愛知工業大学 システム工学研究会 所属',
     description: '',
+    url: 'https://sysken.net/'
+  },
+  {
+    year: '2022',
+    month: '4月',
+    title: '愛知工業大学 入学',
+    description: '情報科学部 コンピュータシステム専攻',
   },
 ];

@@ -40,7 +40,15 @@ export interface Publication {
   awards?: string[];
 }
 
+// 新しいものを上、古いものを下に並べる（降順）。追加するときは先頭に足す。
+// 同じ時期のものは並び順をそのまま表示する。
 export const publications: Publication[] = [
+  {
+    tags: ['国際会議', '査読あり'],
+    title: 'Unified Host and Network-Based Mobility across and NAT Boundaries in CYPHONIC',
+    venue: '2026 IEEE 36th International Telecommunication Networks and Applications Conference (ITNAC) - Full papers',
+    date: '2026, Nov',
+  },
   {
     tags: ['国際会議', '査読あり'],
     title: 'CYPHONIC v3: A Stateless Cloud Architecture for Scalable P2P Overlay Networking',
@@ -60,11 +68,5 @@ export const publications: Publication[] = [
     venue: '2026 IEEE 15th Global Conference on Consumer Electronics (GCCE) - RHN',
     date: '2026, Oct',
     awards: ['Excellent Paper Awards: Bronze Prize'],
-  },
-  {
-    tags: ['国際会議', '査読あり'],
-    title: 'Unified Host and Network-Based Mobility across and NAT Boundaries in CYPHONIC',
-    venue: '2026 IEEE 36th International Telecommunication Networks and Applications Conference (ITNAC) - Full papers',
-    date: '2026, Nov',
   },
 ];
