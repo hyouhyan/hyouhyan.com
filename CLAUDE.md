@@ -93,6 +93,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 
 - **`public/CNAME`**（中身: `hyouhyan.com`）は消さない。消すとカスタムドメインが外れる。
 - **`public/*`**の削除は要注意。旧サイトや別サイトとの依存関係があるため、追加は良いが削除は慎重に。
+- **`public/img/hy_icon/hyouhyan.svg`** は自分のアイコン（ae ロゴ）のベクタ版で、BIMI 用ロゴを兼ねる。DNS の TXT `default._bimi.hyouhyan.com`（`v=BIMI1; l=https://hyouhyan.com/img/hy_icon/hyouhyan.svg;`）がこの URL を参照するので、パス変更・削除は禁止。形式は SVG Tiny PS（`version="1.2" baseProfile="tiny-ps"`、正方形、32KB 以下、背景は白の塗り、スクリプト・外部参照・画像埋め込み・フォントは不可）を守る。元は `public/img/hy_icon.png` を potrace でトレースして生成した。
 - `astro.config.mjs` の `site` は本番URL。カスタムドメインなので `base` は設定しない。
 - ヘッダーのスクロール挙動 JS は `Header.astro` の `<script>` に内蔵。`public/js/script.js` は廃止済み（削除禁止・旧サイト参照の可能性あり）。
 - 推しの og:image 自動取得により**ビルド時に外部フェッチが発生する**（`lib/og.ts`）。あくまでビルド時のみで実行時APIではない。オフライン時や取得失敗時は img 未取得（ハート表示）になるだけでビルドは通る。取得した画像 URL はビルド時点のスナップショットなので、更新にはリビルドが必要。
