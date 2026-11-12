@@ -9,5 +9,4 @@ export const links: LinkItem[] = [
   { url: 'https://scrapbox.io/hyouhyan', label: 'Scrapbox' },
   { url: 'https://zenn.dev/hyouhyan', label: 'Zenn' },
   { url: '/wishlist', label: '欲しいものリスト' },
-  { url: '/link', label: 'MORE' },
 ];
