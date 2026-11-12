@@ -12,6 +12,9 @@ import { links } from '../data/links';
         </a>
       ))}
     </div>
+    <div class="link-more">
+      <a href="/link" class="link-more-btn">MORE</a>
+    </div>
   </div>
 </div>
 
@@ -37,6 +40,31 @@ import { links } from '../data/links';
   }
 
   .link-card:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  /* /link（リンク集ページ）への導線。.link-card の縮小版 */
+  .link-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .link-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 13px 0 calc(13px + 0.15em); /* 左に letter-spacing 分を足して文字を中央に */
+    border: 2px solid var(--color-border);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .link-more-btn:hover {
     background: var(--color-accent);
     color: white;
   }

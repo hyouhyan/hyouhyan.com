@@ -44,11 +44,13 @@ src/
     works.ts          ← Work[]（url / img / description）
     hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。現状: ダーツ・自宅サーバ運用・遠征・カラオケ・日本酒
     oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードを**自動送り＋ホイール/タッチで手動左右スクロール**（Hobby.astro 内バニラJS。操作/ホバー中は自動停止、スクロールバー非表示、端フェード、シームレスループのためカードをJSで複製、prefers-reduced-motion で自動送りOFF）で表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。現状: VTuber 7組（ヒメヒナ・花譜・明透・KMNZ・V.W.P・ミライアカリ・大蔦エル。いずれも url→og:image で画像解決）
-    links.ts          ← LinkItem[]（url / label）
+    links.ts          ← LinkItem[]（url / label）。トップの LINK セクション用
+    linkpage.ts       ← /link ページ（bento.me 代替のリンク集）のデータ。profile（name / nameEn / icon / bio）と linkGroups: LinkPageGroup[]（title / items: LinkPageItem[]）。item は label / url / sub? / icon?（Font Awesome 6 のクラス、省略時 fa-link）/ img?（画像アイコン、icon より優先）。**リンクの追加・削除・並べ替えはこのファイルだけ**。配列順＝表示順、items が空のグループは非表示。http(s) の外部リンクは自動で新規タブ
   lib/
     og.ts             ← ビルド時ユーティリティ。fetchOgImage(url)=ページの og:image（無ければ twitter:image）取得、resolveOshi(items)=推しの img 未指定分を og:image で補完。取得失敗時は undefined 返しでビルドは壊さない＋dev 用にモジュールキャッシュあり
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
+    link.astro        ← /link。SNS プロフィール欄に貼るリンク集（旧 public/link/index.html の bento.me リダイレクトを置き換え）。Header なしの1カラム（max-width 520px）。見た目は LINK セクションの .link-card（黒2px枠・ホバー反転）を横長にした行＋Skills の .category-label と同じ下線型 h2。中身は src/data/linkpage.ts のみで管理
 public/               ← 静的ファイル。削除要注意（旧サイト・別サイトとの依存あり）
 ```
 
@@ -63,7 +65,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 4. **Skill** `#skill` … スキル一覧（6カテゴリ・計66アイテム。GitHub プロフィール README のスキル一覧と同期）
 5. **Work** `#work` … 制作物カード（3件）
 6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし・5件）＋ h2「推し」サブセクション（小さめカードを自動送り＋ホイール/タッチで手動スクロール、画像あり・VTuber 7組）
-7. **Link** `#link` … 外部リンクボタン（4件）
+7. **Link** `#link` … 外部リンクボタン（4件）＋ボタン群の下に /link（リンク集ページ）へ飛ぶ小さい「MORE」ボタン（Links.astro に直書き。links.ts には入れない）
 
 - セクションを追加/並べ替えしたら、`Header.astro` のナビ `<li>` と `<script>` 内 `sectionIds` 配列、`global.css` の scroll-margin セレクタ（PC・モバイル2箇所）も合わせて更新すること。
 
