@@ -55,13 +55,12 @@ import { links } from '../data/links';
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
     height: 36px;
-    border: 1px solid var(--color-border);
+    padding: 0 14px 0 calc(14px + 0.15em); /* 左に letter-spacing 分を足して文字を中央に */
+    border: 2px solid var(--color-border);
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.15em;
-    padding-left: 0.15em; /* letter-spacing 分の右寄りを打ち消す */
     transition: background 0.2s, color 0.2s;
   }
 
