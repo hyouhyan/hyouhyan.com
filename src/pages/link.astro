@@ -1,0 +1,204 @@
+---
+// /link … bento.me の代替リンク集（SNS のプロフィール欄に貼る用）。
+// 中身はすべて src/data/linkpage.ts で管理する。このファイルは原則いじらない。
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import { profile, linkGroups } from '../data/linkpage';
+
+const groups = linkGroups.filter((g) => g.items.length > 0);
+const isExternal = (url: string) => /^https?:\/\//.test(url);
+---
+
+<Base title={`Links | ${profile.nameEn}`} description={`${profile.name}のリンク集。SNS・配信・記事など。`}>
+  <main class="linkpage">
+    <header class="lp-profile">
+      <a href="/" class="lp-icon" aria-label="hyouhyan.com トップへ">
+        <img src={profile.icon} alt={`${profile.name}のアイコン`} width="120" height="120" />
+      </a>
+      <h1 class="lp-name">
+        {profile.name}<span class="lp-name-en"> / {profile.nameEn}</span>
+      </h1>
+      <p class="lp-bio">{profile.bio}</p>
+    </header>
+
+    {groups.map((group) => (
+      <section class="lp-group">
+        <h2 class="lp-group-title">{group.title}</h2>
+        <ul class="lp-list">
+          {group.items.map((item) => (
+            <li>
+              <a
+                href={item.url}
+                class="lp-item"
+                {...(isExternal(item.url) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                <span class="lp-item-icon" aria-hidden="true">
+                  {item.img ? <img src={item.img} alt="" /> : <i class={item.icon ?? 'fa-solid fa-link'} />}
+                </span>
+                <span class="lp-item-body">
+                  <span class="lp-item-label">{item.label}</span>
+                  {item.sub && <span class="lp-item-sub">{item.sub}</span>}
+                </span>
+                <span class="lp-item-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  /* hyouhyan.com のトーン（白地・黒2px枠・ホバー反転・角丸/影/グラデなし）に合わせる */
+  .linkpage {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 80px var(--content-padding-x) 64px;
+  }
+
+  /* プロフィール: About の丸アイコン（3px 黒枠）を縮小して中央寄せ */
+  .lp-profile {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .lp-icon {
+    display: inline-block;
+  }
+
+  .lp-icon img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-border);
+    margin: 0 auto;
+  }
+
+  .lp-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    margin: 20px 0 8px;
+  }
+
+  .lp-name-en {
+    font-size: 0.6em;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .lp-bio {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  /* グループ見出し: Skills の .category-label と同じ下線型 h2 */
+  .lp-group + .lp-group {
+    margin-top: 40px;
+  }
+
+  .lp-group-title {
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    padding-left: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .lp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* リンク行: LINK セクションの .link-card（黒2px枠・高さ64px・ホバー反転）を横長にしたもの */
+  .lp-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 64px;
+    padding: 10px 20px;
+    border: 2px solid var(--color-border);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .lp-item:hover,
+  .lp-item:focus-visible {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .lp-item-icon {
+    flex-shrink: 0;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .lp-item-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  /* 画像アイコンは反転時に白く抜く */
+  .lp-item:hover .lp-item-icon img,
+  .lp-item:focus-visible .lp-item-icon img {
+    filter: brightness(0) invert(1);
+  }
+
+  .lp-item-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lp-item-label {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .lp-item-sub {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lp-item:hover .lp-item-sub,
+  .lp-item:focus-visible .lp-item-sub {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .lp-item-arrow {
+    flex-shrink: 0;
+    font-weight: 700;
+    transition: transform 0.2s;
+  }
+
+  .lp-item:hover .lp-item-arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 767px) {
+    .linkpage {
+      padding-top: 56px;
+    }
+  }
+</style>
