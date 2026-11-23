@@ -23,7 +23,7 @@ pnpm run preview  # ビルド結果をローカル確認
 3. **Career** … タイムライン
 4. **Skill** … カテゴリ別のスキルグリッド
 5. **Work** … ホバーで説明が出る制作物カード
-6. **Hobby** … 趣味カード＋「推し」サブセクション（自動送り＋ホイール/タッチで操作できる横スクロール。画像は URL の og:image をビルド時取得）
+6. **Hobby** … 趣味カード＋「推し」サブセクション（文字のみのカード。画像は使わない）
 7. **Link** … 外部リンクボタン
 
 このほかに、エラーページ（`401` / `404` / `418`）を Astro で用意しています。
@@ -45,8 +45,6 @@ src/
 │  └─ links.ts
 ├─ components/        # 各セクションの部品（Header / Home / About / Career /
 │  │                  #   Skills / Works / Hobby / Links / Footer / ErrorPage）
-├─ lib/
-│  └─ og.ts           #   ビルド時に URL の og:image を取得（推しの画像補完に使用）
 ├─ layouts/
 │  └─ Base.astro      #   <head>・OGP・Font Awesome
 ├─ styles/
@@ -68,7 +66,6 @@ src/
 - スクリプト: バニラ JS（Astro の `<script>` タグ）。jQuery は廃止済み
 - フォント: Noto Sans JP（Google Fonts）。ロゴは画像なので、以前使っていた Adobe Typekit は削除済み
 - アイコン: Font Awesome（SNS）、Skillicon（スキル）
-- 推しの画像は `src/lib/og.ts` が**ビルド時**に対象 URL の og:image を取得して埋め込む（実行時 API は無し。取得失敗時はハート表示にフォールバック）
 
 ## 触るときの注意
 

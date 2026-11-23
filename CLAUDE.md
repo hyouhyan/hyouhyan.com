@@ -34,7 +34,7 @@ src/
     Publications.astro ← h2「Publications」サブセクション（src/data/publications.ts）。**セクション非依存の自己完結コンポーネント**（見出し・リスト・スコープCSS・空なら非出力の判定を全部内包）。置き場所を変えるときは、移動元の import と `<Publications />` 1行を移動先セクションの `.main-content` 内へ移すだけ。現在は Career.astro に配置（以前は Works.astro）
     Skills.astro      ← カテゴリ別スキルグリッド。データは src/data/skills.ts
     Works.astro       ← ホバーオーバーレイカード（src/data/works.ts）
-    Hobby.astro       ← 趣味セクション。趣味はテキスト主体のコンパクトカード（画像なし）＋ h2「推し」サブセクションは小さめカードの横スクロール（画像あり）。データは src/data/hobby.ts / src/data/oshi.ts
+    Hobby.astro       ← 趣味セクション。趣味はテキスト主体のコンパクトカード（画像なし）＋ h2「推し」サブセクションは趣味カードと同じ見た目の文字カードを flex-wrap で並べる（文字のみ・画像なし・JS なし。category が2種以上のときだけ小見出し）。データは src/data/hobby.ts / src/data/oshi.ts
     Links.astro       ← 黒枠ホバー反転ボタン。データは src/data/links.ts
     Footer.astro      ← フッター（著作権表示）
   data/
@@ -42,12 +42,10 @@ src/
     publications.ts   ← Publication[]（**新しいものが上・古いものが下（降順）**。追加は先頭に足す。date は自由書式の文字列なので自動ソートはせず配列順のまま表示）（title / authors / venue / date / url? / tags? / awards?）。tags は `string[]`（例: `['国際会議', '査読あり']`）で、各要素をバッジとして汎用表示する（タグ名の特別扱いなし。未指定/空なら非表示。旧 `type` は tags に統合して廃止）。awards は受賞名の `string[]`（1論文に複数可。例: `['Excellent Paper Award']`）で、tags と同じ行の tags の後ろに白地＋金枠＋金文字＋Font Awesome のトロフィーで表示（色は global.css の `--color-award` / `--color-award-border`、外寸はタグと同じ）。旧 `award?: string` は awards に置き換えて廃止。date は文字列でそのまま出力するので粒度自由（'2026' / '2026 Jan' / '2026年1月' など）。Publications.astro が参考文献リスト形式で表示（現在の置き場所は Career）。空なら非表示。著者中の自分の表示名は自動で太字（同ファイルの `selfNames: string[]` に列挙。国内=日本語名・国際=英語名など複数表記に対応、長い表記から照合）。学会発表したら1件ずつ追加
     skills.ts         ← Skill[]（計66件）。表示順 skillCategories = Infra / OS → Languages → Database → Embedded → Dev Tools → Creative（インフラエンジニアなのでインフラ系を先頭）。一部カテゴリは subcategory（h3見出し）でさらに細分（Frameworks / Tools・Web / Frontend・Web / Backend）。img は原則 skillicon()（skillicons.dev）、無いものは simpleIcon()（cdn.simpleicons.org）か public/img/skill のローカル画像（Incus は公式ロゴ未配布のため simpleIcon('linuxcontainers') を仮に流用中、要差し替え）
     works.ts          ← Work[]（url / img / description）
-    hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない（画像は推し欄だけ）。現状: ダーツ・自宅サーバ運用・遠征・カラオケ・日本酒
-    oshi.ts           ← OshiItem[]（name / description? / category? / img? / url?）。description は任意（なければ非表示）。Hobby.astro の h2「推し」サブセクションで小さめカードを**自動送り＋ホイール/タッチで手動左右スクロール**（Hobby.astro 内バニラJS。操作/ホバー中は自動停止、スクロールバー非表示、端フェード、シームレスループのためカードをJSで複製、prefers-reduced-motion で自動送りOFF）で表示。**img 未指定＆url 指定なら、ビルド時に url の og:image を取得して img に補完**（下記 lib/og.ts）。img も url も無ければハートアイコン。url があればカード全体がリンク化。現状: VTuber 7組（ヒメヒナ・花譜・明透・KMNZ・V.W.P・ミライアカリ・大蔦エル。いずれも url→og:image で画像解決）
+    hobby.ts          ← HobbyItem[]（title / description?）。description は任意（なければ非表示）。画像・アイコンは持たない。現状: ダーツ・自宅サーバ運用・遠征・カラオケ・日本酒
+    oshi.ts           ← OshiItem[]（name / description? / category? / url?）。**画像は持たない（著作権配慮で og:image 等のホットリンクはしない。文字のみ）**。Hobby.astro の h2「推し」サブセクションで category ごとにグループ化（グループ順＝カテゴリ初出順、グループ内は配列順、category 未指定は見出しなしで最後）し、名前のバッジ（趣味カード `.hobby-item` と同じ寸法・見た目: 1px 枠・角丸8px・padding 8px 14px・名前14px太字）を並べる。カテゴリ見出しはカテゴリが2種類以上あるときだけ表示（現状 VTuber のみなので非表示）。description は任意で、あればバッジ内の名前の後ろに小さく添える。url があればバッジ全体が新規タブのリンク（hover で枠が黒くなるだけ）。現状: VTuber 9組（ミライアカリ・ヒメヒナ・花譜・明透・KMNZ・Monsterz Mate・V.W.P・敷嶋てとら・大蔦エル）
     links.ts          ← LinkItem[]（url / label）。トップの LINK セクション用
     linkpage.ts       ← /link ページ（bento.me 代替のリンク集）のデータ。profile（name / nameEn / icon / bio）と linkGroups: LinkPageGroup[]（title / items: LinkPageItem[]）。item は label / url / sub? / icon?（Font Awesome 6 のクラス、省略時 fa-link）/ img?（画像アイコン、icon より優先）。**リンクの追加・削除・並べ替えはこのファイルだけ**。配列順＝表示順、items が空のグループは非表示。http(s) の外部リンクは自動で新規タブ
-  lib/
-    og.ts             ← ビルド時ユーティリティ。fetchOgImage(url)=ページの og:image（無ければ twitter:image）取得、resolveOshi(items)=推しの img 未指定分を og:image で補完。取得失敗時は undefined 返しでビルドは壊さない＋dev 用にモジュールキャッシュあり
   pages/
     index.astro       ← 全コンポーネントを並べるだけ
     link.astro        ← /link。SNS プロフィール欄に貼るリンク集（旧 public/link/index.html の bento.me リダイレクトを置き換え）。Header なしの1カラム（max-width 520px）。見た目は LINK セクションの .link-card（黒2px枠・ホバー反転）を横長にした行＋Skills の .category-label と同じ下線型 h2。中身は src/data/linkpage.ts のみで管理
@@ -64,7 +62,7 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 3. **Career** `#career` … タイムライン（記入済み。降順＝新しいものが上。2028〜2022）＋ h2「Publications」サブセクション（論文・学会発表。`src/data/publications.ts` に1件ずつ追加。空なら非表示、ナビ（h1）は増やさない方針。`Publications.astro` を移すだけで Work 等へ戻せる）
 4. **Skill** `#skill` … スキル一覧（6カテゴリ・計66アイテム。GitHub プロフィール README のスキル一覧と同期）
 5. **Work** `#work` … 制作物カード（3件）
-6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし・5件）＋ h2「推し」サブセクション（小さめカードを自動送り＋ホイール/タッチで手動スクロール、画像あり・VTuber 7組）
+6. **Hobby** `#hobby` … 趣味（テキスト主体のコンパクトカード、画像なし・5件）＋ h2「推し」サブセクション（趣味カードと同じ見た目の名前カード、文字のみ・画像なし・VTuber 9組）
 7. **Link** `#link` … 外部リンクボタン（4件）＋ボタン群の下に /link（リンク集ページ）へ飛ぶ小さい「MORE」ボタン（Links.astro に直書き。links.ts には入れない）
 
 - セクションを追加/並べ替えしたら、`Header.astro` のナビ `<li>` と `<script>` 内 `sectionIds` 配列、`global.css` の scroll-margin セレクタ（PC・モバイル2箇所）も合わせて更新すること。
@@ -98,11 +96,10 @@ public/               ← 静的ファイル。削除要注意（旧サイト・
 - **`public/img/hy_icon/hyouhyan.svg`** は自分のアイコン（ae ロゴ）のベクタ版で、BIMI 用ロゴを兼ねる。DNS の TXT `default._bimi.hyouhyan.com`（`v=BIMI1; l=https://hyouhyan.com/img/hy_icon/hyouhyan.svg;`）がこの URL を参照するので、パス変更・削除は禁止。形式は SVG Tiny PS（`version="1.2" baseProfile="tiny-ps"`、正方形、32KB 以下、背景は白の塗り、スクリプト・外部参照・画像埋め込み・フォントは不可）を守る。元は `public/img/hy_icon.png` を potrace でトレースして生成した。
 - `astro.config.mjs` の `site` は本番URL。カスタムドメインなので `base` は設定しない。
 - ヘッダーのスクロール挙動 JS は `Header.astro` の `<script>` に内蔵。`public/js/script.js` は廃止済み（削除禁止・旧サイト参照の可能性あり）。
-- 推しの og:image 自動取得により**ビルド時に外部フェッチが発生する**（`lib/og.ts`）。あくまでビルド時のみで実行時APIではない。オフライン時や取得失敗時は img 未取得（ハート表示）になるだけでビルドは通る。取得した画像 URL はビルド時点のスナップショットなので、更新にはリビルドが必要。
+- 推しは**文字のみ**。以前はビルド時に url の og:image を取得（`lib/og.ts`）してホットリンク表示していたが、著作権的にグレーなため廃止し `lib/og.ts` も削除済み。推しに画像（`img` フィールド・og:image 取得・外部画像のホットリンク）を再導入しないこと。
 
 ## やりたいこと（任意・順次）
 
 - Now（研究）セクションの追加を検討
 - ブログを足すなら Astro の Content Collections（Markdown 管理）を検討
 - OGP に `og:image` 等を追加（現状 `Base.astro` は og:image 未設定で、Discord 等シェア時にサムネが出ない。`twitter:card` の `summary_large_image` 化も）
-- 推しの画像は url→og:image のホットリンク依存。活動終了先で将来取得に失敗しうる（フォールバック改善やガイドライン許容素材のローカル化は検討保留中）
