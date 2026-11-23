@@ -8,19 +8,31 @@ export interface OshiItem {
   category?: string;
   /** リンク先（YouTube / X / 公式サイト等）。バッジ全体がこの URL のリンクになる。画像は使わない（著作権配慮のため文字のみ） */
   url?: string;
+  /**
+   * 強調カラー（CSS の色を1つ以上。例: ['#fd5f8a', '#3eb8fd']）。指定した推しだけ、太字＋2px のカラー枠（複数色は左→右のグラデ）で目立たせる。
+   * 色付けのみで並び順は変えない（並びは配列順）。未指定なら通常表示
+   */
+  highlight?: string[];
 }
 
 export const oshi: OshiItem[] = [
+  {
+    name: 'ヒメヒナ',
+    category: 'VTuber',
+    url: 'https://www.youtube.com/@HimeHina',
+    highlight: ['#fd5f8a', '#3eb8fd'],
+  },
+  {
+    name: 'KMNZ',
+    category: 'VTuber',
+    url: 'https://www.youtube.com/@KMNZOFFICIAL',
+    highlight: ['#f5c518'],
+  },
   {
     name: 'ミライアカリ',
     category: 'VTuber',
     url: 'https://www.youtube.com/channel/UCMYtONm441rBogWK_xPH9HA',
     description: '2023年3月31日 活動終了',
-  },
-  {
-    name: 'ヒメヒナ',
-    category: 'VTuber',
-    url: 'https://www.youtube.com/@HimeHina',
   },
   {
     name: '花譜',
@@ -31,11 +43,6 @@ export const oshi: OshiItem[] = [
     name: '明透',
     category: 'VTuber',
     url: 'https://www.youtube.com/@ASU_virtual',
-  },
-  {
-    name: 'KMNZ',
-    category: 'VTuber',
-    url: 'https://www.youtube.com/@KMNZOFFICIAL',
   },
   {
     name: 'Monsterz Mate',

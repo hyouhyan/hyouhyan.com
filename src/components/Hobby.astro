@@ -16,6 +16,13 @@ for (const o of oshi) {
   else oshiGroups.push({ category: o.category, items: [o] });
 }
 if (uncategorized.length > 0) oshiGroups.push({ items: uncategorized });
+
+// highlight の色を枠用の linear-gradient にする（1色なら同色2点で単色扱い）
+const hlStyle = (o: OshiItem) => {
+  if (!o.highlight?.length) return undefined;
+  const colors = o.highlight.length === 1 ? [o.highlight[0], o.highlight[0]] : o.highlight;
+  return `--hl: linear-gradient(90deg, ${colors.join(', ')})`;
+};
 ---
 
 <div class="hobby-box section" id="hobby">
@@ -40,12 +47,12 @@ if (uncategorized.length > 0) oshiGroups.push({ items: uncategorized });
             {g.items.map((o) => (
               <li>
                 {o.url ? (
-                  <a class="oshi-badge oshi-badge-link" href={o.url} target="_blank" rel="noopener noreferrer">
+                  <a class:list={['oshi-badge', 'oshi-badge-link', { 'oshi-badge-hl': o.highlight?.length }]} style={hlStyle(o)} href={o.url} target="_blank" rel="noopener noreferrer">
                     <span class="oshi-name">{o.name}</span>
                     {o.description && <span class="oshi-desc">{o.description}</span>}
                   </a>
                 ) : (
-                  <span class="oshi-badge">
+                  <span class:list={['oshi-badge', { 'oshi-badge-hl': o.highlight?.length }]} style={hlStyle(o)}>
                     <span class="oshi-name">{o.name}</span>
                     {o.description && <span class="oshi-desc">{o.description}</span>}
                   </span>
@@ -133,6 +140,23 @@ if (uncategorized.length > 0) oshiGroups.push({ items: uncategorized });
 
   .oshi-badge-link:hover {
     border-color: var(--color-border);
+  }
+
+  /* highlight 指定の推し: 太字＋2px のカラー枠（--hl のグラデを border-box に敷き、padding-box は白で塗る）。
+     枠が1px→2pxになる分 padding を1px減らし、枠太りで寸法がずれないようにする */
+  .oshi-badge-hl {
+    border: 2px solid transparent;
+    padding: 7px 13px;
+    background: linear-gradient(#fff, #fff) padding-box, var(--hl) border-box;
+  }
+
+  .oshi-badge-hl .oshi-name {
+    font-size: 16px;
+  }
+
+  /* hover の黒枠はグラデ枠を潰すので、強調バッジでは変えない */
+  .oshi-badge-hl.oshi-badge-link:hover {
+    border-color: transparent;
   }
 
   .oshi-name {
