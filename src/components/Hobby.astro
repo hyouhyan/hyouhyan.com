@@ -1,10 +1,21 @@
 ---
 import { hobbies } from '../data/hobby';
-import { oshi } from '../data/oshi';
-import { resolveOshi } from '../lib/og';
+import { oshi, type OshiItem } from '../data/oshi';
 
-// url があり img が空の推しは、ビルド時に og:image を取得して img を補完する
-const oshiItems = await resolveOshi(oshi);
+// 推しを category ごとにグループ化する。
+// グループ順＝カテゴリが最初に現れた順、グループ内は配列順のまま。category 未指定は見出しなしで最後に置く。
+const oshiGroups: { category?: string; items: OshiItem[] }[] = [];
+const uncategorized: OshiItem[] = [];
+for (const o of oshi) {
+  if (!o.category) {
+    uncategorized.push(o);
+    continue;
+  }
+  const group = oshiGroups.find((g) => g.category === o.category);
+  if (group) group.items.push(o);
+  else oshiGroups.push({ category: o.category, items: [o] });
+}
+if (uncategorized.length > 0) oshiGroups.push({ items: uncategorized });
 ---
 
 <div class="hobby-box section" id="hobby">
@@ -21,32 +32,29 @@ const oshiItems = await resolveOshi(oshi);
     </ul>
 
     <h2 class="subsection-title">推し</h2>
-    <div class="oshi-marquee">
-      <div class="oshi-track">
-        {oshiItems.map((o) => {
-          const Tag = o.url ? 'a' : 'div';
-          const props = {
-            class: 'oshi-card',
-            ...(o.url ? { href: o.url, target: '_blank', rel: 'noopener noreferrer' } : {}),
-          };
-          return (
-            <Tag {...props}>
-              <div class="oshi-img">
-                {o.img ? (
-                  <img src={o.img} alt={o.name} loading="lazy" />
+    <div class="oshi-groups">
+      {oshiGroups.map((g) => (
+        <div class="oshi-group">
+          {g.category && oshiGroups.length > 1 && <p class="oshi-group-title">{g.category}</p>}
+          <ul class="oshi-list">
+            {g.items.map((o) => (
+              <li>
+                {o.url ? (
+                  <a class="oshi-badge oshi-badge-link" href={o.url} target="_blank" rel="noopener noreferrer">
+                    <span class="oshi-name">{o.name}</span>
+                    {o.description && <span class="oshi-desc">{o.description}</span>}
+                  </a>
                 ) : (
-                  <span class="oshi-img-placeholder"><i class="fa-solid fa-heart"></i></span>
+                  <span class="oshi-badge">
+                    <span class="oshi-name">{o.name}</span>
+                    {o.description && <span class="oshi-desc">{o.description}</span>}
+                  </span>
                 )}
-              </div>
-              <div class="oshi-body">
-                {o.category && <span class="oshi-category">{o.category}</span>}
-                <p class="oshi-name">{o.name}</p>
-                {o.description && <p class="oshi-desc">{o.description}</p>}
-              </div>
-            </Tag>
-          );
-        })}
-      </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </div>
 </div>
@@ -89,189 +97,51 @@ const oshiItems = await resolveOshi(oshi);
     line-height: 1.3;
   }
 
-  /* ===== 推し（自動送り＋ホイール/タッチで手動操作できる横スクロール） ===== */
-  .oshi-marquee {
-    overflow-x: auto;
-    overflow-y: hidden;
-    /* ホバー時の浮き＆影がクリップされないための縦余白 */
-    padding: 8px 0 22px;
-    /* 左右端をふわっとフェード */
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
-    mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
-    /* スマホの慣性スクロール。横スクロールでブラウザの戻る等を誘発しない */
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    /* スクロールバーは非表示 */
-    scrollbar-width: none;
-  }
-
-  .oshi-marquee::-webkit-scrollbar {
-    display: none;
-  }
-
-  .oshi-track {
+  /* ===== 推し（文字のみ。カテゴリ見出し＋アウトラインのバッジ） ===== */
+  .oshi-groups {
     display: flex;
-    width: max-content;
+    flex-direction: column;
+    gap: 18px;
   }
 
-  .oshi-card {
-    flex: 0 0 auto;
-    width: 140px;
-    margin-right: 14px;   /* カード間隔（JS 複製時もこの間隔でループする） */
-    border: 1px solid var(--color-border-light);
-    border-radius: 10px;
-    overflow: hidden;
-    background: #fff;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-  }
-
-  .oshi-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .oshi-img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-  }
-
-  .oshi-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* 画像未設定時のプレースホルダー（ハート） */
-  .oshi-img-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f5f5f5;
-    color: var(--color-border-light);
-    font-size: 36px;
-  }
-
-  .oshi-body {
-    padding: 10px 12px 12px;
-  }
-
-  .oshi-category {
-    display: inline-block;
-    font-size: 9px;
-    font-weight: 500;
+  .oshi-group-title {
+    font-size: 13px;
+    font-weight: bold;
     letter-spacing: 0.05em;
-    padding: 2px 5px;
-    margin-bottom: 6px;
-    background: var(--color-accent);
-    color: #fff;
+    margin: 0 0 8px;
+  }
+
+  /* 趣味リスト（.hobby-list / .hobby-item）と同じ寸法・見た目に揃える */
+  .oshi-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .oshi-badge {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 10px;
+    max-width: 100%;
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .oshi-badge-link:hover {
+    border-color: var(--color-border);
   }
 
   .oshi-name {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
-    margin: 0 0 4px;
   }
 
   .oshi-desc {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-text-muted);
-    line-height: 1.6;
-    margin: 0;
   }
 </style>
-
-<script>
-  // 推し: 横スクロールコンテナを rAF で自動送りしつつ、ホイール/タッチで手動操作できるようにする。
-  // シームレスにループさせるため、1セット分のカードを JS で必要数だけ複製する。
-  document.querySelectorAll<HTMLElement>('.oshi-marquee').forEach((marquee) => {
-    const track = marquee.querySelector<HTMLElement>('.oshi-track');
-    if (!track || track.children.length === 0) return;
-
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const SPEED = 0.4; // 1フレームあたりの送り量(px)
-
-    // 元の1セットを複製用に保持
-    const originals = Array.from(track.children);
-    const setCount = originals.length;
-
-    const appendClones = () => {
-      for (const el of originals) {
-        const clone = el.cloneNode(true) as HTMLElement;
-        clone.setAttribute('aria-hidden', 'true');
-        clone.setAttribute('tabindex', '-1');
-        track.appendChild(clone);
-      }
-    };
-
-    // まず1セット複製し、正確な1セット幅（ストライド）を測る
-    appendClones();
-    const oneSetWidth =
-      (track.children[setCount] as HTMLElement).offsetLeft -
-      (track.children[0] as HTMLElement).offsetLeft;
-    if (oneSetWidth <= 0) return;
-
-    // 画面幅 + 2セット分を超えるまで複製（両方向に余白を確保）
-    let guard = 0;
-    while (track.scrollWidth < marquee.clientWidth + oneSetWidth * 2 && guard < 30) {
-      appendClones();
-      guard++;
-    }
-
-    // scrollLeft を [oneSetWidth, 2*oneSetWidth) に保つ。複製は同一内容なのでジャンプは不可視
-    const normalize = () => {
-      if (marquee.scrollLeft >= oneSetWidth * 2) marquee.scrollLeft -= oneSetWidth;
-      else if (marquee.scrollLeft < oneSetWidth) marquee.scrollLeft += oneSetWidth;
-    };
-    marquee.scrollLeft = oneSetWidth;
-
-    let autoplay = !reduce; // 動きを減らす設定では自動送りしない
-    let resumeTimer: number | undefined;
-    let acc = 0; // 端数をためて 1px 単位で送る（scrollLeft の丸め対策）
-
-    const holdAuto = (ms: number) => {
-      autoplay = false;
-      if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = window.setTimeout(() => { autoplay = !reduce; }, ms);
-    };
-
-    const tick = () => {
-      if (autoplay) {
-        acc += SPEED;
-        const step = Math.trunc(acc);
-        if (step) {
-          acc -= step;
-          marquee.scrollLeft += step;
-          normalize();
-        }
-      }
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-
-    // ホバー中は停止（読む/クリックしやすく）
-    marquee.addEventListener('mouseenter', () => { autoplay = false; });
-    marquee.addEventListener('mouseleave', () => {
-      if (resumeTimer) clearTimeout(resumeTimer);
-      autoplay = !reduce;
-    });
-
-    // ホイール: 縦横どちらの回転でも横スクロールに変換
-    marquee.addEventListener('wheel', (e) => {
-      const delta = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (!delta) return;
-      e.preventDefault();
-      marquee.scrollLeft += delta;
-      normalize();
-    }, { passive: false });
-
-    // タッチ: ネイティブの横スクロールに任せ、自動送りだけ止める
-    marquee.addEventListener('touchstart', () => holdAuto(60000), { passive: true });
-    marquee.addEventListener('touchend', () => holdAuto(1500), { passive: true });
-
-    // 手動スクロールでもループ位置を維持
-    marquee.addEventListener('scroll', normalize, { passive: true });
-  });
-</script>
