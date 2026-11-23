@@ -8,6 +8,11 @@ export interface OshiItem {
   category?: string;
   /** リンク先（YouTube / X / 公式サイト等）。バッジ全体がこの URL のリンクになる。画像は使わない（著作権配慮のため文字のみ） */
   url?: string;
+  /**
+   * 強調カラー（CSS の色を1つ以上。例: ['#fd5f8a', '#3eb8fd']）。指定した推しだけ、太字＋2px のカラー枠（複数色は左→右のグラデ）で目立たせ、
+   * 同じグループ内の先頭に寄せる（強調同士・非強調同士は配列順のまま）。未指定なら通常表示
+   */
+  highlight?: string[];
 }
 
 export const oshi: OshiItem[] = [
@@ -21,6 +26,8 @@ export const oshi: OshiItem[] = [
     name: 'ヒメヒナ',
     category: 'VTuber',
     url: 'https://www.youtube.com/@HimeHina',
+    // ヒメ=ピンク / ヒナ=青（himehina_lyricLab のパート色と同じ）
+    highlight: ['#fd5f8a', '#3eb8fd'],
   },
   {
     name: '花譜',
@@ -36,6 +43,8 @@ export const oshi: OshiItem[] = [
     name: 'KMNZ',
     category: 'VTuber',
     url: 'https://www.youtube.com/@KMNZOFFICIAL',
+    // LITA の髪色から取った仮の色（公式カラー指定ではない）
+    highlight: ['#f5c518'],
   },
   {
     name: 'Monsterz Mate',
